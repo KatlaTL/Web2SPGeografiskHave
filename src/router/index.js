@@ -8,13 +8,52 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Home',
+      component: HomeView,
+      meta: {
+        title: "Home"
+      }
     },
-     {
-      path: '/CalenderView',
+    {
+      path: '/',
+      name: 'About the garden',
+      meta: {
+        title: "Om haven",
+        location: "navbar",
+        deadLink: true
+      },
+      children: [{
+        path: "/",
+        name: "dummy link",
+        deadLink: true
+      }]
+    },
+    {
+      path: '/',
+      name: 'Private Events',
+      meta: {
+        title: "Privat Events",
+        location: "navbar",
+        deadLink: true
+      }
+    },
+    {
+      path: '/calender',
       name: 'CalenderView',
-      component: CalenderView
+      component: CalenderView,
+      meta: {
+        title: "Kalender",
+        location: "navbar"
+      }
+    },
+    {
+      path: '/',
+      name: 'Knowledge center',
+      meta: {
+        title: "Videnscenter",
+        location: "navbar",
+        deadLink: true
+      }
     },
     {
       path: '/EventView',
