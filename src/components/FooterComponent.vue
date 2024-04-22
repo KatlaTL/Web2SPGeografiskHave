@@ -11,19 +11,19 @@
       </div>
       <div class="column column2">
         <h3>Om os</h3>
-        <a href="">Bestyrelsen</a>
-        <a href="">Medarbejder</a>
-        <a href="">Udviklingsplan</a>
-        <a href="">Årsberetninger</a>
-        <a href="">Samarbejdspartner</a>
-        <a href="">Pressebilleder</a>
-        <a href="">Presseperspektiv</a>
+        <a href="#">Bestyrelsen</a>
+        <a href="#">Medarbejder</a>
+        <a href="#">Udviklingsplan</a>
+        <a href="#">Årsberetninger</a>
+        <a href="#">Samarbejdspartner</a>
+        <a href="#">Pressebilleder</a>
+        <a href="#">Presseperspektiv</a>
       </div>
       <div class="column column3">
         <h3>Diverse</h3>
-        <a href="">Persondatapolitik</a>
-        <a href="">Cookiepolitik</a>
-        <a href="">Smiley kontrolrapport</a>
+        <a href="#">Persondatapolitik</a>
+        <a href="#">Cookiepolitik</a>
+        <a href="#">Smiley kontrolrapport</a>
         <div class="social_media_div">
           <h3>sociale medier</h3>
           <img src="../images and icons/GH til Webudvikling/Ikoner/Facebook.svg" alt="">
