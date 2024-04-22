@@ -1,4 +1,115 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,300");
+
 /* Variables */
+:root {
+    --headerColor: #125F31;
+    --whiteColor: #ffffff;
+    --activeGreen: #7FA761;
+}
+
+/* Styling Global */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+}
 
 
-/* Styling */
+/* Styling header */
+
+#header-container {
+    background-color: var(--headerColor);
+    display: flex;
+    height: 115px;
+}
+
+#header-logo {
+    flex-grow: 2;
+    align-content: center;
+    margin-left: 34px;
+}
+
+#header-logo img {
+    width: 307px;
+    height: 75px;
+}
+
+#header-navbar {
+    flex-grow: 1;
+    align-content: center;
+}
+
+#header-navbar ul {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#header-navbar ul li {
+    flex-grow: 1;
+    list-style-type: none;
+}
+
+#header-navbar ul li a {
+    font-size: 20px;
+    color: var(--whiteColor);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#header-navbar ul li .router-link-exact-active {
+    color: var(--activeGreen);
+}
+
+#header-navbar ul li .dropdown-arrow::after {
+    content: "";
+    margin-left: 10px;
+    margin-bottom: 2px;
+    background-image: url("@/assets/icons/drop-down-arrow.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 8px;
+}
+
+#header-search {
+    flex-grow: 1;
+    align-content: center;
+}
+
+#header-search label {
+    color: var(--whiteColor);
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#header-search label .search-icon::before {
+    content: "";
+    margin-right: 10px;
+    background-image: url("@/assets/icons/search.png");
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    width: 27px;
+    height: 27px;
+}
+
+#header-search input {
+    visibility: hidden;
+    border: none;
+    border-radius: 4px;
+    height: 22px;
+    width: 0px;
+    outline: none;
+    font-size: 14px;
+    margin-right: 10px;
+    float: left;
+    transition: all .5s;
+}
+
+#header-search input.active {
+    visibility: visible;
+    width: 160px;
+}
