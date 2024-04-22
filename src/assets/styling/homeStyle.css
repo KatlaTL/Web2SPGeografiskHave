@@ -1,0 +1,31 @@
+#hero-banner {
+    position: relative;
+    width: auto;
+}
+
+#hero-banner-image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1465px;
+    height: 569px;
+}
+
+#hero-banner-title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 1465px;
+    text-align: center;
+}
+
+#hero-banner-title h1 {
+    display: inline;
+    font-size: 50px;
+    line-height: 0%;
+    color: var(--whiteColor);
+    text-transform: uppercase;
+    font-family: var(--headersFont);
+    font-weight: 600;
+}

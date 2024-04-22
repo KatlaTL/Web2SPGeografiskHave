@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,300");
+@import url('https://fonts.cdnfonts.com/css/stag');
 @import url("./headerStyle.css");
+@import url("./homeStyle.css");
 
 /* Variables */
 :root {
     --headerColor: #125F31;
     --whiteColor: #ffffff;
     --activeGreen: #7FA761;
+    --headersFont: "Stag", "Open Sans", sans-serif
 }
 
 /* Styling Global */
