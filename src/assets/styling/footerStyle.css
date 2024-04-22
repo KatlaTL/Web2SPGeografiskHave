@@ -8,7 +8,7 @@ footer {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -31,3 +31,24 @@ footer {
     text-decoration: none;
 }
 
+.column img {
+    height: 300px;
+    width: 300px;
+}
+
+.column2, .column3, .column4 {
+    margin-top: 30px;
+}
+
+.social_media_div {
+    margin-top: 30px;
+}
+
+.social_media_div img {
+    height: 136px;
+    width: 150px;
+}
+
+.info_div {
+    margin-top: ;
+}
