@@ -1,8 +1,4 @@
 <script setup>
-</script>
-
-<template>
-<script setup>
   import '@/assets/styling/footerStyle.css'
 </script>
 
@@ -11,6 +7,7 @@
     <div class="container">
       <div class="column">
         <h3>Column 1</h3>
+        <img src="../images and icons/GH til Webudvikling/Ikoner/gh_logo_vertikal_hvid.svg" alt="Geografisk have logo footer">
 
       </div>
       <div class="column">
@@ -34,6 +31,4 @@
       </div>
     </div>
   </footer>
-</template>
-
 </template>

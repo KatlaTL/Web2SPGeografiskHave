@@ -1,0 +1,33 @@
+footer {
+    background-color: #492A14;
+    color: #fff;
+    padding: 20px 0;
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    width: 23%;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+}
+
+.column h3 {
+    margin-bottom: 10px;
+}
+
+.column p, a {
+    color: #EDE9E9;
+    font-size: 15px;
+    text-decoration: none;
+}
+
