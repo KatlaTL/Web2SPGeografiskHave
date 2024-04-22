@@ -16,12 +16,12 @@ footer {
 
 .column {
     width: 23%;
-    text-align: center; 
     display: flex;
     flex-direction: column;
 }
 
 .column h3 {
+    font-size: 35px;
     margin-bottom: 10px;
 }
 
@@ -29,6 +29,7 @@ footer {
     color: #EDE9E9;
     font-size: 15px;
     text-decoration: none;
+    padding-bottom: 5px;
 }
 
 .column img {
@@ -45,10 +46,11 @@ footer {
 }
 
 .social_media_div img {
-    height: 136px;
-    width: 150px;
+    padding-right: 10px;
+    height: 51px;
+    width: 51px;
 }
 
 .info_div {
-    margin-top: ;
+    margin-top: 30px;
 }
