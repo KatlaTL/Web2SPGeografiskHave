@@ -41,5 +41,8 @@
         </div>
       </div>
     </div>
+    <div class="bambus_footer">
+      <img src="../images and icons/GH til Webudvikling/Ikoner/bambus_footer.png" alt="">
+    </div>
   </footer>
 </template>
