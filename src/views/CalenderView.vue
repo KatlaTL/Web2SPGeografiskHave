@@ -6,6 +6,7 @@ import footerComponent from "@/components/FooterComponent.vue"
 <template>
   <headerComponent/>
   <main>
+      <headerComponent/>
     <h1>CalenderView</h1>
     <router-link :to="{name: 'EventView'}">
       <button id="myButton">EventView</button>
