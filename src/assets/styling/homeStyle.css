@@ -29,3 +29,48 @@
     font-family: var(--headersFont);
     font-weight: 600;
 }
+
+#info-banner {
+    position: relative;
+    width: 1086px;
+    height: 124px;
+    top: -62px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--yellowColor);
+    border-radius: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.info-banner-tile {
+    min-width: 285px;
+    height: 64px;
+}
+
+.info-banner-tile img {
+    float: left;
+}
+
+.info-banner-tile-text {
+    float: left;
+    margin-left: 25px;
+    height: auto;
+    width: 205px;
+    font-family: var(--headersFont);
+    font-weight: 400;
+    color: var(--blackColor);
+}
+
+.info-banner-tile-text h2 {
+    display: inline;
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.info-banner-tile-text p {
+    margin-top: -3px;
+    font-size: 15px;
+}
