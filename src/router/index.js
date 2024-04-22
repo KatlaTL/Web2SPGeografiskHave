@@ -15,7 +15,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/',
+      path: '/deadlink',
       name: 'About the garden',
       meta: {
         title: "Om haven",
@@ -23,13 +23,13 @@ const router = createRouter({
         deadLink: true
       },
       children: [{
-        path: "/",
+        path: "/deadlink",
         name: "dummy link",
         deadLink: true
       }]
     },
     {
-      path: '/',
+      path: '/deadlink',
       name: 'Private Events',
       meta: {
         title: "Privat Events",
@@ -47,7 +47,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/',
+      path: '/deadlink',
       name: 'Knowledge center',
       meta: {
         title: "Videnscenter",
@@ -61,6 +61,19 @@ const router = createRouter({
       component: EventView
     },
   ]
+})
+
+// Disable links with path /deadlink
+router.beforeEach((to, from) => {
+  if (to.path === "/deadlink") {
+    return { name: from.name}
+  }
+})
+
+router.afterEach((to) => {
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
 })
 
 export default router
