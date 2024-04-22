@@ -5,10 +5,10 @@ import footerComponent from "@/components/FooterComponent.vue"
 
 <template>
   <main>
-    <headerComponent/>
+      <headerComponent/>
     <h1>CalenderView</h1>
     <router-link :to="{name: 'EventView'}">
-     <button id="myButton">EventView</button>
+      <button id="myButton">EventView</button>
     </router-link>
     <footerComponent/>
   </main>
