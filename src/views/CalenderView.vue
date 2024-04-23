@@ -23,16 +23,16 @@ const columns = ref([
 
 const searchQuery = ref('');
 
-    const showOldImages = () => {
-    };
+  const showTours = () => {
+  };
 
-    const showNewImages = () => {
+  const showEvents = () => {
 
-    };
+  };
 
-    const isVisible = (index) => {
-      return true;
-    };
+  const isVisible = (index) => {
+    return true;
+  };
 
 </script>
 
@@ -40,8 +40,8 @@ const searchQuery = ref('');
   <main>
     <div class="controls">
       <div class="control_div">
-        <button @click="showOldImages">Rundvisning</button>
-        <button @click="showNewImages">Events</button>
+        <button @click="showTours">Rundvisning</button>
+        <button @click="showEvents">Events</button>
         <input type="text" v-model="searchQuery" placeholder="Søg event">
       </div>
     </div>
