@@ -1,0 +1,36 @@
+.container_calendar {
+  display: flex;
+  height: 100%;
+  width: 1200px;
+  margin: auto;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-container {
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.date {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.text {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.info_container {
+  width: 300px;
+  height: 100px;
+}
