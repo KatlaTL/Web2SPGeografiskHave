@@ -22,24 +22,45 @@ const columns = ref([
   ]
 ]);
 
+const searchQuery = ref('');
+
+    const showOldImages = () => {
+      // Code to show old images
+    };
+
+    const showNewImages = () => {
+      // Code to show new images
+    };
+
+    const isVisible = (index) => {
+      // Logic to determine visibility based on search query or other conditions
+      return true;
+    };
+
 </script>
 
 <template>
   <main>
       <headerComponent/>
     <h1>CalenderView</h1>
-    <router-link :to="{name: 'EventView'}">
-      <button id="myButton">EventView</button>
-    </router-link>
+    <div class="controls">
+      <div class="control_div">
+        <input type="text" v-model="searchQuery" placeholder="Search...">
+        <button @click="showOldImages">Show Old Images</button>
+        <button @click="showNewImages">Show New Images</button>
+      </div>
+    </div>
     <div class="container_calendar">
       <div class="column" v-for="(column, index) in columns" :key="index">
-        <div class="image-container" v-for="(image, i) in column" :key="i">
-          <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
-          <div class="info_container">
-            <div class="date">{{ image.date }}</div>
-            <div class="date"><h2>{{ image.titel }}</h2></div>
-            <div class="text">{{ image.text }}</div>
-        </div>
+        <div v-if="isVisible(index)" class="image-wrapper">
+          <div class="image-container" v-for="(image, i) in column" :key="i">
+            <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
+            <div class="info_container">
+              <div class="date">{{ image.date }}</div>
+              <div class="date"><h2>{{ image.titel }}</h2></div>
+              <div class="text">{{ image.text }}</div>
+            </div>
+          </div>
         </div>
       </div>
   </div>
