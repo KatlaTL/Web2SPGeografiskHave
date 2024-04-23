@@ -43,9 +43,9 @@ const searchQuery = ref('');
     <h1>CalenderView</h1>
     <div class="controls">
       <div class="control_div">
-        <input type="text" v-model="searchQuery" placeholder="Search...">
-        <button @click="showOldImages">Show Old Images</button>
-        <button @click="showNewImages">Show New Images</button>
+        <button @click="showOldImages">Rundvisning</button>
+        <button @click="showNewImages">Events</button>
+        <input type="text" v-model="searchQuery" placeholder="Søg event">
       </div>
     </div>
     <div class="container_calendar">

@@ -13,10 +13,24 @@
 .controls input {
   flex: 1;
   margin-right: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: #125F31;
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
 }
 
 .controls button {
   margin-right: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: #7FA761;
+  color: #fff;
 }
 
 .container_calendar {
