@@ -35,6 +35,12 @@ main {
   border: none;
   background-color: #7FA761;
   color: #fff;
+   cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: #125F31;
+  transition: 0.5s;
 }
 
 .container_calendar {
