@@ -25,15 +25,13 @@ const columns = ref([
 const searchQuery = ref('');
 
     const showOldImages = () => {
-      // Code to show old images
     };
 
     const showNewImages = () => {
-      // Code to show new images
+
     };
 
     const isVisible = (index) => {
-      // Logic to determine visibility based on search query or other conditions
       return true;
     };
 
