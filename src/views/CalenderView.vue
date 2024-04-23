@@ -51,7 +51,7 @@ const searchQuery = ref('');
             <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
             <div class="info_container">
               <div class="date">{{ image.date }}</div>
-              <div class="date"><h2>{{ image.titel }}</h2></div>
+              <div class="titel"><h2>{{ image.titel }}</h2></div>
               <div class="text">{{ image.text }}</div>
             </div>
           </div>
