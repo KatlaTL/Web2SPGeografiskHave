@@ -1,3 +1,7 @@
+main {
+  padding: 100px;
+}
+
 .controls {
   display: flex;
   align-items: center;

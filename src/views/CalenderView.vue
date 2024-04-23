@@ -40,8 +40,6 @@ const searchQuery = ref('');
 <template>
   <headerComponent/>
   <main>
-      <headerComponent/>
-    <h1>CalenderView</h1>
     <div class="controls">
       <div class="control_div">
         <button @click="showOldImages">Rundvisning</button>
@@ -63,6 +61,6 @@ const searchQuery = ref('');
         </div>
       </div>
   </div>
-    <footerComponent/>
   </main>
+  <footerComponent/>
 </template>
