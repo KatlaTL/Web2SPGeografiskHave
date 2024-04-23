@@ -3,7 +3,7 @@ import footerComponent from "@/components/FooterComponent.vue"
 import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
 
-const columns = ref([
+const Events = ref([
   [
     { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/kamelia.webp", date: "marts 1 - 31 marts, 2024",titel:"Kamelia dage i Væksthuset", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
     { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/foraar.webp", date: "22 marts, 2024", titel:"Sommersæsonstart i 2024", text: "I Geografisk Have kan man virkelig få lov at nyde naturen i forårets tegn." },
@@ -45,9 +45,9 @@ const searchQuery = ref('');
       </div>
     </div>
     <div class="container_calendar">
-      <div class="column" v-for="(column, index) in columns" :key="index">
+      <div class="column" v-for="(event, index) in Events" :key="index">
         <div v-if="isVisible(index)" class="image-wrapper">
-          <div class="image-container" v-for="(image, i) in column" :key="i">
+          <div class="image-container" v-for="(image, i) in event" :key="i">
             <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
             <div class="info_container">
               <div class="date">{{ image.date }}</div>
