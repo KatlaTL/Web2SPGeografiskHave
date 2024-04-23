@@ -1,0 +1,76 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: auto;
+  width: 1050px;
+}
+
+.controls_div {
+  margin-right: 0px;
+}
+
+.controls input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: #125F31;
+  color: #fff;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+.controls button {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: #7FA761;
+  color: #fff;
+}
+
+.container_calendar {
+  display: flex;
+  height: 100%;
+  width: 1200px;
+  margin: auto;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-container {
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.column .image-wrapper {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.date {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.text {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.info_container {
+  width: 300px;
+  height: 100px;
+}
