@@ -1,5 +1,4 @@
 <script setup>
-import headerComponent from "@/components/HeaderComponent.vue"
 import footerComponent from "@/components/FooterComponent.vue"
 import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
@@ -38,7 +37,6 @@ const searchQuery = ref('');
 </script>
 
 <template>
-  <headerComponent/>
   <main>
     <div class="controls">
       <div class="control_div">

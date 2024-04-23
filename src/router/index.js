@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CalenderView from '../views/CalenderView.vue'
-import EventView from '../views/EventView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,8 +37,8 @@ const router = createRouter({
     },
     {
       path: '/calender',
-      name: 'CalenderView',
-      component: CalenderView,
+      name: 'Calender',
+      component: () => import('../views/CalenderView.vue'),
       meta: {
         title: "Kalender",
         location: "navbar"
@@ -58,7 +56,7 @@ const router = createRouter({
     {
       path: '/EventView',
       name: 'EventView',
-      component: EventView
+      component: () => import('../views/EventView.vue')
     },
   ]
 })

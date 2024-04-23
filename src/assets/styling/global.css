@@ -7,8 +7,11 @@
 :root {
     --headerColor: #125F31;
     --whiteColor: #ffffff;
+    --blackColor: #000000;
     --activeGreen: #7FA761;
-    --headersFont: "Stag", "Open Sans", sans-serif
+    --yellowColor: #FFE174;
+    --backgroundColor: #FFF9EB;
+    --headersFont: "Stag", "Open Sans", sans-serif;
 }
 
 /* Styling Global */
@@ -16,4 +19,5 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Open Sans", sans-serif;
+    background-color: var(--backgroundColor);
 }
