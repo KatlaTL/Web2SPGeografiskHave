@@ -48,7 +48,10 @@ const searchQuery = ref('');
       <div class="column" v-for="(event, index) in Events" :key="index">
         <div v-if="isVisible(index)" class="image-wrapper">
           <div class="image-container" v-for="(image, i) in event" :key="i">
-            <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
+              <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
+              <div class="image-overlay">
+                <a href="#" class="read-more">Læs Mere</a>
+              </div>
             <div class="info_container">
               <div class="date">{{ image.date }}</div>
               <div class="titel"><h2>{{ image.titel }}</h2></div>

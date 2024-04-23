@@ -56,13 +56,35 @@ main {
 }
 
 .image-container {
-  margin-bottom: 20px;
+  position: relative;
+  width: 300px; 
+  height: 500px; 
+  overflow: hidden; 
 }
 
 .image-container img {
   object-fit: cover;
   width: 300px;
   height: 300px;
+  cursor: pointer;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  opacity: 0; 
+  background-color: #125F31; 
+  transition: opacity 0.3s; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container:hover .image-overlay {
+  opacity: 0.5; 
 }
 
 .column .image-wrapper {
