@@ -1,6 +1,6 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
-import EventBanner from '@/components/EventComponents/EventBanner.vue';
+import EventBanner from '@/components/EventComponets/EventBanner.vue';
 import { ref, watch } from 'vue';
 
 const calendarDatas = ref([""]);
