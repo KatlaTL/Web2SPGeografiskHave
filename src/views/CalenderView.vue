@@ -1,5 +1,4 @@
 <script setup>
-import footerComponent from "@/components/FooterComponent.vue"
 import '@/assets/styling/calendarViewStyle.css'
 import { ref, watch } from 'vue';
 
@@ -81,5 +80,4 @@ const showEvents = () => {
       </div>
   </div>
   </main>
-  <footerComponent/>
 </template>

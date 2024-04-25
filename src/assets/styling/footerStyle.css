@@ -26,10 +26,16 @@ footer {
 
 .column p, a {
     font-family: var(--headersFont);
+    font-weight: 500;
     color: #EDE9E9;
     font-size: 20px;
     text-decoration: none;
     padding-bottom: 5px;
+}
+
+.column p {
+    line-height: 0;
+    margin-block-start: 0.8em;
 }
 
 .column img {
@@ -37,7 +43,9 @@ footer {
     width: 300px;
 }
 
-.column2, .column3, .column4 {
+.column2,
+.column3,
+.column4 {
     margin-top: 30px;
 }
 
