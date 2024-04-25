@@ -1,13 +1,14 @@
 import { db } from "@/config/firebase";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
 
-const homepageTilesRef = collection(db, "homepageTiles");
 
 export const getAllHomepageTiles = async () => {
     try {
-        const q = query(homepageTilesRef, orderBy("createdAt"));
+        const homepageTilesRef = collection(db, "homepageTiles");
 
-        const querySnapshot = await getDocs(q);
+        const homepageTilesQuery = query(homepageTilesRef, orderBy("createdAt"));
+
+        const querySnapshot = await getDocs(homepageTilesQuery);
 
         const result = [];
 
@@ -21,7 +22,7 @@ export const getAllHomepageTiles = async () => {
                 tileSubPage: subQuerySnapshot.docs[0]?.data()
             });
         };
-        
+
         return {
             result,
             error: null
@@ -29,6 +30,36 @@ export const getAllHomepageTiles = async () => {
 
     } catch (err) {
         console.error(err)
+        return {
+            result: null,
+            error: err
+        };
+    }
+}
+
+export const getActiveHeroBanner = async () => {
+    try {
+        const homepageHeroRef = collection(db, "homepageHeroBanner");
+
+        const homepageHeroQuery = query(homepageHeroRef, where("activeBanner", "==", true));
+
+        const querySnapshot = await getDocs(homepageHeroQuery);
+
+        let result = {};
+
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+
+            if (data?.activeBanner) {
+                result = { ...data }
+            }
+        })
+
+        return {
+            result,
+            error: null
+        };
+    } catch (err) {
         return {
             result: null,
             error: err

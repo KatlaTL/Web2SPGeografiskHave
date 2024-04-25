@@ -6,6 +6,7 @@ const props = defineProps({
     title: String,
     tileText: String,
     imageURL: String,
+    imageAltText: String,
     backgroundColor: String,
     textColor: String,
     linkTextColor: String,
@@ -77,7 +78,7 @@ const tileLinkTextColor = computed(() => {
         </section>
         <section class="home-event-tile-img">
             <div>
-                <img :src="imageURL" />
+                <img :src="imageURL" :alt="imageAltText" />
             </div>
         </section>
     </article>
