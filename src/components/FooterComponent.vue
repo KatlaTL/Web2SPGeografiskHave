@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="bambus_footer">
-      <img src="../images and icons/GH til Webudvikling/Ikoner/bambus_footer.png" alt="">
+      <img src="../images and icons/GH til Webudvikling/Ikoner/bambus_footer.png" alt="" class="bambus_footer_img">
     </div>
   </footer>
 </template>

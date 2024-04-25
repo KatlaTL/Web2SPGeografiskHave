@@ -19,13 +19,15 @@ footer {
 }
 
 .column h3 {
-    font-size: 35px;
+    font-family: var(--headersFont);
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
 .column p, a {
+    font-family: var(--headersFont);
     color: #EDE9E9;
-    font-size: 15px;
+    font-size: 20px;
     text-decoration: none;
     padding-bottom: 5px;
 }
@@ -53,3 +55,6 @@ footer {
     margin-top: 30px;
 }
 
+.bambus_footer_img {
+    width: 1900px;
+}
