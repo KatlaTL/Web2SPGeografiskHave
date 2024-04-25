@@ -1,29 +1,38 @@
 <script setup>
-import { ref, watchEffect } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 import HeroBanner from "@/components/HomeComponents/HeroBanner.vue";
 import InfoBanner from "@/components/HomeComponents/InfoBanner.vue";
 import EventTile from "@/components/HomeComponents/EventTile.vue";
-import { getAllHomepageTiles } from "@/services/HomepageService";
+import { getActiveHeroBanner, getAllHomepageTiles } from "@/services/HomepageService";
 
-
+const heroBanner = ref({});
 const tiles = ref([]);
 
-watchEffect(async () => {
+onBeforeMount(async () => {
+  const activeHeroBanner = await getActiveHeroBanner();
+  
+  if (activeHeroBanner.result) {
+    heroBanner.value = activeHeroBanner.result;
+  }
+})
+
+onBeforeMount(async () => {
   const homepageTiles = await getAllHomepageTiles(); 
 
   if (homepageTiles.result) {
     tiles.value = homepageTiles.result;
-  } else if (homepageTiles.error) {
-    tiles.value = (await getAllHomepageTiles()).result; // If error try once more
   }
-}) 
-
+})
 </script>
 
 <template>
   <main>
-    <HeroBanner />
+    <HeroBanner 
+      :title="heroBanner.title" 
+      :imageURL="heroBanner.imageURL" 
+      :imageAltText="heroBanner.imageAltText" 
+    />
     <InfoBanner />
 
     <section id="home-event-tiles-section">
@@ -31,6 +40,7 @@ watchEffect(async () => {
         :title="tile.title" 
         :tileText="tile.text"
         :imageURL="tile.imageURL" 
+        :imageAltText="tile.imageAltText"
         :backgroundColor="tile.backgroundColor"
         :textColor="tile.textColor"
         :linkTextColor="tile.linkTextColor"
