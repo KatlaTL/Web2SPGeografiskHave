@@ -1,9 +1,10 @@
 <script setup>
-import footerComponent from "@/components/FooterComponent.vue"
 import '@/assets/styling/calendarViewStyle.css'
 import { ref, watch } from 'vue';
 
 const calendarDatas = ref([""]);
+
+watch(() => calendarDatas.value = Events);
 
 const Events = [
   [
@@ -38,48 +39,24 @@ const Tours =[
     { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "7 september, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
   ]
 ];
-
-watch(() => calendarDatas.value = Events);
-
-const searchQuery = ref('');
-
-const showTours = () => {
-  calendarDatas.value = Tours;
-
-};
-
-const showEvents = () => {
-  calendarDatas.value = Events;
-};
-
 </script>
 
 <template>
-  <main>
-    <div class="controls">
-      <div class="control_div">
-        <button @click="showTours">Rundvisning</button>
-        <button @click="showEvents">Events</button>
-        <input type="text" v-model="searchQuery" placeholder="Søg event">
-      </div>
-    </div>
     <div class="container_calendar">
-      <div class="column_calendar" v-for="(calendarData, index) in calendarDatas" :key="index">
+        <div class="column_calendar" v-for="(calendarData, index) in calendarDatas" :key="index">
         <div class="image-wrapper" >
-          <div class="image-container" v-for="(image, i) in calendarData" :key="i">
-              <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
-              <div class="image-overlay">
-                <a href="#" class="read-more">Læs Mere</a>
-              </div>
+            <div class="image-container" v-for="(image, i) in calendarData" :key="i">
+                <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
+                <div class="image-overlay">
+                 <a href="#" class="read-more">Læs Mere</a>
+                </div>
             <div class="info_container">
-              <div class="date"><p>{{ image.date }}</p></div>
-              <div class="titel"><h3>{{ image.titel }}</h3></div>
-              <div class="text"><p>{{ image.text }}</p></div>
+                <div class="date"><p>{{ image.date }}</p></div>
+                <div class="titel"><h3>{{ image.titel }}</h3></div>
+                <div class="text"><p>{{ image.text }}</p></div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
+        </div>
     </div>
-  </main>
-  <footerComponent/>
 </template>
