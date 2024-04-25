@@ -1,5 +1,5 @@
 main {
-  padding: 100px;
+  padding: 100px 0;
 }
 
 .controls {
@@ -7,7 +7,8 @@ main {
   align-items: center;
   justify-content: flex-end;
   margin: auto;
-  width: 1050px;
+  width: 950px;
+  padding-right: 20px;
 }
 
 .controls_div {
@@ -22,6 +23,8 @@ main {
   border: none;
   background-color: #125F31;
   color: #fff;
+  width: 280px;
+  height: 30px;
 }
 
 ::placeholder {
@@ -36,6 +39,8 @@ main {
   background-color: #7FA761;
   color: #fff;
    cursor: pointer;
+   width: 100px;
+   height: 50px;
 }
 
 .controls button:hover {
@@ -46,11 +51,11 @@ main {
 .container_calendar {
   display: flex;
   height: 100%;
-  width: 1200px;
+  width: 950px;
   margin: auto;
 }
 
-.column {
+.column_calendar {
   flex: 1;
   padding: 20px;
 }
@@ -87,25 +92,37 @@ main {
   opacity: 0.5; 
 }
 
-.column .image-wrapper {
-    display: flex;
+.column_calendar .image-wrapper {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  display: flex;
   flex-wrap: wrap; 
-}
-
-.date {
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.text {
-  font-size: 16px;
-  margin-top: 5px;
 }
 
 .info_container {
   width: 300px;
   height: 160px;
+}
+
+.info_container h3 {
+  font-family: var(--headersFont);
+  font-weight: 500;
+  font-size: 20px;
+  margin:10px 0 ;
+}
+
+.date p {
+  font-size: 15px;
+  font-family:var(--headersFont) ;
+  font-weight: 300;
+  color: black;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.text p {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: open sans;
+  color: black;
 }

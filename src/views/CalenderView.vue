@@ -64,7 +64,7 @@ const showEvents = () => {
       </div>
     </div>
     <div class="container_calendar">
-      <div class="column" v-for="(calendarData, index) in calendarDatas" :key="index">
+      <div class="column_calendar" v-for="(calendarData, index) in calendarDatas" :key="index">
         <div class="image-wrapper" >
           <div class="image-container" v-for="(image, i) in calendarData" :key="i">
               <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)">
@@ -72,9 +72,9 @@ const showEvents = () => {
                 <a href="#" class="read-more">Læs Mere</a>
               </div>
             <div class="info_container">
-              <div class="date">{{ image.date }}</div>
-              <div class="titel"><h2>{{ image.titel }}</h2></div>
-              <div class="text">{{ image.text }}</div>
+              <div class="date"><p>{{ image.date }}</p></div>
+              <div class="titel"><h3>{{ image.titel }}</h3></div>
+              <div class="text"><p>{{ image.text }}</p></div>
             </div>
           </div>
         </div>
