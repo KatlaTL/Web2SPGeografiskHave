@@ -1,5 +1,6 @@
 <script setup>
-
+import '@/assets/styling/calendarViewStyle.css'
+import { ref, watch } from 'vue';
 
 const searchQuery = ref('');
 
