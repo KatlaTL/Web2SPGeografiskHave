@@ -5,7 +5,6 @@ import footerComponent from "@/components/FooterComponent.vue"
 
 <template>
   <main>
-    <headerComponent/>
     <h1>EventView</h1>
     <footerComponent/>
   </main>
