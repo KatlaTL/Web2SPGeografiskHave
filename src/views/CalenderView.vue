@@ -43,13 +43,19 @@ watch(() => calendarDatas.value = Events);
 
 const searchQuery = ref('');
 
+const tourBtnIsClicked = ref(false);
+const eventBtnIsClicked = ref(false);
+
 const showTours = () => {
   calendarDatas.value = Tours;
-
+  tourBtnIsClicked.value = true;
+  eventBtnIsClicked.value = false;
 };
 
 const showEvents = () => {
   calendarDatas.value = Events;
+  tourBtnIsClicked.value = false;
+  eventBtnIsClicked.value = true;
 };
 
 </script>
@@ -58,8 +64,8 @@ const showEvents = () => {
   <main>
     <div class="controls">
       <div class="control_div">
-        <button @click="showTours">Rundvisning</button>
-        <button @click="showEvents">Events</button>
+        <button @click="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
+        <button @click="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
         <input type="text" v-model="searchQuery" placeholder="Søg event">
       </div>
     </div>
@@ -79,7 +85,7 @@ const showEvents = () => {
           </div>
         </div>
       </div>
-    </div>
+  </div>
   </main>
   <footerComponent/>
 </template>
