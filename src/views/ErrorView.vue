@@ -10,5 +10,6 @@
 #error-page-content {
     margin: auto;
     width: 500px;
+    min-height: 350px;
 }
 </style>
