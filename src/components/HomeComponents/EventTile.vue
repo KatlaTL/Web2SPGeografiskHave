@@ -1,14 +1,43 @@
 <script setup>
 import { computed } from 'vue';
+import { useRouter } from "vue-router";
 
 const props = defineProps({
     title: String,
     tileText: String,
-    imageFileName: String,
+    imageURL: String,
     backgroundColor: String,
     textColor: String,
     linkTextColor: String,
-    routerName: String
+    tileSubPage: Object
+})
+
+const routerPath = props.tileSubPage?.routerPath;
+const routerName = props.tileSubPage?.routerName;
+
+const router = useRouter();
+
+if (routerPath && routerName) {
+    router.addRoute({
+        path: props.tileSubPage.routerPath,
+        name: props.tileSubPage.routerName,
+        component: () => import('@/views/ErrorView.vue') //Ideally link to existing component
+    })
+}
+
+const routerLinkPath = computed(() => {
+    if (router.hasRoute(routerName)) {
+        return {
+            name: routerName
+        }
+    } else if (props.tileSubPage?.externalLink) { 
+        return props.tileSubPage?.externalLink;
+    }
+    return {};
+})
+
+const isExternalLink = computed(() => {
+    return typeof routerLinkPath.value === 'string' && (routerLinkPath.value.startsWith("http") || routerLinkPath.value.startsWith("https"));
 })
 
 const tileBackgroundColor = computed(() => {
@@ -41,12 +70,14 @@ const tileLinkTextColor = computed(() => {
                 <p>{{ tileText }}</p>
             </div>
             <div class="home-event-tile-text-link">
-                <RouterLink :to="{ name: routerName }">Læs mere</RouterLink>
+                <a v-if="isExternalLink" :href="routerLinkPath" target="_blank">Læs mere</a>
+
+                <RouterLink v-else :to="routerLinkPath">Læs mere</RouterLink>
             </div>
         </section>
         <section class="home-event-tile-img">
             <div>
-                <img :src="`src/assets/images/${imageFileName}`" />
+                <img :src="imageURL" />
             </div>
         </section>
     </article>

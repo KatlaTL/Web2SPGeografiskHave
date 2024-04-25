@@ -58,13 +58,17 @@ const router = createRouter({
       name: 'EventView',
       component: () => import('../views/EventView.vue')
     },
+    {
+      path: "/:pathMatch(.*)*",
+      component: () => import('../views/ErrorView.vue')
+    }
   ]
 })
 
 // Disable links with path /deadlink
 router.beforeEach((to, from) => {
   if (to.path === "/deadlink") {
-    return { name: from.name}
+    return { name: from.name }
   }
 })
 
