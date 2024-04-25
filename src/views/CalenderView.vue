@@ -1,5 +1,6 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
+import EventBanner from '@/components/EventComponents/EventBanner.vue';
 import { ref, watch } from 'vue';
 
 const calendarDatas = ref([""]);
@@ -60,7 +61,14 @@ const showEvents = () => {
 </script>
 
 <template>
+  <EventBanner />
+
   <main>
+    <div class="event-headings">
+      <h1>Kalender</h1>
+      <p>Her finder du hele kalenderen for kommende events i Geografisk Have</p>
+    </div>
+
     <div class="controls">
       <div class="control_div">
         <button @click="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>

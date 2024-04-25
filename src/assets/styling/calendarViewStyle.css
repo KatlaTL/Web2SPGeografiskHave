@@ -1,5 +1,5 @@
 main {
-  padding: 100px 0;
+  padding: 15px 0 100px 0;
 }
 
 .controls {
@@ -24,7 +24,7 @@ main {
   background-color: var(--headerColor);
   color: #fff;
   width: 280px;
-  height: 30px;
+  height: 33px;
 }
 
 ::placeholder {
@@ -39,8 +39,8 @@ main {
   background-color: var(--activeGreen);
   color: #fff;
   cursor: pointer;
-  width: 100px;
-  height: 50px;
+  width: 126px;
+  height: 53px;
 }
 
 .controls button:hover {

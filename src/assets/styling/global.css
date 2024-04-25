@@ -2,6 +2,7 @@
 @import url('https://fonts.cdnfonts.com/css/stag');
 @import url("./headerStyle.css");
 @import url("./homeStyle.css");
+@import url("./eventStyle.css");
 
 /* Variables */
 :root {
