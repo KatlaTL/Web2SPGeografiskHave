@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { getTopNavigationMenu } from '@/services/NavigationService';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,47 +15,6 @@ const router = createRouter({
       }
     },
     {
-      path: '/deadlink',
-      name: 'About the garden',
-      meta: {
-        title: "Om haven",
-        location: "navbar",
-        deadLink: true
-      },
-      children: [{
-        path: "/deadlink",
-        name: "dummy link",
-        deadLink: true
-      }]
-    },
-    {
-      path: '/deadlink',
-      name: 'Private Events',
-      meta: {
-        title: "Privat Events",
-        location: "navbar",
-        deadLink: true
-      }
-    },
-    {
-      path: '/kalender',
-      name: 'Calender',
-      component: () => import('../views/CalenderView.vue'),
-      meta: {
-        title: "Kalender",
-        location: "navbar"
-      }
-    },
-    {
-      path: '/deadlink',
-      name: 'Knowledge center',
-      meta: {
-        title: "Videnscenter",
-        location: "navbar",
-        deadLink: true
-      }
-    },
-    {
       path: '/EventView',
       name: 'EventView',
       component: () => import('../views/EventView.vue')
@@ -64,6 +25,30 @@ const router = createRouter({
     }
   ]
 })
+
+// Populate routes with data from the database
+const navBar = await getTopNavigationMenu();
+
+if (navBar.result) {
+  navBar.result.forEach(routeData => {
+    const componentPath = routeData?.routerComponentPath || "../views/ErrorView.vue";
+
+    router.addRoute({
+      path: routeData.routerPath,
+      name: routeData.routerName,
+      meta: routeData.routerMeta,
+      component: () => import(componentPath),
+      ...(routeData.subNavigation.length > 0 && {
+        children: routeData.subNavigation.map(subNav => {
+          return {
+            path: subNav?.routerPath || "/deadlink",
+            name: subNav?.routerName || "dummy link",
+          }
+        })
+      })
+    })
+  })
+}
 
 // Disable links with path /deadlink
 router.beforeEach((to, from) => {

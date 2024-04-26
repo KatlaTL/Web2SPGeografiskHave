@@ -1,6 +1,5 @@
 import { db } from "@/config/firebase";
-import { collection, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
-
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 
 export const getAllHomepageTiles = async () => {
     try {
@@ -29,7 +28,6 @@ export const getAllHomepageTiles = async () => {
         };
 
     } catch (err) {
-        console.error(err)
         return {
             result: null,
             error: err
