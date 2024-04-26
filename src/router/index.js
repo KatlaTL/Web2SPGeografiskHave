@@ -31,13 +31,13 @@ const navBar = await getTopNavigationMenu();
 
 if (navBar.result) {
   navBar.result.forEach(routeData => {
-    const componentPath = routeData?.routerComponentPath || "../views/ErrorView.vue";
+    const componentPath = routeData?.routerComponentRelativePath || "/views/ErrorView.vue";
 
     router.addRoute({
       path: routeData.routerPath,
       name: routeData.routerName,
       meta: routeData.routerMeta,
-      component: () => import(componentPath),
+      component: () => import(`..${componentPath}`),
       ...(routeData.subNavigation.length > 0 && {
         children: routeData.subNavigation.map(subNav => {
           return {

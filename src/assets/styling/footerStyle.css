@@ -24,7 +24,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.column p, a {
+.column p, .column  a {
     font-family: var(--headersFont);
     font-weight: 500;
     color: #EDE9E9;
