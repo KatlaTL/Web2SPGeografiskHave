@@ -1,7 +1,7 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
-import { ref, watch } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 const calendarDatas = ref([""]);
 
@@ -39,7 +39,7 @@ const Tours = [
   ]
 ];
 
-watch(() => calendarDatas.value = Events);
+watchEffect(() => calendarDatas.value = Events);
 
 const searchQuery = ref('');
 
