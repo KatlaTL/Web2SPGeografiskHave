@@ -31,13 +31,14 @@ const navBar = await getTopNavigationMenu();
 
 if (navBar.result) {
   navBar.result.forEach(routeData => {
-    const componentPath = routeData?.routerComponentRelativePath || "/views/ErrorView.vue";
+    let componentPath = routeData?.routerComponentRelativePath || "/views/ErrorView.vue";
+    componentPath = ".." + componentPath;
 
     router.addRoute({
       path: routeData.routerPath,
       name: routeData.routerName,
       meta: routeData.routerMeta,
-      component: () => import(`..${componentPath}`),
+      component: () => import(/* @vite-ignore */ componentPath), // Added the vite ignore to remove warning that Vite can't analyse the dynamic import
       ...(routeData.subNavigation.length > 0 && {
         children: routeData.subNavigation.map(subNav => {
           return {
