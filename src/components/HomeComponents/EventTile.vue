@@ -31,14 +31,28 @@ const routerLinkPath = computed(() => {
         return {
             name: routerName
         }
-    } else if (props.tileSubPage?.externalLink) { 
-        return props.tileSubPage?.externalLink;
+    } else if (props.tileSubPage?.externalLink) {
+        return props.tileSubPage.externalLink;
     }
     return {};
 })
 
 const isExternalLink = computed(() => {
     return typeof routerLinkPath.value === 'string' && (routerLinkPath.value.startsWith("http") || routerLinkPath.value.startsWith("https"));
+})
+
+const tileBodyText = computed(() => {
+    if (props.tileText.length > 130) {
+        return props.tileText.trim().substring(0, 130).concat("...");
+    }
+    return props.tileText.trim();
+})
+
+const tileTitle = computed(() => {
+    if (props.title.length > 39) {
+        return props.title.trim().substring(0, 36).concat("...");
+    }
+    return props.title.trim();
 })
 
 const tileBackgroundColor = computed(() => {
@@ -67,8 +81,8 @@ const tileLinkTextColor = computed(() => {
     <article class="home-event-tile">
         <section class="home-event-tile-text">
             <div class="home-event-tile-text-div">
-                <h3>{{ title }}</h3>
-                <p>{{ tileText }}</p>
+                <h3>{{ tileTitle }}</h3>
+                <p>{{ tileBodyText }}</p>
             </div>
             <div class="home-event-tile-text-link">
                 <a v-if="isExternalLink" :href="routerLinkPath" target="_blank">Læs mere</a>
