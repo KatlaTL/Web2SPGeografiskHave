@@ -15,8 +15,8 @@ const router = createRouter({
       }
     },
     {
-      path: '/EventView',
-      name: 'EventView',
+      path: '/Event/:eventID',
+      name: 'Event',
       component: () => import('../views/EventView.vue')
     },
     {
@@ -42,7 +42,7 @@ if (navBar.result) {
       ...(routeData.subNavigation.length > 0 && {
         children: routeData.subNavigation.map(subNav => {
           return {
-            path: subNav?.routerPath || "/deadlink",
+            path: subNav?.routerPath || "/deadlink", 
             name: subNav?.routerName || "dummy link",
           }
         })
