@@ -1,3 +1,7 @@
+.event-container {
+    padding: 15px 0 100px 0;
+}
+
 #event-banner {
     position: relative;
     width: auto;
@@ -26,4 +30,269 @@
 .event-headings p {
     font-weight: 400;
     font-size: 15;
+}
+
+.event-top-container,
+.event-bot-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 910px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 77px
+}
+
+.event-container-left {
+    width: 435px;
+}
+
+.event-container-right {
+    width: 432px;
+}
+
+.event-text-container h2 {
+    font-family: var(--headersFont);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.event-text-container p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20.43px;
+    margin-top: 18px;
+}
+
+.event-prices {
+    height: 307px;
+    width: 432px;
+    background-color: var(--headerColor);
+    color: var(--whiteColor);
+    margin-top: 22px;
+    border-radius: 4px;
+}
+
+.event-prices-inner {
+    position: relative;
+    top: 33px;
+    left: 47px;
+    width: 325px;
+}
+
+.event-prices h3 {
+    font-family: var(--headersFont);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.event-prices ul {
+    padding: 0;
+}
+
+.event-prices ul li {
+    list-style: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 21.79px;
+}
+
+.event-prices ul li span {
+    font-weight: 400;
+}
+
+.event-prices p,
+.event-prices a {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20.43px;
+    margin-bottom: 0;
+}
+
+.event-prices a {
+    text-decoration: none;
+    color: var(--whiteColor);
+}
+
+.event-image img {
+    width: 435px;
+    height: 385px;
+}
+
+.event-registration {
+    width: 780px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--headerColor);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.event-registration-info {
+    width: 212px;
+    height: 269px;
+    margin-top: 51px;
+}
+
+.event-registration-info h2 {
+    font-family: var(--headersFont);
+    color: var(--whiteColor);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 0;
+}
+
+.event-registration-info p,
+.event-registration-info a {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20.43px;
+    color: var(--whiteColor);
+    text-decoration: none;
+}
+
+.event-registration-form {
+    width: 420px;
+    margin-top: 51px;
+}
+
+.event-registration-form fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: relative;
+}
+
+.event-registration-form input {
+    width: 403px;
+    height: 47px;
+    border-radius: 4px;
+    border: none;
+    margin-bottom: 13px;
+    padding: 0;
+    padding-left: 17px;
+    outline: none;
+    font-size: 15px;
+    font-family: var(--bodyTextFont);
+    background-color: #EDE9E9;
+}
+
+.event-registration-form input::placeholder,
+.event-registration-form input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.event-registration-form .form-input-required {
+    display: inline;
+}
+
+.event-registration-form .form-input-required label {
+    position: absolute;
+    top: 14px;
+    left: 17px;
+    color: #7E7E7E;
+    font-weight: 400;
+    font-family: var(--bodyTextFont);
+    font-size: 15px;
+    line-height: 20.43px;
+    font-style: italic;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: text;
+}
+
+.event-registration-form .form-input-required label::after {
+    content: "*";
+    color: red;
+    margin-left: 1px;
+}
+
+.event-registration-form .form-input-required input:focus+label,
+.event-registration-form .form-input-required input:valid+label,
+.event-registration-form .form-input-required input:disabled+label {
+    display: none;
+}
+
+.event-registration-form .form-phone-fieldset #input-regionCode {
+    width: 117px;
+    margin-right: 12px;
+}
+
+.event-registration-form .form-phone-fieldset #input-phone {
+    width: 257px;
+}
+
+.event-registration-form #input-amount {
+    width: 117px;
+}
+
+.event-registration-form .form-input-checkbox {
+    color: var(--whiteColor);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20.43px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.event-registration-form .form-input-checkbox fieldset {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.event-registration-form .form-input-checkbox fieldset:hover > input {
+    background-color: var(--hoverGreedColor);
+}
+
+.event-registration-form .form-input-checkbox fieldset input:checked {
+    background-color: var(--hoverGreedColor);
+}
+
+.event-registration-form .form-input-checkbox input[type="checkbox"] {
+    width: 24px;
+    height: 22px;
+    margin: 0;
+    border-radius: 4px;
+    border: none;
+    background-color: #D9D9D9;
+    outline: none;
+    appearance: none;
+}
+
+.event-registration-form .form-input-checkbox label {
+    position: absolute;
+    top: 2px;
+    left: 36px;
+}
+
+.event-registration-form .form-input-checkbox fieldset #input-gdpr + label::after {
+    content: "*";
+    color: red;
+    margin-left: 1px;
+}
+
+.event-registration-form .form-input-checkbox fieldset #input-gdpr + label span {
+    cursor: pointer;
+}
+
+.event-registration-form button {
+    width: 283px;
+    height: 71px;
+    border-radius: 4px;
+    border: none;
+    background-color: #FFF9EB;
+    color: var(--headerColor);
+    font-family: var(--headersFont);
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.event-registration-form button:hover {
+    background-color: var(--hoverGreedColor);
+    color: #FFF9EB;
 }

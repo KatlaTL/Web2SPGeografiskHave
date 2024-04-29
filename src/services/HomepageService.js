@@ -41,7 +41,7 @@ export const getActiveHeroBanner = async () => {
 
         const homepageHeroQuery = query(homepageHeroRef, where("activeBanner", "==", true));
 
-        const querySnapshot = await getDocs(homepageHeroQuery);
+        const querySnapshot = await getDocs(homepageHeroQuery); // Have to use getDocs when using queries
 
         let result = {};
 

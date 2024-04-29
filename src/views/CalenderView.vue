@@ -1,9 +1,19 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
-import { ref, watchEffect } from 'vue';
+import { getCalenderBanner } from '@/services/EventService';
+import { onBeforeMount, ref, watchEffect } from 'vue';
 
 const calendarDatas = ref([""]);
+const calenderBanner = ref({})
+
+onBeforeMount(async () => {
+  const banner = await getCalenderBanner();
+  
+  if (banner.result) {
+    calenderBanner.value = banner.result;
+  }
+})
 
 const Events = [
   [
@@ -61,10 +71,10 @@ const showEvents = () => {
 </script>
 
 <template>
-  <EventBanner />
+  <EventBanner :imageURL="calenderBanner.imageURL" :imageAltText="calenderBanner.imageAltText" />
 
   <main>
-    <div id="event-container">
+    <div class="event-container">
 
       <div class="event-headings">
         <h1>Kalender</h1>
