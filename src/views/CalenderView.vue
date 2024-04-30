@@ -1,5 +1,6 @@
 <script setup>
 import footerComponent from "@/components/FooterComponent.vue"
+import controls from "@/components/EventComponents/EventControls.vue"
 import '@/assets/styling/calendarViewStyle.css'
 import { ref, watch } from 'vue';
 
@@ -39,36 +40,18 @@ const Tours =[
   ]
 ];
 
-watch(() => calendarDatas.value = Events);
-
-const searchQuery = ref('');
-
-const tourBtnIsClicked = ref(false);
-const eventBtnIsClicked = ref(false);
-
-const showTours = () => {
-  calendarDatas.value = Tours;
-  tourBtnIsClicked.value = true;
-  eventBtnIsClicked.value = false;
-};
-
-const showEvents = () => {
-  calendarDatas.value = Events;
-  tourBtnIsClicked.value = false;
-  eventBtnIsClicked.value = true;
-};
-
 </script>
 
 <template>
   <main>
-    <div class="controls">
+    <controls />
+  <!--   <div class="controls">
       <div class="control_div">
         <button @click="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
         <button @click="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
         <input type="text" v-model="searchQuery" placeholder="Søg event">
       </div>
-    </div>
+    </div> -->
     <div class="container_calendar">
       <div class="column_calendar" v-for="(calendarData, index) in calendarDatas" :key="index">
         <div class="image-wrapper" >

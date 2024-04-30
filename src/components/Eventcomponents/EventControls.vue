@@ -12,13 +12,15 @@ const showTours = () => {
 const showEvents = () => {
   calendarDatas.value = Events;
 };
+
+
 </script>
 
 <template>
     <div class="controls">
         <div class="control_div">
-        <button @click="showTours">Rundvisning</button>
-        <button @click="showEvents">Events</button>
+        <button @click="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
+        <button @click="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
         <input type="text" v-model="searchQuery" placeholder="Søg event">
         </div>
     </div>

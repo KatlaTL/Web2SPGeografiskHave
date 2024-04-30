@@ -4,7 +4,7 @@ import { ref, watch } from 'vue';
 
 const calendarDatas = ref([""]);
 
-watch(() => calendarDatas.value = Events);
+
 
 const Events = [
   [
@@ -39,6 +39,8 @@ const Tours =[
     { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "7 september, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
   ]
 ];
+
+watch(() => calendarDatas.value = Events);
 </script>
 
 <template>
