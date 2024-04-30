@@ -183,6 +183,12 @@
     background-color: #EDE9E9;
 }
 
+.event-registration-form input:required:invalid {
+    width: 401px;
+    height: 45px;
+    border: 1px solid red;
+}
+
 .event-registration-form input::placeholder,
 .event-registration-form input::-webkit-input-placeholder {
     color: transparent;
@@ -224,12 +230,24 @@
     margin-right: 12px;
 }
 
+.event-registration-form .form-phone-fieldset #input-regionCode:required:invalid {
+    width: 115px;
+}
+
 .event-registration-form .form-phone-fieldset #input-phone {
     width: 257px;
 }
 
+.event-registration-form .form-phone-fieldset #input-phone:required:invalid {
+    width: 255px;
+}
+
 .event-registration-form #input-amount {
     width: 117px;
+}
+
+.event-registration-form #input-amount:required:invalid {
+    width: 115px;
 }
 
 .event-registration-form .form-input-checkbox {
@@ -246,7 +264,7 @@
     margin-bottom: 8px;
 }
 
-.event-registration-form .form-input-checkbox fieldset:hover > input {
+.event-registration-form .form-input-checkbox fieldset:hover > input:enabled {
     background-color: var(--hoverGreedColor);
 }
 
@@ -263,6 +281,14 @@
     background-color: #D9D9D9;
     outline: none;
     appearance: none;
+}
+
+.event-registration-form .form-input-checkbox input[type="checkbox"]:enabled {
+    cursor: pointer;
+}
+
+.event-registration-form .form-input-checkbox input[type="checkbox"]:required:invalid {
+    border: 1px solid red;
 }
 
 .event-registration-form .form-input-checkbox label {
@@ -296,4 +322,5 @@
 .event-registration-form button:hover {
     background-color: var(--hoverGreedColor);
     color: #FFF9EB;
+    cursor: pointer;
 }

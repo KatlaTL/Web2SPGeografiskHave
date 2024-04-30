@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
 
 const props = defineProps({
   isOpen: Boolean,
@@ -8,9 +8,9 @@ const props = defineProps({
 
 const emit = defineEmits(["modal-close", "accept-gdpr"]);
 
-const target = ref(null)
+const target = ref(null);
 
-onClickOutside(target, () => emit('modal-close'))
+onClickOutside(target, () => emit('modal-close'));
 
 </script>
 

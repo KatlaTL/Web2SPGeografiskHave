@@ -1,13 +1,12 @@
 <script setup>
+import { onBeforeMount, ref } from 'vue';
 import EntrancePrices from '@/components/EventComponets/EntrancePrices.vue';
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
-import GDPRModal from '@/components/EventComponets/GDPRModal.vue';
 import { getEventBanner } from '@/services/EventService';
-import { onBeforeMount, ref } from 'vue';
+import EventForm from '@/components/EventComponets/EventForm.vue';
 
 const eventBanner = ref({})
-const isModalOpened = ref(false);
-const gdpr = ref(null);
+
 
 onBeforeMount(async () => {
   const banner = await getEventBanner("tours"); // TO-DO make argument dynamic
@@ -17,15 +16,6 @@ onBeforeMount(async () => {
   }
 })
 
-const openModal = () => isModalOpened.value = true;
-
-const closeModal = () => isModalOpened.value = false;
-
-const acceptGDPR = () => {
-  gdpr.value.disabled = false;
-  gdpr.value.checked = true;
-  isModalOpened.value = false
-}
 
 </script>
 
@@ -75,59 +65,7 @@ const acceptGDPR = () => {
         </div>
       </div>
 
-      <div class="event-registration">
-        <div class="event-registration-info">
-          <h2>Tilmelding til Plantemarked d. 25-26 maj 2024</h2>
-          <p><i>Medlemmer af Geografisk Haveklub og Geografisk Haves Venner har gratis entré.</i></p>
-          <a href="https://www.place2book.com/da/sw2/sales/39pfs0v0xy" target="_blank"><i>Bestil dit Haveklubmedlemskab
-              her</i></a>
-        </div>
-        <div class="event-registration-form">
-          <form>
-            <fieldset class="form-input-required">
-              <input id="input-name" type="text" placeholder="Navn" name="name" required />
-              <label for="input-name">Navn</label>
-            </fieldset>
-
-            <fieldset class="form-phone-fieldset">
-              <fieldset class="form-input-required">
-                <input id="input-regionCode" type="text" placeholder="Landekode" name="regionCode" required />
-                <label for="input-regionCode">Landekode</label>
-              </fieldset>
-              <fieldset class="form-input-required">
-                <input id="input-phone" type="text" placeholder="Telefon nummer" name="phone" required>
-                <label for="input-phone">Telefon nummer</label>
-              </fieldset>
-            </fieldset>
-
-            <fieldset class="form-input-required">
-              <input id="input-email" type="email" placeholder="E-mail" name="email" required>
-              <label for="input-email">E-mail</label>
-            </fieldset>
-
-            <fieldset class="form-input-required">
-              <input id="input-amount" type="text" name="amount" placeholder="Antal" required>
-              <label for="input-amount">Antal</label>
-            </fieldset>
-
-            <fieldset class="form-input-checkbox">
-              <fieldset>
-                <input id="input-newsletter" type="checkbox" name="newsletter" />
-                <label for="input-newsletter">Tilmeld vores nyhedsbrev</label>
-              </fieldset>
-
-              <fieldset>
-                <input id="input-gdpr" type="checkbox" name="gdpr" ref="gdpr" required disabled>
-                <label>Godkend <span @click="openModal">Privatlivspolitik</span></label>
-              </fieldset>
-            </fieldset>
-
-            <button>Tilmeld</button>
-
-            <GDPRModal :isOpen="isModalOpened" @modal-close="closeModal" @accept-gdpr="acceptGDPR" />
-          </form>
-        </div>
-      </div>
+      <EventForm />
     </div>
   </main>
 </template>
