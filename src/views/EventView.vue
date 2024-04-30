@@ -1,10 +1,13 @@
 <script setup>
 import EntrancePrices from '@/components/EventComponets/EntrancePrices.vue';
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
+import GDPRModal from '@/components/EventComponets/GDPRModal.vue';
 import { getEventBanner } from '@/services/EventService';
 import { onBeforeMount, ref } from 'vue';
 
 const eventBanner = ref({})
+const isModalOpened = ref(false);
+const gdpr = ref(null);
 
 onBeforeMount(async () => {
   const banner = await getEventBanner("tours"); // TO-DO make argument dynamic
@@ -13,6 +16,17 @@ onBeforeMount(async () => {
     eventBanner.value = banner.result;
   }
 })
+
+const openModal = () => isModalOpened.value = true;
+
+const closeModal = () => isModalOpened.value = false;
+
+const acceptGDPR = () => {
+  gdpr.value.disabled = false;
+  gdpr.value.checked = true;
+  isModalOpened.value = false
+}
+
 </script>
 
 <template>
@@ -71,7 +85,7 @@ onBeforeMount(async () => {
         <div class="event-registration-form">
           <form>
             <fieldset class="form-input-required">
-              <input id="input-name" type="text" placeholder="Navn"name="name" required />
+              <input id="input-name" type="text" placeholder="Navn" name="name" required />
               <label for="input-name">Navn</label>
             </fieldset>
 
@@ -87,7 +101,7 @@ onBeforeMount(async () => {
             </fieldset>
 
             <fieldset class="form-input-required">
-              <input id="input-email" type="email" placeholder="E-mail"name="email" required>
+              <input id="input-email" type="email" placeholder="E-mail" name="email" required>
               <label for="input-email">E-mail</label>
             </fieldset>
 
@@ -101,18 +115,19 @@ onBeforeMount(async () => {
                 <input id="input-newsletter" type="checkbox" name="newsletter" />
                 <label for="input-newsletter">Tilmeld vores nyhedsbrev</label>
               </fieldset>
-              
+
               <fieldset>
-                <input id="input-gdpr" type="checkbox" name="gdpr" required/>
-                <label for="input-gdpr">Godkend <span>Privatlivspolitik</span></label>
+                <input id="input-gdpr" type="checkbox" name="gdpr" ref="gdpr" required disabled>
+                <label>Godkend <span @click="openModal">Privatlivspolitik</span></label>
               </fieldset>
             </fieldset>
 
             <button>Tilmeld</button>
+
+            <GDPRModal :isOpen="isModalOpened" @modal-close="closeModal" @accept-gdpr="acceptGDPR" />
           </form>
         </div>
       </div>
-
     </div>
   </main>
 </template>
