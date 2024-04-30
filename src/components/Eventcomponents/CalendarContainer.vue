@@ -1,10 +1,11 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
 import { ref, watch } from 'vue';
+import { calender } from '@/stores/CalenderStore';
+
+const calenderStore = calender();
 
 const calendarDatas = ref([""]);
-
-
 
 const Events = [
   [
@@ -23,6 +24,22 @@ const Events = [
   ]
 ];
 
+const Tours = [
+  [
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "marts 1 - 31 marts, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "22 marts, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "25 marts, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "6 april , 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "25 - 26 maj, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "23 juni, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+
+
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "23 juni, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "17 august, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+    { src: "src/images and icons/GH til Webudvikling/Billeder til hjemmesiden/rundvisning1.webp", date: "7 september, 2024", titel:"Rundvisninger i Geografisk Have", text: "Vi åbner væksthuset, så du kan komme i forårsstemning og nyde de mange blomstrende kameliaer." },
+  ]
+];
 
 watch(() => calendarDatas.value = Events);
 </script>

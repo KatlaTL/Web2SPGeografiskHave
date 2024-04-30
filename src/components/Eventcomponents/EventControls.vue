@@ -2,15 +2,18 @@
 import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
 
+const props = defineProps(['title']);
+console.log(props);
+
 const searchQuery = ref('');
 
 const showTours = () => {
-  calendarDatas.value = Tours;
+  props.value = Tours;
 
 };
 
 const showEvents = () => {
-  calendarDatas.value = Events;
+  props.value = Events;
 };
 
 
