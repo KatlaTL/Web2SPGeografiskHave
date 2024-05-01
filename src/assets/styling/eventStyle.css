@@ -183,7 +183,7 @@
     background-color: #EDE9E9;
 }
 
-.event-registration-form input:required:invalid {
+.event-registration-form input.required {
     width: 401px;
     height: 45px;
     border: 1px solid red;
@@ -220,8 +220,8 @@
 }
 
 .event-registration-form .form-input-required input:focus+label,
-.event-registration-form .form-input-required input:valid+label,
-.event-registration-form .form-input-required input:disabled+label {
+.event-registration-form .form-input-required input:disabled+label,
+.event-registration-form .form-input-required input+label.show {
     display: none;
 }
 
@@ -230,7 +230,7 @@
     margin-right: 12px;
 }
 
-.event-registration-form .form-phone-fieldset #input-regionCode:required:invalid {
+.event-registration-form .form-phone-fieldset #input-regionCode.required {
     width: 115px;
 }
 
@@ -238,7 +238,7 @@
     width: 257px;
 }
 
-.event-registration-form .form-phone-fieldset #input-phone:required:invalid {
+.event-registration-form .form-phone-fieldset #input-phone.required {
     width: 255px;
 }
 
@@ -246,7 +246,7 @@
     width: 117px;
 }
 
-.event-registration-form #input-amount:required:invalid {
+.event-registration-form #input-amount.required {
     width: 115px;
 }
 
@@ -287,7 +287,7 @@
     cursor: pointer;
 }
 
-.event-registration-form .form-input-checkbox input[type="checkbox"]:required:invalid {
+.event-registration-form .form-input-checkbox input[type="checkbox"].required {
     border: 1px solid red;
 }
 
@@ -323,4 +323,74 @@
     background-color: var(--hoverGreedColor);
     color: #FFF9EB;
     cursor: pointer;
+}
+
+.event-registration-completed {
+    position: absolute;
+    width: 610px;
+    height: 186px;
+    background-color: #492A14;
+    border-radius: 4px;
+    z-index: 10;
+    left: 118px;
+    top: 245px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeOutAnimation 0.3s ease-out forwards;
+}
+
+.event-registration-completed.initailState {
+    visibility: hidden;
+}
+
+.event-registration-completed.show {
+    animation: fadeInAnimation 0.4s ease-in forwards;
+}
+
+.event-registration-completed h3 {
+    color: #FFF9EB;
+    font-family: var(--headersFont);
+    font-size: 35px;
+    font-weight: 400;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.form-error-message {
+    color: red;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    padding: 0;
+    line-height: 22px;
+}
+
+.form-error-general-message {
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 22px;
 }
