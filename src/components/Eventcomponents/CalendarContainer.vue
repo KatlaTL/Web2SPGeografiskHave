@@ -1,6 +1,6 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
-import { ref, watch } from 'vue';
+import { ref, watch, watchEffect } from 'vue';
 import controls from "@/components/EventComponents/EventControls.vue"
 
 
@@ -41,10 +41,14 @@ const Tours = [
 ];
 
 watch(() => calendarDatas.value = Events);
+
+const tourBtnIsClicked = ref(false);
+const eventBtnIsClicked = ref(false);
+
 </script>
 
 <template>
-  <controls />
+  <controls @showTours="calendarDatas = Tours" @showEvents ="calendarDatas = Events" />
     <div class="container_calendar">
         <div class="column_calendar" v-for="(calendarData, index) in calendarDatas" :key="index">
         <div class="image-wrapper" >

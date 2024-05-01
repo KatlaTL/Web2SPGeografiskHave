@@ -2,19 +2,19 @@
 import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
 
- const emit = defineEmits(['title']);
+const emit = defineEmits(['ShowTours', 'ShowEvents']);
 
 
 const searchQuery = ref('');
 
 const showTours = () => {
   console.log("tour btn clicked");
-  emit('title','hello');
+  emit('showTours');
 };
 
 const showEvents = () => {
   console.log("event btn clicked");
- /*  props.value = Events; */
+  emit('ShowEvents');
 };
 
 
