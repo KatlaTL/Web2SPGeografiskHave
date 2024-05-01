@@ -7,14 +7,19 @@ const emit = defineEmits(['ShowTours', 'ShowEvents']);
 
 const searchQuery = ref('');
 
+const tourBtnIsClicked = ref(false);
+const eventBtnIsClicked = ref(false);
+
 const showTours = () => {
-  console.log("tour btn clicked");
   emit('showTours');
+  tourBtnIsClicked.value = true;
+  eventBtnIsClicked.value = false;
 };
 
 const showEvents = () => {
-  console.log("event btn clicked");
   emit('ShowEvents');
+  tourBtnIsClicked.value = false;
+  eventBtnIsClicked.value = true;
 };
 
 

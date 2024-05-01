@@ -42,9 +42,6 @@ const Tours = [
 
 watch(() => calendarDatas.value = Events);
 
-const tourBtnIsClicked = ref(false);
-const eventBtnIsClicked = ref(false);
-
 </script>
 
 <template>
