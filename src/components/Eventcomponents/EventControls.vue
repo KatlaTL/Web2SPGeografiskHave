@@ -2,18 +2,19 @@
 import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
 
-const props = defineProps(['title']);
-console.log(props);
+ const emit = defineEmits(['title']);
+
 
 const searchQuery = ref('');
 
 const showTours = () => {
-  props.value = Tours;
-
+  console.log("tour btn clicked");
+  emit('title','hello');
 };
 
 const showEvents = () => {
-  props.value = Events;
+  console.log("event btn clicked");
+ /*  props.value = Events; */
 };
 
 
@@ -22,8 +23,8 @@ const showEvents = () => {
 <template>
     <div class="controls">
         <div class="control_div">
-        <button @click="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
-        <button @click="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
+        <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
+        <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
         <input type="text" v-model="searchQuery" placeholder="Søg event">
         </div>
     </div>

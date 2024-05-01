@@ -1,9 +1,8 @@
 <script setup>
 import '@/assets/styling/calendarViewStyle.css'
 import { ref, watch } from 'vue';
-import { calender } from '@/stores/CalenderStore';
+import controls from "@/components/EventComponents/EventControls.vue"
 
-const calenderStore = calender();
 
 const calendarDatas = ref([""]);
 
@@ -45,6 +44,7 @@ watch(() => calendarDatas.value = Events);
 </script>
 
 <template>
+  <controls />
     <div class="container_calendar">
         <div class="column_calendar" v-for="(calendarData, index) in calendarDatas" :key="index">
         <div class="image-wrapper" >
