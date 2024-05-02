@@ -1,11 +1,11 @@
 import { db } from "@/config/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
+const _eventBannerRef = collection(db, "eventBanner");
+
 export const getCalenderBanner = async () => {
     try {
-        const eventBannerRef = collection(db, "eventBanner");
-
-        const eventBannerQuery = query(eventBannerRef, where("calenderBanner", "==", true));
+        const eventBannerQuery = query(_eventBannerRef, where("calenderBanner", "==", true));
 
         const querySnapshot = await getDocs(eventBannerQuery); // Have to use getDocs when using queries
 
@@ -33,9 +33,7 @@ export const getCalenderBanner = async () => {
 
 export const getEventBanner = async (category) => {
     try {
-        const eventBannerRef = collection(db, "eventBanner");
-
-        const eventBannerQuery = query(eventBannerRef, where("category", "==", category));
+        const eventBannerQuery = query(_eventBannerRef, where("category", "==", category));
 
         const querySnapshot = await getDocs(eventBannerQuery); // Have to use getDocs when using queries
 

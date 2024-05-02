@@ -3,8 +3,7 @@ import { validateEmail } from "@/helpers/validate";
 import { Timestamp, addDoc, collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 export const eventSignup = async (eventID, data) => {
-    try {
-        
+    try { 
         if (!eventID) {
             throw "Missing eventID";
         }
@@ -48,7 +47,7 @@ export const eventSignup = async (eventID, data) => {
         return {
             error: null
         }
-
+        
     } catch (err) {
         return {
             error: {

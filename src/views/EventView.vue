@@ -4,6 +4,7 @@ import EntrancePrices from '@/components/EventComponets/EntrancePrices.vue';
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
 import { getEventBanner } from '@/services/EventService';
 import EventForm from '@/components/EventComponets/EventForm.vue';
+import TourPrices from '@/components/EventComponets/TourPrices.vue';
 
 const eventBanner = ref({})
 
@@ -44,6 +45,7 @@ onBeforeMount(async () => {
 
         <div class="event-container-right">
           <EntrancePrices />
+          <!-- <TourPrices /> -->
         </div>
       </div>
 
