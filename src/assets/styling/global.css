@@ -4,6 +4,8 @@
 @import url("./homeStyle.css");
 @import url("./eventStyle.css");
 @import url("./footerStyle.css");
+@import url("./calendarViewStyle.css");
+@import url("./adminStyle.css");
 
 /* Variables */
 :root {

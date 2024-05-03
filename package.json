@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@firebase/auth": "^1.7.2",
     "@firebase/firestore": "^4.6.0",
     "@vueuse/core": "^10.9.0",
     "firebase": "^10.11.0",

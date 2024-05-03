@@ -1,5 +1,6 @@
 <script setup>
-import '@/assets/styling/calendarViewStyle.css'
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
 import { getCalenderBanner } from '@/services/EventService';
 import { onBeforeMount, ref, watchEffect } from 'vue';
@@ -71,6 +72,8 @@ const showEvents = () => {
 </script>
 
 <template>
+  <HeaderComponent />
+
   <EventBanner :imageURL="calenderBanner.imageURL" :imageAltText="calenderBanner.imageAltText" />
 
   <main>
@@ -113,4 +116,6 @@ const showEvents = () => {
       </div>
     </div>
   </main>
+
+  <FooterComponent />
 </template>

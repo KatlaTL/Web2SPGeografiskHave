@@ -1,10 +1,12 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 import EntrancePrices from '@/components/EventComponets/EntrancePrices.vue';
 import EventBanner from '@/components/EventComponets/EventBanner.vue';
-import { getEventBanner } from '@/services/EventService';
 import EventForm from '@/components/EventComponets/EventForm.vue';
 import TourPrices from '@/components/EventComponets/TourPrices.vue';
+import { getEventBanner } from '@/services/EventService';
 
 const eventBanner = ref({})
 
@@ -21,6 +23,8 @@ onBeforeMount(async () => {
 </script>
 
 <template>
+   <HeaderComponent />
+
   <EventBanner :imageURL="eventBanner.imageURL" :imageALT="eventBanner.imageAltText" />
   <main>
     <div class="event-container">
@@ -70,4 +74,6 @@ onBeforeMount(async () => {
       <EventForm />
     </div>
   </main>
+
+  <FooterComponent />
 </template>

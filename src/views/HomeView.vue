@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onBeforeMount } from "vue";
-
+import HeaderComponent from "@/components/HeaderComponent.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
 import HeroBanner from "@/components/HomeComponents/HeroBanner.vue";
 import InfoBanner from "@/components/HomeComponents/InfoBanner.vue";
 import EventTile from "@/components/HomeComponents/EventTile.vue";
@@ -27,6 +28,8 @@ onBeforeMount(async () => {
 </script>
 
 <template>
+  <HeaderComponent />
+
   <main>
     <HeroBanner 
       :title="heroBanner.title" 
@@ -48,4 +51,6 @@ onBeforeMount(async () => {
       />
     </section>
   </main>
+
+  <FooterComponent />
 </template>
