@@ -186,7 +186,7 @@
 .event-registration-form input.required {
     width: 401px;
     height: 45px;
-    border: 1px solid red;
+    border: 1px solid var(--errorColor);
 }
 
 .event-registration-form input::placeholder,
@@ -215,7 +215,7 @@
 
 .event-registration-form .form-input-required label::after {
     content: "*";
-    color: red;
+    color: var(--errorColor);
     margin-left: 1px;
 }
 
@@ -288,7 +288,7 @@
 }
 
 .event-registration-form .form-input-checkbox input[type="checkbox"].required {
-    border: 1px solid red;
+    border: 1px solid var(--errorColor);
 }
 
 .event-registration-form .form-input-checkbox label {
@@ -299,7 +299,7 @@
 
 .event-registration-form .form-input-checkbox fieldset #input-gdpr + label::after {
     content: "*";
-    color: red;
+    color: var(--errorColor);
     margin-left: 1px;
 }
 
@@ -377,7 +377,7 @@
 }
 
 .form-error-message {
-    color: red;
+    color: var(--errorColor);
     font-size: 15px;
     font-weight: 600;
     margin-top: -10px;
@@ -387,7 +387,7 @@
 }
 
 .form-error-general-message {
-    color: red;
+    color: var(--errorColor);
     font-size: 18px;
     font-weight: 600;
     margin-top: 10px;

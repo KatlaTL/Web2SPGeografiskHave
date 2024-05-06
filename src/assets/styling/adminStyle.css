@@ -35,7 +35,7 @@
 #login-content form input.required {
     width: 250px;
     height: 30px;
-    border: 1px solid red;
+    border: 1px solid var(--errorColor);
 }
 
 #login-content form button {
@@ -54,7 +54,7 @@
 }
 
 .login-error-message {
-    color: red;
+    color: var(--errorColor);
     font-size: 15px;
     font-weight: 600;
     margin-top: 0;
