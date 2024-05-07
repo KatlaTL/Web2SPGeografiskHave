@@ -1,4 +1,5 @@
 <script setup>
+import HeaderComponent from '@/components/HeaderComponent.vue'
 import footerComponent from "@/components/FooterComponent.vue";
 import CalendarContainer from "@/components/EventComponets/CalendarContainer.vue";
 </script>
@@ -7,10 +8,8 @@ import CalendarContainer from "@/components/EventComponets/CalendarContainer.vue
   <HeaderComponent />
 
 
-    <main>
       <CalendarContainer />
       <footerComponent />
-    </main>
 
   <FooterComponent />
 </template>

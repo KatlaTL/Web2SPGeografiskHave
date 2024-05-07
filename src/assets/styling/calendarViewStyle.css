@@ -126,3 +126,7 @@
 .clicked {
   background-color: var(--headerColor);
 }
+
+.calendarViewContainer {
+  padding: 100px 0 100px 0;
+}
