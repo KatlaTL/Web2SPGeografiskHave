@@ -1,24 +1,16 @@
 <script setup>
 import footerComponent from "@/components/FooterComponent.vue";
-import CalendarContainer from "@/components/EventComponents/CalendarContainer.vue";
+import CalendarContainer from "@/components/EventComponets/CalendarContainer.vue";
 </script>
 
 <template>
   <HeaderComponent />
 
-  <EventBanner
-    :imageURL="calenderBanner.imageURL"
-    :imageAltText="calenderBanner.imageAltText"
-  />
 
-  <main>
-    <template>
-      <main>
-        <CalendarContainer />
-      </main>
+    <main>
+      <CalendarContainer />
       <footerComponent />
-    </template>
-  </main>
+    </main>
 
   <FooterComponent />
 </template>
