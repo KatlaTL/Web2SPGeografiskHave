@@ -2,6 +2,9 @@
 import "@/assets/styling/calendarViewStyle.css";
 import { ref, watch, watchEffect } from "vue";
 import controls from "@/components/EventComponets/EventControls.vue";
+import { result } from '@/services/TourService';
+
+console.log(result.titel);
 
 const calendarDatas = ref([""]);
 
