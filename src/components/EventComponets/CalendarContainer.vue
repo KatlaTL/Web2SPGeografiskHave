@@ -4,24 +4,24 @@ import { ref, watch, watchEffect } from "vue";
 import controls from "@/components/EventComponets/EventControls.vue";
 import { getTours } from '@/services/TourService';
 
-/* console.log(getTours); */
 
-const calendarDatas = ref([""]);
+const Tours = await getTours();
+
+const allTours = Tours.result;
+
+console.log(allTours);
+
+const calendarDatas = ref(allTours);
+console.log(calendarDatas.value);
 
 const Events = [
 
 ];
 
-const Tours = [
-  [
-  getTours
-  ]
-];
 
-console.log(Tours);
-console.log(calendarDatas);
+/* console.log(Tours); */
 
-watch(() => (calendarDatas.value = Tours));
+/* watch(() => (calendarDatas = allTours)); */
 </script>
 
 <template>

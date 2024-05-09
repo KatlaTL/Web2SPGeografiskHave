@@ -1,10 +1,32 @@
 import { db } from "@/config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+export const getTours = async () => {
+    try {
+        const tourRef = collection(db, "tours");
+
+        const tourQuery = query(tourRef);
+
+        const querySnapshot = await getDocs(tourQuery);
+        
+        const result = [];
+
+        for (const doc of querySnapshot.docs) {
+
+            result.push({
+                ...doc.data()
+            });
+        };
 
 
-
- const tours = await getDocs(collection(db, "tours"));
-
-export let getTours = {};
-
-tours.forEach(doc => getTours = { ...doc.data() })
+        return {
+            result,
+            error: null
+        };
+    } catch (err) {
+        return {
+            result: null,
+            error: err
+        };
+    }
+}
