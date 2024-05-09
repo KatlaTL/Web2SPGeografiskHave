@@ -51,10 +51,6 @@
   margin: auto;
 }
 
-.column_calendar {
-  flex: 1;
-  padding: 20px;
-}
 
 .image-container {
   position: relative;

@@ -1,27 +1,23 @@
 <script setup>
 import "@/assets/styling/calendarViewStyle.css";
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch, watchEffect, onBeforeMount } from "vue";
 import controls from "@/components/EventComponets/EventControls.vue";
-import { getTours } from '@/services/TourService';
+import { getTours } from "@/services/TourService";
 
+const calendarDatas = ref([]);
 
-const Tours = await getTours();
+onBeforeMount(async () => {
+  const Tours = await getTours();
 
-const allTours = Tours.result;
+  if (Tours.result) {
+    calendarDatas.value = Tours.result;
+  }
+});
+/* watch(() => (calendarDatas = Tours)); */
 
-console.log(allTours);
-
-const calendarDatas = ref(allTours);
 console.log(calendarDatas.value);
 
-const Events = [
-
-];
-
-
-/* console.log(Tours); */
-
-/* watch(() => (calendarDatas = allTours)); */
+const Events = [];
 </script>
 
 <template>
@@ -31,31 +27,30 @@ const Events = [
       @showEvents="calendarDatas = Events"
     />
     <div class="container_calendar">
-      <div
-        class="column_calendar"
-        v-for="(calendarData, index) in calendarDatas"
-        :key="index"
-      >
-        <div class="image-wrapper">
-          <div
-            class="image-container"
-            v-for="(image, i) in calendarData"
-            :key="i"
-          >
-            <img :src="image.src" :alt="'Image ' + (index * 2 + i + 1)" />
-            <div class="image-overlay">
-              <a href="#" class="read-more">Læs Mere</a>
+      <div class="image-wrapper">
+        <div
+          class="column_calendar"
+          v-for="(calendarData, index) in calendarDatas"
+          :key="index"
+        >
+          <div class="image-container">
+            <img
+              :src="calendarData.src"
+              :alt="'Image ' + (index * 2 + i + 1)"
+            />
+          </div>
+          <div class="image-overlay">
+            <a href="#" class="read-more">Læs Mere</a>
+          </div>
+          <div class="info_container">
+            <div class="date">
+              <p>{{ calendarData.date }}</p>
             </div>
-            <div class="info_container">
-              <div class="date">
-                <p>{{ image.date }}</p>
-              </div>
-              <div class="titel">
-                <h3>{{ image.titel }}</h3>
-              </div>
-              <div class="text">
-                <p>{{ image.text }}</p>
-              </div>
+            <div class="titel">
+              <h3>{{ calendarData.titel }}</h3>
+            </div>
+            <div class="text">
+              <p>{{ calendarData.text }}</p>
             </div>
           </div>
         </div>
