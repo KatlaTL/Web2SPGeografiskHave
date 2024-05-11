@@ -68,7 +68,7 @@ export const newsletterSignup = async (email, name) => {
 
         const collectionName = "newsletterSignups";
 
-        await addDoc(collectionName, {
+        await addDoc(collection(db, collectionName), {
             email,
             name,
             activeSubscriber: true,

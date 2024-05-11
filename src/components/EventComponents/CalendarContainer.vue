@@ -1,7 +1,7 @@
 <script setup>
 import "@/assets/styling/calendarViewStyle.css";
 import { ref, watch, watchEffect } from "vue";
-import controls from "@/components/EventComponets/EventControls.vue";
+import controls from "@/components/EventComponents/EventControls.vue";
 
 const calendarDatas = ref([""]);
 

@@ -18,6 +18,7 @@
 }
 
 #header-navbar {
+    background-color: var(--headerColor);
     flex-grow: 1;
     align-content: center;
 }
@@ -44,6 +45,10 @@
 
 #header-navbar ul li .router-link-exact-active {
     color: var(--activeGreen);
+}
+
+#header-navbar ul li .disabled {
+    color: var(--whiteColor) !important;
 }
 
 #header-navbar ul li .dropdown-arrow::after {

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
-import GDPRModal from '@/components/EventComponets/GDPRModal.vue';
+import GDPRModal from '@/components/EventComponents/GDPRModal.vue';
 import { eventSignup } from '@/services/FormService';
 import { reverse_debounce } from '@/helpers/debounce';
 import { validateEmail, validateNumberOfParticipants, validatePhoneLength, validateRegionalCodeLength } from '@/helpers/validate';
