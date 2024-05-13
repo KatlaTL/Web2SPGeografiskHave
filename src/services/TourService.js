@@ -1,11 +1,13 @@
 import { db } from "@/config/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-export const getTours = async () => {
+export const getCalenderCategories = async (event) => {
   try {
-    const tourRef = collection(db, "tours");
+    const tourRef = collection(db, "events");
 
-    const querySnapshot = await getDocs(tourRef);
+    const calendarCategoryQuery = query(tourRef, where("category", "==", event));
+
+    const querySnapshot = await getDocs(calendarCategoryQuery);
 
     const result = [];
 

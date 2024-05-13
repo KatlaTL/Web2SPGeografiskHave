@@ -1,23 +1,21 @@
 <script setup>
 import "@/assets/styling/calendarViewStyle.css";
 import { ref, watch, watchEffect, onBeforeMount } from "vue";
-import controls from "@/components/EventComponets/EventControls.vue";
-import { getTours } from "@/services/TourService";
+import controls from "@/components/EventComponents/EventControls.vue";
+import { getCalenderCategories } from "@/services/TourService";
 
 
 const calendarDatas = ref([]);
 
 onBeforeMount(async () => {
-  const Tours = await getTours();
+  const calenderCategories = await getCalenderCategories("event");
 
-  if (Tours.result) {
-    calendarDatas.value = Tours.result;
+  if (calenderCategories.result) {
+    calendarDatas.value = calenderCategories.result;
   }
 });
-watch(() => (calendarDatas = Tours));
 
-console.log(calendarDatas.value);
-
+console.log(calendarDatas);
 const Events = [];
 </script>
 
