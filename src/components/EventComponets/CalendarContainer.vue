@@ -13,7 +13,7 @@ onBeforeMount(async () => {
     calendarDatas.value = Tours.result;
   }
 });
-/* watch(() => (calendarDatas = Tours)); */
+watch(() => (calendarDatas = Tours));
 
 console.log(calendarDatas.value);
 
