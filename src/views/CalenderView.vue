@@ -8,7 +8,6 @@ import CalendarContainer from "@/components/EventComponents/CalendarContainer.vu
   <HeaderComponent />
 
   <CalendarContainer />
-  <footerComponent />
 
   <FooterComponent />
 </template>
