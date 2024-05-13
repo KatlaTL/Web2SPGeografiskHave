@@ -75,11 +75,10 @@
 }
 
 .logout-button {
-    position: absolute;
-    bottom: 2%;
+    position: relative;
     left: 0;
     right: 0;
-    margin: auto;
+    margin-top: 80px;
     width: 100px;
 }
 
