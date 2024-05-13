@@ -76,7 +76,7 @@
 
 .logout-button {
     position: absolute;
-    bottom: 10%;
+    bottom: 2%;
     left: 0;
     right: 0;
     margin: auto;
@@ -122,6 +122,14 @@
     margin-bottom: 20px;
 }
 
+.admin-navbar-order h3 {
+    margin-bottom: 5px;
+}
+
+.admin-navbar-order p {
+    margin-top: 0;
+}
+
 .admin-navbar-form-cta {
     width: 233px;
     height: 51px;
@@ -130,12 +138,30 @@
     background-color: var(--headerColor);
     color: var(--whiteColor);
     font-family: var(--headersFont);
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     margin-top: 10px;
 }
 
-.admin-navbar-form-cta:hover {
+.admin-navbar-form-cta:hover, .admin-navbar-order-cta:hover {
     background-color: var(--activeGreen);
     cursor: pointer;
+}
+
+.admin-navbar-order-ctas {
+    display: flex;
+    width: 125px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+.admin-navbar-order-cta {
+    width: 60px;
+    height: 25px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    background-color: var(--headerColor);
+    color: var(--whiteColor);
+    border: none;
 }

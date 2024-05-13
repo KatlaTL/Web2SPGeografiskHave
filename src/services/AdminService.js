@@ -1,5 +1,7 @@
 import { db } from "@/config/firebase";
-import { Timestamp, addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "@firebase/firestore";
+import { Timestamp, addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, query, updateDoc, where, writeBatch } from "@firebase/firestore";
+
+const _collectionName = "navBar";
 
 export const addNavBarItem = async (routerData) => {
     try {
@@ -11,9 +13,7 @@ export const addNavBarItem = async (routerData) => {
             routerData.routerPath = "/" + routerData.routerPath;
         }
 
-        const collectionName = "navBar";
-
-        const docRef = await addDoc(collection(db, collectionName), {
+        const docRef = await addDoc(collection(db, _collectionName), {
             menuOrder: routerData?.menuOrder,
             routerName: routerData?.routerName,
             routerPath: routerData?.routerPath,
@@ -73,9 +73,9 @@ export const doesRouteExists = async (routerID) => {
 
 export const getRouteDataByName = async (routerName) => {
     try {
-        const routerRef = collection(db, "navBar");
+        const collectionRef = collection(db, "navBar");
 
-        const routerQuery = query(routerRef, where("routerName", "==", routerName));
+        const routerQuery = query(collectionRef, where("routerName", "==", routerName));
 
         const querySnapshot = await getDocs(routerQuery); // Have to use getDocs when using queries
 
@@ -104,9 +104,7 @@ export const updateNavBarItem = async (routerID, data) => {
             throw "Missing routerID";
         }
 
-        const collectionName = "navBar";
-
-        const docRef = doc(db, collectionName, routerID);
+        const docRef = doc(db, _collectionName, routerID);
 
         await updateDoc(docRef, { ...data, updatedAt: Timestamp.fromDate(new Date()) });
 
@@ -130,9 +128,7 @@ export const deleteNavBarItem = async (routerID) => {
             throw "Missing routerID";
         }
 
-        const collectionName = "navBar";
-
-        const docRef = doc(db, collectionName, routerID);
+        const docRef = doc(db, _collectionName, routerID);
 
         await deleteDoc(docRef);
 
@@ -142,6 +138,124 @@ export const deleteNavBarItem = async (routerID) => {
 
     } catch (err) {
         return {
+            error: {
+                message: err,
+                userFriendlyMessage: "Something went wrong, please try again"
+            }
+        }
+    }
+}
+
+export const changeOrderOfItem = async (routerID, direction) => {
+    try {
+        if (!routerID) {
+            throw "Missing routerID";
+        }
+
+        const docRef = doc(db, _collectionName, routerID);
+
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            throw "No such navigation item";
+        }
+
+        const docData = docSnap.data();
+
+        const itemPosition = docData.menuOrder;
+        const navBarCount = await countAllNavBarRoutes();
+        const firstItem = 1;
+
+        let swapItemPosition = null;
+
+        if (direction === "left" && itemPosition > firstItem) {
+            swapItemPosition = itemPosition - 1;
+        } else if (direction === "right" && itemPosition < navBarCount) {
+            swapItemPosition = itemPosition + 1;
+        }
+
+        if (!swapItemPosition) {
+            throw "Nothing to swap with";
+        }
+
+        const swapItem = await getRouteDataByOrderNr(swapItemPosition);
+
+        if (swapItem?.error) {
+            throw swapItem.error?.message;
+        }
+
+        const batch = writeBatch(db);
+
+        batch.update(docRef, {
+            menuOrder: swapItemPosition
+        });
+
+        batch.update(swapItem.result?.docRef, {
+            menuOrder: itemPosition
+        })
+
+        await batch.commit();
+
+        return {
+            error: null
+        }
+
+    } catch (err) {
+        let message = err;
+
+        if (err === "Nothing to swap with") {
+            message = "Det er ikke muligt at flytte det menupunkt længere i denne retning";
+        }
+
+        return {
+            error: {
+                message: message,
+                userFriendlyMessage: "Something went wrong, please try again"
+            }
+        }
+    }
+}
+
+export const countAllNavBarRoutes = async () => {
+    try {
+        const collectionRef = collection(db, _collectionName);
+
+        const collectionSnap = await getCountFromServer(collectionRef);
+
+        return collectionSnap.data().count;
+    } catch (err) {
+        return {
+            error: {
+                message: err,
+                userFriendlyMessage: "Something went wrong, please try again"
+            }
+        }
+    }
+}
+
+export const getRouteDataByOrderNr = async (positionID) => {
+    try {
+        const collectionRef = collection(db, "navBar");
+
+        const routerQuery = query(collectionRef, where("menuOrder", "==", positionID));
+
+        const querySnapshot = await getDocs(routerQuery); // Have to use getDocs when using queries
+
+        if (querySnapshot.size < 1) {
+            throw "Zero items found with the given positionID";
+        }
+
+        let result = {};
+
+        querySnapshot.forEach(doc => result = { ...doc.data(), id: doc.id, docRef: doc.ref })
+
+        return {
+            result,
+            error: null
+        };
+    } catch (err) {
+        return {
+            result: null,
             error: {
                 message: err,
                 userFriendlyMessage: "Something went wrong, please try again"
