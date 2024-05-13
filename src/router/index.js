@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
 import HomeView from '../views/HomeView.vue';
 import { onAuthStateChanged } from '@firebase/auth';
-import { getTopNavigationMenu } from '@/services/NavigationService';
+import { getTopNavigationMenu, populateRoutes } from '@/services/NavigationService';
 import { auth } from '@/config/firebase';
 
 const isAuthenticated = ref(false);
@@ -56,43 +56,23 @@ const router = createRouter({
 })
 
 // Populate routes with data from the database
-const navBar = await getTopNavigationMenu();
-
-if (navBar.result) {
-  navBar.result.forEach(routeData => {
-    let componentPath = routeData?.routerComponentRelativePath || "/views/ErrorView.vue";
-    componentPath = ".." + componentPath;
-
-    router.addRoute({
-      path: routeData.routerPath,
-      name: routeData.routerName,
-      meta: routeData.routerMeta,
-      component: () => import(/* @vite-ignore */ componentPath), // Added the vite ignore to remove warning that Vite can't analyse the dynamic import
-      ...(routeData.subNavigation.length > 0 && {
-        children: routeData.subNavigation.map(subNav => {
-          return {
-            path: subNav?.routerPath || "/deadlink",
-            name: subNav?.routerName || "dummy link",
-          }
-        })
-      })
-    })
-  })
-}
+await populateRoutes(router);
 
 // Disable links with path /deadlink
 router.beforeEach((to, from) => {
   if (to.path === "/deadlink") {
     return { name: from.name }
   }
+})
 
+router.beforeEach((to, from) => {
   if (to.meta?.requireAuth === true && !isAuthenticated.value) {
     fromRoute.value = from;
     return { name: "Admin login" }
   }
 
   if (isAuthenticated.value && to.name === "Admin login") {
-    return { name: "Admin panel"}
+    return { name: "Admin panel" }
   }
 })
 

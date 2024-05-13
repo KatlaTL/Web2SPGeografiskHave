@@ -84,8 +84,8 @@ const validateForm = () => {
                     <p v-show="errorMessage" class="login-error-message">
                         {{ errorMessage }}
                     </p>
-                    <button @click="handleLogin">Login</button>
-                    <button @click="handleRegister">Opret ny bruger</button>
+                    <button class="login-button" @click="handleLogin">Login</button>
+                    <button class="login-button" @click="handleRegister">Opret ny bruger</button>
                 </form>
             </div>
         </div>

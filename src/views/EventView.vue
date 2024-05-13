@@ -1,11 +1,10 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
-import HeaderComponent from "@/components/HeaderComponent.vue";
-import FooterComponent from "@/components/FooterComponent.vue";
-import EntrancePrices from '@/components/EventComponets/EntrancePrices.vue';
-import EventBanner from '@/components/EventComponets/EventBanner.vue';
-import EventForm from '@/components/EventComponets/EventForm.vue';
-import TourPrices from '@/components/EventComponets/TourPrices.vue';
+import HeaderComponent from "@/components/GlobalComponents/HeaderComponent.vue";
+import FooterComponent from "@/components/GlobalComponents/FooterComponent.vue";
+import EntrancePrices from '@/components/EventComponents/EntrancePrices.vue';
+import EventBanner from '@/components/EventComponents/EventBanner.vue';
+import EventForm from '@/components/EventComponents/EventForm.vue';
 import { getEventBanner } from '@/services/EventService';
 
 const eventBanner = ref({})

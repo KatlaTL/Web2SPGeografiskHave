@@ -8,7 +8,7 @@ export const getTopNavigationMenu = async () => {
         const navBarQuery = query(navBarRef, orderBy("menuOrder"));
 
         const querySnapshot = await getDocs(navBarQuery);
-        
+
         const result = [];
 
         for (const doc of querySnapshot.docs) {
@@ -29,6 +29,47 @@ export const getTopNavigationMenu = async () => {
     } catch (err) {
         return {
             result: null,
+            error: err
+        };
+    }
+}
+
+export const populateRoutes = async (router, routeName = null) => {
+    try {
+        if (!router || !router.addRoute) {
+            throw "Router missing";
+        }
+
+        if (routeName) {
+            router.removeRoute(routeName);
+        }
+
+        const navBar = await getTopNavigationMenu();
+
+        if (navBar.result) {
+            navBar.result.forEach(routeData => {
+                const componentName = routeData?.routerComponentName || "ErrorView.vue";
+                const componentPath = "../views/" + componentName;
+
+                router.addRoute({
+                    path: routeData.routerPath,
+                    name: routeData.routerName,
+                    meta: routeData.routerMeta,
+                    component: () => import(/* @vite-ignore */ componentPath), // Added the vite ignore to remove warning that Vite can't analyse the dynamic import
+                    ...(routeData.subNavigation.length > 0 && {
+                        children: routeData.subNavigation.map(subNav => {
+                            return {
+                                path: subNav?.routerPath || "/deadlink",
+                                name: subNav?.routerName || "dummy link",
+                            }
+                        })
+                    })
+                })
+            })
+        }
+    } catch (err) {
+        console.error(err);
+        return {
             error: err
         };
     }

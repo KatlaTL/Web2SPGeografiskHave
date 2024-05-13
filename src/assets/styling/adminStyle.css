@@ -38,7 +38,7 @@
     border: 1px solid var(--errorColor);
 }
 
-#login-content form button {
+.login-button {
     margin-top: 10px;
     height: 27px;
     background-color: var(--headerColor);
@@ -48,8 +48,8 @@
     font-size: 18px;
 }
 
-#login-content form button:hover {
-    background-color: #7FA761;
+.login-button:hover {
+    background-color: var(--activeGreen);
     cursor: pointer;
 }
 
@@ -61,4 +61,81 @@
     margin-bottom: 0;
     line-height: 22px;
     text-align: left;
+}
+
+.login-panel-error-message {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.admin-panel {
+    width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.logout-button {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100px;
+}
+
+.admin-navbar-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.admin-navbar-form input {
+    width: 403px;
+    height: 47px;
+    border-radius: 4px;
+    border: none;
+    margin-bottom: 13px;
+    padding: 0;
+    padding-left: 17px;
+    outline: none;
+    font-size: 15px;
+    font-family: var(--bodyTextFont);
+    background-color: #EDE9E9;
+}
+
+.admin-navbar-form input::placeholder,
+.admin-navbar-form input::-webkit-input-placeholder {
+    color: black;
+    font-style: italic;
+    opacity: .5;
+}
+
+.admin-navbar-form-router-id p {
+    margin-bottom: 0;
+}
+
+.admin-navbar-form-router-id button {
+    width: 120px;
+    height: 25px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.admin-navbar-form-cta {
+    width: 233px;
+    height: 51px;
+    border-radius: 4px;
+    border: none;
+    background-color: var(--headerColor);
+    color: var(--whiteColor);
+    font-family: var(--headersFont);
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.admin-navbar-form-cta:hover {
+    background-color: var(--activeGreen);
+    cursor: pointer;
 }

@@ -4,6 +4,7 @@ import { ref, watch, watchEffect, onBeforeMount } from "vue";
 import controls from "@/components/EventComponets/EventControls.vue";
 import { getTours } from "@/services/TourService";
 
+
 const calendarDatas = ref([]);
 
 onBeforeMount(async () => {
