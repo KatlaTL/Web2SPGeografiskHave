@@ -19,23 +19,6 @@ const errorMessage = ref("");
 
 const router = useRouter();
 
-const handleRegister = async () => {
-    if (!validateForm()) {
-        return;
-    }
-
-    if (validateEmail(formData.value.email.value)) {
-        const register = await adminRegister(formData.value.email.value, formData.value.password.value);
-
-        if (register.error) {
-            errorMessage.value = register.error?.userFriendlyMessage;
-        }
-
-        if (register.success) {
-            router.push("/admin");
-        }
-    }
-}
 const handleLogin = async () => {
     if (!validateForm()) {
         return;
@@ -85,7 +68,6 @@ const validateForm = () => {
                         {{ errorMessage }}
                     </p>
                     <button class="login-button" @click="handleLogin">Login</button>
-                    <button class="login-button" @click="handleRegister">Opret ny bruger</button>
                 </form>
             </div>
         </div>

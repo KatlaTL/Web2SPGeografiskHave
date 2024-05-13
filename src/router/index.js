@@ -11,9 +11,9 @@ const fromRoute = ref(null);
 onAuthStateChanged(auth, (user) => {
   if (user) {
     isAuthenticated.value = true;
-    //router.push({ name: fromRoute.value?.name || "Admin panel" });
   } else {
     isAuthenticated.value = false;
+    router.push({ name: "Admin login" });
   }
 })
 
