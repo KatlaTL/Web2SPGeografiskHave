@@ -152,6 +152,10 @@ export const changeOrderOfItem = async (routerID, direction) => {
             throw "Missing routerID";
         }
 
+        if (!direction) {
+            throw "Missing direction";
+        }
+
         const docRef = doc(db, _collectionName, routerID);
 
         const docSnap = await getDoc(docRef);
