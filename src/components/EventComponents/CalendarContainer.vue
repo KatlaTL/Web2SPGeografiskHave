@@ -8,12 +8,21 @@ import { getCalenderCategories } from "@/services/TourService";
 const calendarDatas = ref([]);
 
 onBeforeMount(async () => {
-  const calenderCategories = await getCalenderCategories("event");
+  const calenderCategoriesEvent = await getCalenderCategories("event");
 
-  if (calenderCategories.result) {
-    calendarDatas.value = calenderCategories.result;
+  if (calenderCategoriesEvent.result) {
+    calendarDatas.value = calenderCategoriesEvent.result;
   }
 });
+
+onBeforeMount(async () => {
+  const calenderCategoriesTour = await getCalenderCategories("tour");
+
+  if (calenderCategoriesTour.result) {
+    calendarDatas.value = calenderCategoriesTour.result;
+  }
+});
+
 
 console.log(calendarDatas);
 const Events = [];
@@ -22,8 +31,8 @@ const Events = [];
 <template>
   <div class="calendarViewContainer">
     <controls
-      @showTours="calendarDatas = Tours"
-      @showEvents="calendarDatas = Events"
+      @showTours="calendarDatas = calenderCategoriesTour.result"
+      @showEvents="calendarDatas = calenderCategoriesEvent.result"
     />
     <div class="container_calendar">
       <div class="image-wrapper">
@@ -35,7 +44,7 @@ const Events = [];
           <div class="image-container">
             <img
               :src="calendarData.src"
-              :alt="'Image ' + (index * 2 + i + 1)"
+              :alt="'Image ' + (index * 2 + 1)"
             />
           </div>
           <div class="image-overlay">

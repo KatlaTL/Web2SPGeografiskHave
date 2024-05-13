@@ -14,12 +14,14 @@ const showTours = () => {
   emit('showTours');
   tourBtnIsClicked.value = true;
   eventBtnIsClicked.value = false;
+  console.log("hi");
 };
 
 const showEvents = () => {
   emit('ShowEvents');
   tourBtnIsClicked.value = false;
   eventBtnIsClicked.value = true;
+  console.log("hello");
 };
 
 
