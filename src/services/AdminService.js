@@ -13,8 +13,10 @@ export const addNavBarItem = async (routerData) => {
             routerData.routerPath = "/" + routerData.routerPath;
         }
 
+        const navBarCount = await countAllNavBarRoutes();
+
         const docRef = await addDoc(collection(db, _collectionName), {
-            menuOrder: routerData?.menuOrder,
+            menuOrder: navBarCount + 1,
             routerName: routerData?.routerName,
             routerPath: routerData?.routerPath,
             routerComponentName: routerData?.routerComponentName || "",
@@ -130,6 +132,38 @@ export const deleteNavBarItem = async (routerID) => {
 
         const docRef = doc(db, _collectionName, routerID);
 
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            throw "No such navigation item";
+        }
+
+        const itemPosition = docSnap.data()?.menuOrder;
+
+        if (!itemPosition) {
+            throw "Item does not have a position";
+        }
+
+        const collectionRef = collection(db, _collectionName);
+
+        const routerQuery = query(collectionRef, where("menuOrder", ">", itemPosition));
+
+        const querySnapshot = await getDocs(routerQuery); // Have to use getDocs when using queries
+
+        const result = querySnapshot.docs.map(doc => ({ docRef: doc.ref, positionID: doc.data().menuOrder }));
+
+        if (result.length > 0) {
+            const batch = writeBatch(db);
+            
+            result.forEach(doc => {
+                batch.update(doc.docRef, {
+                    menuOrder: doc.positionID - 1
+                });
+            })
+
+            await batch.commit();
+        }
+
         await deleteDoc(docRef);
 
         return {
@@ -167,6 +201,11 @@ export const changeOrderOfItem = async (routerID, direction) => {
         const docData = docSnap.data();
 
         const itemPosition = docData.menuOrder;
+
+        if (!itemPosition) {
+            throw "Item does not have a position";
+        }
+
         const navBarCount = await countAllNavBarRoutes();
         const firstItem = 1;
 
@@ -239,7 +278,7 @@ export const countAllNavBarRoutes = async () => {
 
 export const getRouteDataByOrderNr = async (positionID) => {
     try {
-        const collectionRef = collection(db, "navBar");
+        const collectionRef = collection(db, _collectionName);
 
         const routerQuery = query(collectionRef, where("menuOrder", "==", positionID));
 

@@ -5,6 +5,7 @@ import NavBarComponent from '@/components/GlobalComponents/NavBarComponent.vue';
 import DeleteModal from '@/components/AdminComponents/DeleteModal.vue';
 import { addNavBarItem, changeOrderOfItem, deleteNavBarItem, doesRouteExists, getRouteDataByName, updateNavBarItem } from '@/services/AdminService';
 import { populateRoutes } from '@/services/NavigationService';
+import { reverse_debounce } from '@/helpers/debounce';
 
 const router = useRouter();
 
@@ -14,7 +15,6 @@ const initialState = () => {
         routerPath: "",
         title: "",
         routerComponentName: "",
-        menuOrder: 0,
         routerID: null
     }
 }
@@ -26,7 +26,7 @@ const errorMessage = ref("");
 const navComponentKey = ref(0);
 const isModalOpened = ref(false);
 
-const handleOrderItem = async (direction) => {
+const handleOrderOfItem = async (direction) => {
     const result = await changeOrderOfItem(navBarItem.value.routerID, direction);
 
     if (result?.error) {
@@ -36,6 +36,8 @@ const handleOrderItem = async (direction) => {
         navForceRerender();
     }
 }
+
+const debounceHandleOrderofItem = reverse_debounce(handleOrderOfItem, 400)
 
 const handleAddItem = async () => {
     if (await doesRouteExists(navBarItem.value.routerID)) {
@@ -132,8 +134,8 @@ const clearRouterData = () => {
             <h3>Ændre rækkefølgen af menupunkterne</h3>
             <p>Flyt det aktive menupunkt</p>
             <div class="admin-navbar-order-ctas">
-                <button @click="() => handleOrderItem('left')" class="admin-navbar-order-cta"><<</button>
-                <button @click="() => handleOrderItem('right')" class="admin-navbar-order-cta">>></button>
+                <button @click="debounceHandleOrderofItem('left')" class="admin-navbar-order-cta"><<</button>
+                <button @click="debounceHandleOrderofItem('right')" class="admin-navbar-order-cta">>></button>
             </div>
         </div>
 

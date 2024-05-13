@@ -3,7 +3,7 @@ export const reverse_debounce = (func, timeout = 300) => {
 
     return (...args) => {
         if (!timer) {
-            func(args);
+            func(...args);
         }
 
         clearTimeout(timer);
