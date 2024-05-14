@@ -13,6 +13,7 @@ export const getCalenderCategories = async (event) => {
 
     for (const doc of querySnapshot.docs) {
       result.push({
+        id: doc.id,
         ...doc.data(),
       });
     }

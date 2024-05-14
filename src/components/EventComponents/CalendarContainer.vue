@@ -6,7 +6,9 @@ import controls from "@/components/EventComponents/EventControls.vue";
 import { getCalenderCategories } from "@/services/TourService";
 
 const calendarDatas = ref([]);
+
 const calendarDataTour = ref([]);
+
 const calendarDataEvent = ref([]);
 
 onBeforeMount(async () => {
@@ -15,6 +17,7 @@ onBeforeMount(async () => {
   if (calenderCategoriesTour.result) {
     calendarDataTour.value = calenderCategoriesTour.result;
   }
+
 });
 
 onBeforeMount(async () => {
@@ -27,12 +30,14 @@ onBeforeMount(async () => {
 
 watch(calendarDataEvent, () => (calendarDatas.value = calendarDataEvent.value));
 
+console.log(calendarDatas);
+/* console.log(calendarDataEvent); */
 
 const router = useRouter();
 
-const redirectToInfoPage = () => {
-  router.push("/Event/:eventID");
-};
+/* const redirectToInfoPage = () => {
+  router.push({ name: 'Event', params: { eventId: calendarDataTourId }})
+}; */
 </script>
 
 <template>
@@ -41,12 +46,13 @@ const redirectToInfoPage = () => {
       @showTours="calendarDatas = calendarDataTour"
       @showEvents="calendarDatas = calendarDataEvent"
     />
-    <div class="container_calendar" @click="redirectToInfoPage">
+    <div class="container_calendar" >
       <div class="image-wrapper">
         <div
           class="column_calendar"
           v-for="(calendarDatas, index) in calendarDatas"
           :key="index"
+          @click="router.push({ name: 'Event', params: { eventID: calendarDatas.id }})"
         >
           <div class="image-container">
             <img :src="calendarDatas.src" :alt="'Image ' + (index * 2 + 1)" />
