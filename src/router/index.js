@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
 import HomeView from '../views/HomeView.vue';
 import { onAuthStateChanged } from '@firebase/auth';
-import { populateRoutes } from '@/services/NavigationService';
 import { auth } from '@/config/firebase';
 
 const isAuthenticated = ref(false);
@@ -52,9 +51,6 @@ const router = createRouter({
     }
   ]
 })
-
-// Populate routes with data from the database
-await populateRoutes(router);
 
 // Disable links with path /deadlink
 router.beforeEach((to, from) => {
