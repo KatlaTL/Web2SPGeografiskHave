@@ -1,64 +1,68 @@
 <script setup>
 import "@/assets/styling/calendarViewStyle.css";
-import { ref, watch, watchEffect, onBeforeMount } from "vue";
+import { ref, watch, onBeforeMount } from "vue";
+import { useRouter } from "vue-router";
 import controls from "@/components/EventComponents/EventControls.vue";
 import { getCalenderCategories } from "@/services/TourService";
 
-
 const calendarDatas = ref([]);
-
-onBeforeMount(async () => {
-  const calenderCategoriesEvent = await getCalenderCategories("event");
-
-  if (calenderCategoriesEvent.result) {
-    calendarDatas.value = calenderCategoriesEvent.result;
-  }
-});
+const calendarDataTour = ref([]);
+const calendarDataEvent = ref([]);
 
 onBeforeMount(async () => {
   const calenderCategoriesTour = await getCalenderCategories("tour");
 
   if (calenderCategoriesTour.result) {
-    calendarDatas.value = calenderCategoriesTour.result;
+    calendarDataTour.value = calenderCategoriesTour.result;
   }
 });
 
+onBeforeMount(async () => {
+  const calenderCategoriesEvent = await getCalenderCategories("event");
 
-console.log(calendarDatas);
-const Events = [];
+  if (calenderCategoriesEvent.result) {
+    calendarDataEvent.value = calenderCategoriesEvent.result;
+  }
+});
+
+watch(calendarDataEvent, () => (calendarDatas.value = calendarDataEvent.value));
+
+
+const router = useRouter();
+
+const redirectToInfoPage = () => {
+  router.push("/Event/:eventID");
+};
 </script>
 
 <template>
   <div class="calendarViewContainer">
     <controls
-      @showTours="calendarDatas = calenderCategoriesTour.result"
-      @showEvents="calendarDatas = calenderCategoriesEvent.result"
+      @showTours="calendarDatas = calendarDataTour"
+      @showEvents="calendarDatas = calendarDataEvent"
     />
-    <div class="container_calendar">
+    <div class="container_calendar" @click="redirectToInfoPage">
       <div class="image-wrapper">
         <div
           class="column_calendar"
-          v-for="(calendarData, index) in calendarDatas"
+          v-for="(calendarDatas, index) in calendarDatas"
           :key="index"
         >
           <div class="image-container">
-            <img
-              :src="calendarData.src"
-              :alt="'Image ' + (index * 2 + 1)"
-            />
+            <img :src="calendarDatas.src" :alt="'Image ' + (index * 2 + 1)" />
           </div>
           <div class="image-overlay">
             <a href="#" class="read-more">Læs Mere</a>
           </div>
           <div class="info_container">
             <div class="date">
-              <p>{{ calendarData.date }}</p>
+              <p>{{ calendarDatas.date }}</p>
             </div>
             <div class="titel">
-              <h3>{{ calendarData.titel }}</h3>
+              <h3>{{ calendarDatas.titel }}</h3>
             </div>
             <div class="text">
-              <p>{{ calendarData.text }}</p>
+              <p>{{ calendarDatas.text }}</p>
             </div>
           </div>
         </div>
