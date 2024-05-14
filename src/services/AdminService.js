@@ -1,5 +1,5 @@
 import { db } from "@/config/firebase";
-import { Timestamp, addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, query, updateDoc, where, writeBatch } from "@firebase/firestore";
+import { Timestamp, addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, query, runTransaction, updateDoc, where, writeBatch } from "@firebase/firestore";
 
 const _collectionName = "navBar";
 
@@ -13,7 +13,13 @@ export const addNavBarItem = async (routerData) => {
             routerData.routerPath = "/" + routerData.routerPath;
         }
 
-        const navBarCount = await countAllNavBarRoutes();
+        const navBarCountResult = await countAllNavBarRoutes();
+
+        if (navBarCountResult.error) {
+            throw "Couldn't count all navbar routes";
+        }
+
+        const navBarCount = navBarCountResult?.count;
 
         const docRef = await addDoc(collection(db, _collectionName), {
             menuOrder: navBarCount + 1,
@@ -154,7 +160,7 @@ export const deleteNavBarItem = async (routerID) => {
 
         if (result.length > 0) {
             const batch = writeBatch(db);
-            
+
             result.forEach(doc => {
                 batch.update(doc.docRef, {
                     menuOrder: doc.positionID - 1
@@ -190,54 +196,60 @@ export const changeOrderOfItem = async (routerID, direction) => {
             throw "Missing direction";
         }
 
-        const docRef = doc(db, _collectionName, routerID);
 
-        const docSnap = await getDoc(docRef);
+        await runTransaction(db, async (transaction) => {
+            const docRef = doc(db, _collectionName, routerID);
 
-        if (!docSnap.exists()) {
-            throw "No such navigation item";
-        }
+            const docSnap = await transaction.get(docRef);
 
-        const docData = docSnap.data();
+            if (!docSnap.exists()) {
+                throw "No such navigation item";
+            }
 
-        const itemPosition = docData.menuOrder;
+            const docData = docSnap.data();
 
-        if (!itemPosition) {
-            throw "Item does not have a position";
-        }
+            const itemPosition = docData.menuOrder;
 
-        const navBarCount = await countAllNavBarRoutes();
-        const firstItem = 1;
+            if (!itemPosition) {
+                throw "Item does not have a position";
+            }
 
-        let swapItemPosition = null;
+            const navBarCountResult = await countAllNavBarRoutes();
 
-        if (direction === "left" && itemPosition > firstItem) {
-            swapItemPosition = itemPosition - 1;
-        } else if (direction === "right" && itemPosition < navBarCount) {
-            swapItemPosition = itemPosition + 1;
-        }
+            if (navBarCountResult.error) {
+                throw "Couldn't count all navbar routes";
+            }
 
-        if (!swapItemPosition) {
-            throw "Nothing to swap with";
-        }
+            const navBarCount = navBarCountResult?.count;
+            const firstItem = 1;
 
-        const swapItem = await getRouteDataByOrderNr(swapItemPosition);
+            let swapItemPosition = null;
 
-        if (swapItem?.error) {
-            throw swapItem.error?.message;
-        }
+            if (direction === "left" && itemPosition > firstItem) {
+                swapItemPosition = itemPosition - 1;
+            } else if (direction === "right" && itemPosition < navBarCount) {
+                swapItemPosition = itemPosition + 1;
+            }
 
-        const batch = writeBatch(db);
+            if (!swapItemPosition) {
+                throw "Nothing to swap with";
+            }
 
-        batch.update(docRef, {
-            menuOrder: swapItemPosition
-        });
+            const swapItem = await getRouteDataByOrderNr(swapItemPosition, transaction);
 
-        batch.update(swapItem.result?.docRef, {
-            menuOrder: itemPosition
+            if (swapItem?.error) {
+                throw swapItem.error?.message;
+            }
+
+
+            transaction.update(docRef, {
+                menuOrder: swapItemPosition
+            });
+
+            transaction.update(swapItem.result?.docRef, {
+                menuOrder: itemPosition
+            });
         })
-
-        await batch.commit();
 
         return {
             error: null
@@ -265,7 +277,10 @@ export const countAllNavBarRoutes = async () => {
 
         const collectionSnap = await getCountFromServer(collectionRef);
 
-        return collectionSnap.data().count;
+        return {
+            error: null,
+            count: collectionSnap.data().count
+        }
     } catch (err) {
         return {
             error: {
@@ -276,7 +291,7 @@ export const countAllNavBarRoutes = async () => {
     }
 }
 
-export const getRouteDataByOrderNr = async (positionID) => {
+export const getRouteDataByOrderNr = async (positionID, transaction = null) => {
     try {
         const collectionRef = collection(db, _collectionName);
 
@@ -290,7 +305,15 @@ export const getRouteDataByOrderNr = async (positionID) => {
 
         let result = {};
 
-        querySnapshot.forEach(doc => result = { ...doc.data(), id: doc.id, docRef: doc.ref })
+        if (transaction) {
+            for (const doc of querySnapshot.docs) {
+                const docSnap = await transaction.get(doc.ref);
+
+                result = { ...docSnap.data(), id: docSnap.id, docRef: docSnap.ref };
+            };
+        } else {
+            querySnapshot.forEach(doc => result = { ...doc.data(), id: doc.id, docRef: doc.ref })
+        }
 
         return {
             result,

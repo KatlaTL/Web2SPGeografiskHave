@@ -37,7 +37,7 @@ const handleOrderOfItem = async (direction) => {
     }
 }
 
-const debounceHandleOrderofItem = reverse_debounce(handleOrderOfItem, 400)
+const debounceHandleOrderofItem = reverse_debounce(handleOrderOfItem, 350);
 
 const handleAddItem = async () => {
     if (await doesRouteExists(navBarItem.value.routerID)) {
