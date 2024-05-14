@@ -1,6 +1,9 @@
 <script setup>
 import NavBarAdmin from '@/components/AdminComponents/NavBarAdmin.vue';
 import { adminLogout } from '@/services/LoginService';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const handleSignOut = async () => {
     const logout = await adminLogout();
