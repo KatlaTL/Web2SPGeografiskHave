@@ -1,3 +1,21 @@
+.calendar_header_div {
+  margin: auto;
+  width: 950px;
+  margin-top: 40px;
+}
+
+.calendar_header_titel {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: var( --headersFont);
+}
+
+.calendar_header_text {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: var( --headersFont);
+}
+
 .controls {
   display: flex;
   align-items: center;
@@ -135,5 +153,5 @@ margin-top: 20px;
 }
 
 .calendarViewContainer {
-  padding: 100px 0 100px 0;
+  margin: 30px 0 100px 0;
 }
