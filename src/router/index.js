@@ -8,7 +8,6 @@ import { auth } from '@/config/firebase';
 const isAuthenticated = ref(false);
 
 onAuthStateChanged(auth, (user) => {
-  console.log(user)
   if (user) {
     isAuthenticated.value = true;
   } else {
