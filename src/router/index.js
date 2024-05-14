@@ -2,18 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
 import HomeView from '../views/HomeView.vue';
 import { onAuthStateChanged } from '@firebase/auth';
-import { getTopNavigationMenu, populateRoutes } from '@/services/NavigationService';
+import { populateRoutes } from '@/services/NavigationService';
 import { auth } from '@/config/firebase';
 
 const isAuthenticated = ref(false);
-const fromRoute = ref(null);
 
 onAuthStateChanged(auth, (user) => {
+  console.log(user)
   if (user) {
     isAuthenticated.value = true;
   } else {
     isAuthenticated.value = false;
-    router.push({ name: "Admin login" });
+    /* router.push({ name: "Admin login" }); */
   }
 })
 
@@ -67,7 +67,6 @@ router.beforeEach((to, from) => {
 
 router.beforeEach((to, from) => {
   if (to.meta?.requireAuth === true && !isAuthenticated.value) {
-    fromRoute.value = from;
     return { name: "Admin login" }
   }
 
