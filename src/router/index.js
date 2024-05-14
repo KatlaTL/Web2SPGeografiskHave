@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import HomeView from '../views/HomeView.vue';
 import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from '@/config/firebase';
+import { populateRoutes } from '@/services/NavigationService';
 
 const isAuthenticated = ref(false);
 
@@ -51,6 +52,9 @@ const router = createRouter({
     }
   ]
 })
+
+// Populate routes with data from the database
+await populateRoutes(router);
 
 // Disable links with path /deadlink
 router.beforeEach((to, from) => {

@@ -1,22 +1,9 @@
 <script setup>
-import { onBeforeMount, ref, watch } from 'vue';
+import { ref } from 'vue';
 import NavBarComponent from "./NavBarComponent.vue";
-import { populateRoutes } from '@/services/NavigationService';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 
 const searchClass = ref(false);
 const searchInput = ref(null);
-const navComponentKey = ref(0);
-
-onBeforeMount(async () => {
-  // Populate routes with data from the database
-  await populateRoutes(router);
-
-  //Force rerender of navbar component when routes are populated
-  navComponentKey.value++;
-});
 
 const toggleSearch = () => searchClass.value = !searchClass.value;
 
@@ -33,7 +20,7 @@ const onClickSearch = () => console.log("Searching...") //Search logic goes here
       </RouterLink>
     </div>
 
-    <NavBarComponent :key="navComponentKey" />
+    <NavBarComponent />
 
     <div id="header-search">
       <form>
