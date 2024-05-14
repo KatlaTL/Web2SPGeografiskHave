@@ -13,7 +13,6 @@ onAuthStateChanged(auth, (user) => {
     isAuthenticated.value = true;
   } else {
     isAuthenticated.value = false;
-    /* router.push({ name: "Admin login" }); */
   }
 })
 
