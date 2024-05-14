@@ -5,6 +5,7 @@
   margin: auto;
   width: 950px;
   padding-right: 20px;
+  margin-top: 60px;
 }
 
 .controls_div {
@@ -51,10 +52,6 @@
   margin: auto;
 }
 
-.column_calendar {
-  flex: 1;
-  padding: 20px;
-}
 
 .image-container {
   position: relative;
