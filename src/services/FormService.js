@@ -33,7 +33,7 @@ export const eventSignup = async (eventID, data) => {
         const docData = await docSnap.data();
 
         await updateDoc(docRef, {
-            totalParticipants: docData.totalParticipants + (data?.numberOfParticipants || 0)
+            totalParticipants: docData.totalParticipants + Number((data?.numberOfParticipants || 0))
         });
 
         const subCollectionDocRef = await addDoc(collection(db, collectionName, eventID, "signups"), data);

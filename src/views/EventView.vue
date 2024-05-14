@@ -20,7 +20,7 @@ onBeforeMount(async () => {
 
   if (eventContent.result) {
     content.value = eventContent.result;
-
+    console.log(content.value)
     showEventPrices.value = content.value?.category === "event";
 
     const banner = await getEventBanner(content.value?.category);
@@ -78,9 +78,9 @@ onBeforeMount(async () => {
         </div>
       </div>
 
-      <EventForm />
+      <EventForm :formText="content.formText" />
     </div>
   </main>
-
+  
   <FooterComponent />
 </template>

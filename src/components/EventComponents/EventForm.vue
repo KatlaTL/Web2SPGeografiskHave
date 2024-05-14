@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 import GDPRModal from '@/components/EventComponents/GDPRModal.vue';
-import { eventSignup } from '@/services/FormService';
+import { eventSignup, newsletterSignup } from '@/services/FormService';
 import { reverse_debounce } from '@/helpers/debounce';
 import { validateEmail, validateNumberOfParticipants, validatePhoneLength, validateRegionalCodeLength } from '@/helpers/validate';
 import { useRoute } from 'vue-router';
@@ -94,10 +94,15 @@ const submitForm = async () => {
         }
         return;
     }
-    
+
     const signup = await eventSignup(route.params.eventID, data);
 
     if (!signup.error) {
+
+        if (formData.value.newsletter.value) {
+            await newsletterSignup(data.email, data.name);
+        }
+
         for (const [key, value] of Object.entries(formData.value)) {
             if (key === "gdpr" || key === "newsletter") {
                 value.value = false;
@@ -110,10 +115,6 @@ const submitForm = async () => {
         isRegistrationCompleted.value = true;
     } else {
         generalErrorMessage.value = signup.error.userFriendlyMessage;
-    }
-
-    if (formData.value.newsletter.value) {
-        await newsletterSignup(data.email, data.name);
     }
 }
 
@@ -155,17 +156,15 @@ const validateFormData = (data) => {
 
 onClickOutside(registrationCompleted, () => isRegistrationCompleted.value = false);
 
+defineProps({
+    formText: String
+})
+
 </script>
 
 <template>
     <div class="event-registration">
-        <div class="event-registration-info">
-            <h2>Tilmelding til Plantemarked d. 25-26 maj 2024</h2>
-            <p><i>Medlemmer af Geografisk Haveklub og Geografisk Haves Venner har gratis entré.</i></p>
-            <a href="https://www.place2book.com/da/sw2/sales/39pfs0v0xy" target="_blank"><i>Bestil dit
-                    Haveklubmedlemskab
-                    her</i></a>
-        </div>
+        <div class="event-registration-info" v-html="formText"></div>
 
         <div class="event-registration-form">
             <form @submit.prevent="debounceSubmitForm">
