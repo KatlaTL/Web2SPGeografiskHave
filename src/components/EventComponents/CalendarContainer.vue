@@ -53,10 +53,11 @@ const router = useRouter();
         >
           <div class="image-container">
             <img :src="calendarDatas.src" :alt="'Image ' + (index * 2 + 1)" />
+            <div class="overlay">
+              <p class="overlay_text">Læs mere</p>
+            </div>
           </div>
-          <div class="image-overlay">
-            <a href="#" class="read-more">Læs Mere</a>
-          </div>
+
           <div class="info_container">
             <div class="date">
               <p>{{ calendarDatas.date }}</p>
