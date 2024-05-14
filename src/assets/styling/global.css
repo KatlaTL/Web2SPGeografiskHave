@@ -33,3 +33,9 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+.error-page-content {
+    margin: auto;
+    width: 500px;
+    min-height: 450px;
+}

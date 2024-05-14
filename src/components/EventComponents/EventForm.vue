@@ -5,6 +5,9 @@ import GDPRModal from '@/components/EventComponents/GDPRModal.vue';
 import { eventSignup } from '@/services/FormService';
 import { reverse_debounce } from '@/helpers/debounce';
 import { validateEmail, validateNumberOfParticipants, validatePhoneLength, validateRegionalCodeLength } from '@/helpers/validate';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const formData = ref({
     name: {
@@ -91,9 +94,8 @@ const submitForm = async () => {
         }
         return;
     }
-
-    // TO-DO change "test" with the eventID used to show the current page
-    const signup = await eventSignup("test", data);
+    
+    const signup = await eventSignup(route.params.eventID, data);
 
     if (!signup.error) {
         for (const [key, value] of Object.entries(formData.value)) {

@@ -284,7 +284,7 @@ export const getRouteDataByOrderNr = async (positionID) => {
 
         const querySnapshot = await getDocs(routerQuery); // Have to use getDocs when using queries
 
-        if (querySnapshot.size < 1) {
+        if (querySnapshot.empty) {
             throw "Zero items found with the given positionID";
         }
 

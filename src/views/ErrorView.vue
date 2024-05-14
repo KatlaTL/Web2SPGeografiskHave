@@ -6,18 +6,10 @@ import FooterComponent from "@/components/GlobalComponents/FooterComponent.vue";
     <HeaderComponent />
     
     <main>
-        <div id="error-page-content">
+        <div class="error-page-content">
             <h1>404 - page not found</h1>
         </div>
     </main>
 
     <FooterComponent />
 </template>
-
-<style>
-#error-page-content {
-    margin: auto;
-    width: 500px;
-    min-height: 350px;
-}
-</style>
