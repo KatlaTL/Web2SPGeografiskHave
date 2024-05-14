@@ -67,7 +67,7 @@
   cursor: pointer;
 }
 
-.image-overlay {
+/* .image-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -79,7 +79,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .image-container:hover .image-overlay {
   opacity: 0.5; 
