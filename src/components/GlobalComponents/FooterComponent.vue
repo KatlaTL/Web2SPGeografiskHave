@@ -2,7 +2,7 @@
   <footer>
     <div class="container">
       <div class="column column1">
-        <img src="@/images and icons/GH til Webudvikling/Ikoner/gh_logo_vertikal_hvid.svg"
+        <img src="@/assets/icons/gh_logo_vertikal_hvid.svg"
           alt="Geografisk have logo footer" class="GH_logo">
 
       </div>
@@ -23,8 +23,8 @@
         <a href="#">Smiley kontrolrapport</a>
         <div class="social_media_div">
           <h3>Sociale medier</h3>
-          <img src="@/images and icons/GH til Webudvikling/Ikoner/Instagram.svg" alt="Instagram logo">
-          <img src="@/images and icons/GH til Webudvikling/Ikoner/Facebook.svg" alt="Facebook logo">
+          <img src="@/assets/icons/Instagram.svg" alt="Instagram logo">
+          <img src="@/assets/icons/Facebook.svg" alt="Facebook logo">
         </div>
       </div>
       <div class="column column3">
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="bambus_footer">
-      <img src="@/images and icons/GH til Webudvikling/Ikoner/bambus_footer.png" alt="" class="bambus_footer_img">
+      <img src="@/assets/icons/bambus_footer.png" alt="" class="bambus_footer_img">
     </div>
   </footer>
 </template>
