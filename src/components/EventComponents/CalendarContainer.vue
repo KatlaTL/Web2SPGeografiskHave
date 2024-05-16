@@ -3,7 +3,7 @@ import "@/assets/styling/calendarViewStyle.css";
 import { ref, watch, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import controls from "@/components/EventComponents/EventControls.vue";
-import { getCalenderCategories } from "@/services/TourService";
+import { getCalenderCategories, searchInCalender } from "@/services/TourService";
 
 const calendarDatas = ref([]);
 
@@ -30,6 +30,12 @@ onBeforeMount(async () => {
 watch(calendarDataEvent, () => (calendarDatas.value = calendarDataEvent.value));
 
 const router = useRouter();
+
+const search = async (searchQuery) => {
+  console.log(searchQuery)
+  const result = await searchInCalender(searchQuery);
+  console.log(result)
+}
 </script>
 
 <template>
@@ -37,6 +43,7 @@ const router = useRouter();
     <controls
       @showTours="calendarDatas = calendarDataTour"
       @showEvents="calendarDatas = calendarDataEvent"
+      @searchInput="(searchQuery) => search(searchQuery)"
     />
     <div class="container_calendar">
       <div class="image-wrapper">
