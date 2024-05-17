@@ -2,7 +2,7 @@
 import { ref, watch, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import controls from "@/components/EventComponents/EventControls.vue";
-import { getCalenderCategories, searchInCalender } from "@/services/TourService";
+import { getCalenderCategories } from "@/services/TourService";
 
 const calendarDatas = ref([]);
 
