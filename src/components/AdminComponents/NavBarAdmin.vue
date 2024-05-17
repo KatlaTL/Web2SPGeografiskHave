@@ -146,7 +146,7 @@ const clearRouterData = () => {
                     v-model="navBarItem.routerPath" />
                 <input type="text" name="title" placeholder="Page title" v-model="navBarItem.title" />
                 <input type="text" name="routerComponentName"
-                    placeholder="Router Component Name. Remember file extension"
+                    placeholder="Router Component Name. Exclude file extension"
                     v-model="navBarItem.routerComponentName" />
 
                 <div v-show="navBarItem.routerID" class="admin-navbar-form-router-id">

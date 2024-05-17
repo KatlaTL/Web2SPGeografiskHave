@@ -48,14 +48,13 @@ export const populateRoutes = async (router, routeName = null) => {
 
         if (navBar.result) {
             navBar.result.forEach(routeData => {
-                const componentName = routeData?.routerComponentName || "ErrorView.vue";
-                const componentPath = "../views/" + componentName;
+                const componentName = routeData?.routerComponentName || "ErrorView";
 
                 router.addRoute({
                     path: routeData.routerPath,
                     name: routeData.routerName,
                     meta: routeData.routerMeta,
-                    component: () => import(/* @vite-ignore */ componentPath), // Added the vite ignore to remove warning that Vite can't analyse the dynamic import
+                    component: () => import(`../views/${componentName}.vue`),
                     ...(routeData.subNavigation.length > 0 && {
                         children: routeData.subNavigation.map(subNav => {
                             return {
