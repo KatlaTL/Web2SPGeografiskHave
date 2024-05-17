@@ -31,11 +31,7 @@ watch(calendarDataEvent, () => (calendarDatas.value = calendarDataEvent.value));
 
 const router = useRouter();
 
-const search = async (searchQuery) => {
-  console.log(searchQuery)
-  const result = await searchInCalender(searchQuery);
-  console.log(result)
-}
+const search = async (searchQuery) => console.log("Searching for", searchQuery)
 </script>
 
 <template>
