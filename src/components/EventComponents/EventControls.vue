@@ -1,5 +1,4 @@
 <script setup>
-import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
 
 const emit = defineEmits(['ShowTours', 'ShowEvents']);

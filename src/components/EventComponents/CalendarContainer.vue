@@ -1,5 +1,4 @@
 <script setup>
-import "@/assets/styling/calendarViewStyle.css";
 import { ref, watch, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import controls from "@/components/EventComponents/EventControls.vue";
