@@ -48,7 +48,7 @@ export const populateRoutes = async (router, routeName = null) => {
 
         if (navBar.result) {
             navBar.result.forEach(routeData => {
-                const componentName = routeData?.routerComponentName || "ErrorView.vue";
+                const componentName = routeData?.routerComponentName || "ErrorView";
 
                 router.addRoute({
                     path: routeData.routerPath,

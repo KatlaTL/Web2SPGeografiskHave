@@ -1,8 +1,7 @@
 <script setup>
-import '@/assets/styling/calendarViewStyle.css'
 import { ref } from 'vue';
 
-const emit = defineEmits(['ShowTours', 'ShowEvents']);
+const emit = defineEmits(['ShowTours', 'ShowEvents', 'searchInput']);
 
 
 const searchQuery = ref('');
@@ -22,6 +21,7 @@ const showEvents = () => {
   eventBtnIsClicked.value = true;
 };
 
+const emitInput = () => emit('searchInput', searchQuery.value);
 
 </script>
 
@@ -30,7 +30,7 @@ const showEvents = () => {
         <div class="control_div">
         <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
         <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
-        <input type="text" v-model="searchQuery" placeholder="Søg event">
+        <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event">
         </div>
     </div>
 </template>
