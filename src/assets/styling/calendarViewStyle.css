@@ -1,11 +1,27 @@
+.calendar_header_div {
+  margin: auto;
+  width: 950px;
+  margin-top: 40px;
+}
+
+.calendar_header_titel {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: var( --headersFont);
+}
+
+.calendar_header_text {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: var( --headersFont);
+}
+
 .controls {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin: auto;
   width: 950px;
-  padding-right: 20px;
-  margin-top: 60px;
 }
 
 .controls_div {
@@ -14,7 +30,6 @@
 
 .controls input {
   flex: 1;
-  margin-right: 10px;
   padding: 10px;
   border-radius: 3px;
   border: none;
@@ -22,6 +37,8 @@
   color: #fff;
   width: 280px;
   height: 33px;
+  font-size: 15px;
+  font-family: var( --headersFont);
 }
 
 ::placeholder {
@@ -38,6 +55,8 @@
   cursor: pointer;
   width: 126px;
   height: 53px;
+  font-size: 15px;
+  font-family: var( --headersFont);
 }
 
 .controls button:hover {
@@ -52,44 +71,53 @@
   margin: auto;
 }
 
-
 .image-container {
   position: relative;
-  width: 300px; 
-  height: 500px; 
-  overflow: hidden; 
+  display: inline-block;
 }
 
 .image-container img {
+  display: block;
   object-fit: cover;
   width: 300px;
   height: 300px;
   cursor: pointer;
 }
 
-/* .image-overlay {
+.image-wrapper {
+display: flex;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content: space-between;
+margin-top: 20px;
+}
+
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60%;
-  opacity: 0; 
+  height: 100%;
   background-color: var(--headerColor); 
-  transition: opacity 0.3s; 
+  color: white; 
+  opacity: 0;
+  transition: opacity 0.3s ease; 
   display: flex;
   justify-content: center;
   align-items: center;
-} */
-
-.image-container:hover .image-overlay {
-  opacity: 0.5; 
+  cursor: pointer;
 }
 
-.column_calendar .image-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap; 
+.overlay_text {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: var( --headersFont);
+  opacity: 1;
+}
+
+.image-container:hover .overlay {
+  opacity: 0.6; 
 }
 
 .info_container {
@@ -125,5 +153,5 @@
 }
 
 .calendarViewContainer {
-  padding: 100px 0 100px 0;
+  margin: 30px 0 100px 0;
 }
