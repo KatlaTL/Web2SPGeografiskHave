@@ -2,13 +2,13 @@
   <footer class="bg-footerBackgroundColor dark:bg-footerBackgroundColor">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-4">
       <div
-        class="flex lg:justify-between lg:flex-row lg:items-start sm:flex-col text-whiteColor"
+        class="flex lg:justify-between lg:flex-row lg:items-start xsm:flex-col text-whiteColor"
       >
         <div class="mb-2 md:mb-0">
           <img
             src="@/assets/icons/gh_logo_vertikal_hvid.svg"
             alt="Geografisk have logo footer"
-            class="h-80 w-80 sm:hidden lg:flex"
+            class="h-80 w-80 xsm:hidden lg:flex"
           />
         </div>
         <div
@@ -24,14 +24,14 @@
           <a href="#">Presseperspektiv</a>
         </div>
         <div
-          class="flex flex-col sm:justify-center sm:items-start lg:justify-start lg:items-start py-4"
+          class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start py-4"
         >
           <h3 class="pb-4">Diverse</h3>
           <a href="#">Persondatapolitik</a>
           <a href="#">Cookiepolitik</a>
           <a href="#">Smiley kontrolrapport</a>
           <div class="py-4">
-            <h3 class="sm:py-2 lg:py-4">Sociale medier</h3>
+            <h3 class="xsm:py-2 lg:py-4">Sociale medier</h3>
             <div class="flex flex-row ">
               <img src="@/assets/icons/Instagram.svg" alt="Instagram logo" />
               <img src="@/assets/icons/Facebook.svg" alt="Facebook logo" />
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div
-          class="flex flex-col sm:justify-center sm:items-start lg:justify-start lg:items-start py-4"
+          class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start py-4"
         >
           <h3 class="pb-4">Kontakt</h3>
           <a
@@ -62,7 +62,7 @@
       <img
         src="@/assets/icons/bambus_footer.png"
         alt=""
-        class="sm:hidden lg:flex"
+        class="xsm:hidden lg:flex"
       />
     </div>
   </footer>

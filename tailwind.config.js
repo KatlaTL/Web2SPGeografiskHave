@@ -18,9 +18,13 @@ module.exports = {
       'footerBackgroundColor': '#492A14',
     },
     screens: {
-      'sm': '100px',
+      'xsm': '100px',
 
-      'md': '768px',
+      'sm':'425px',
+
+      'mdsm':'500px',
+
+      'md': '900px',
 
       'lg': '1024px',
 

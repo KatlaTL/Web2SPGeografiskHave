@@ -38,7 +38,12 @@ onBeforeMount(async () => {
     />
     <InfoBanner />
 
-    <section id="home-event-tiles-section">
+    <section class="home-event-tiles-section 
+    xsm:flex xsm:flex-col xsm:mx-10
+    sm:mx-24 sm:flex-col
+    mdsm:mx-32
+    md:flex-col md:items-center md:mx-auto
+    xl:flex-none xl:flex-row xl:mx-auto xl:justify-between ">
       <EventTile v-for="tile in tiles" :key="tile.id" 
         :title="tile.title" 
         :tileText="tile.text"

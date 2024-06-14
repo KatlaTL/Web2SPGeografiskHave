@@ -78,8 +78,10 @@ const tileLinkTextColor = computed(() => {
 </script>
 
 <template>
-    <article class="home-event-tile">
-        <section class="home-event-tile-text">
+    <article class="home-event-tile flex flex-row">
+        <section class="home-event-tile-text 
+        sm:w-26
+        ">
             <div class="home-event-tile-text-div">
                 <h3>{{ tileTitle }}</h3>
                 <p>{{ tileBodyText }}</p>
@@ -92,7 +94,7 @@ const tileLinkTextColor = computed(() => {
         </section>
         <section class="home-event-tile-img">
             <div>
-                <img :src="imageURL" :alt="imageAltText" />
+                <img :src="imageURL" :alt="imageAltText" class="xsm:hidden  mdsm:block"/>
             </div>
         </section>
     </article>
