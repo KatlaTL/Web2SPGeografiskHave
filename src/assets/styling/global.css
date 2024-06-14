@@ -3,9 +3,12 @@
 @import url("./headerStyle.css");
 @import url("./homeStyle.css");
 @import url("./eventStyle.css");
-@import url("./footerStyle.css");
 @import url("./calendarViewStyle.css");
 @import url("./adminStyle.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Variables */
 :root {
@@ -38,4 +41,35 @@ html, body {
     margin: auto;
     width: 500px;
     min-height: 450px;
+}
+
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+    font-weight: 500;
+    font-family: 'stag';
+    line-height: 30px;
+  }
+  h2 {
+    @apply text-xl;
+    font-weight: 500;
+    font-family: 'stag';
+     line-height: 30px;
+  }
+  h3 {
+    @apply text-2xl;
+    font-weight: 500;
+    font-size: 30px;
+    font-family: 'stag';
+    line-height: 30px;
+  }
+  a {
+    @apply text-xl;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'stag';
+    line-height: 30px;
+  }
+
 }
