@@ -7,11 +7,11 @@ defineProps({
 </script>
 
 <template>
-    <section id="hero-banner">
-        <div id="hero-banner-image">
-            <img :src="imageURL" :alt="imageAltText" />
+    <section class="flex justify-center items-center">
+        <div class=" ">
+            <img :src="imageURL" :alt="imageAltText" class=""/>
         </div>
-        <div id="hero-banner-title">
+        <div class="absolute top-1/3 color text-whiteColor">
             <h1>{{ title }}</h1>
         </div>
     </section>

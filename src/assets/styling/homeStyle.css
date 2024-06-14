@@ -3,13 +3,6 @@
     width: auto;
 }
 
-#hero-banner-image {
-    margin-left: auto;
-    margin-right: auto;
-    width: 1465px;
-    height: 569px;
-}
-
 #hero-banner-title {
     position: absolute;
     top: 50%;
