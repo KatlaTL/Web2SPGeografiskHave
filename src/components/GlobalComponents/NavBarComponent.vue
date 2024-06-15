@@ -35,7 +35,7 @@ const adminLinkClick = (routeName) => {
     <nav id="header-navbar">
       <ul>
         <li v-for="r in routes" :key="r.path">
-          <RouterLink :to="routerLinkPath(r.path)" :class="{ 'dropdown-arrow': r.children.length > 0, disabled: isDisabled }" @click="() => adminLinkClick(r.name)">
+          <RouterLink :to="routerLinkPath(r.path)" :class="{ 'dropdown-arrow': r.children.length > 0, disabled: isDisabled }" @click="() => adminLinkClick(r.name)" class=" mdsm:text-base md:text-lg lg:text-xl">
             {{ r.meta?.title || r.name }}
           </RouterLink>
         </li>
