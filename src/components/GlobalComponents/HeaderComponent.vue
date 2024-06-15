@@ -13,10 +13,10 @@ const onClickSearch = () => console.log("Searching...") //Search logic goes here
 </script>
 
 <template>
-  <header id="header-container">
-    <div id="header-logo">
+  <header class="flex sticky top-0 bg-headerColor py-4">
+    <div class="flex flex-auto content-center ml-4">
       <RouterLink :to="{ name: 'Home' }">
-        <img src="@/assets/images/logo.png" alt="Geografisk Have logo liggende" />
+        <img src="@/assets/images/logo.png" alt="Geografisk Have logo liggende" class="w-[307px] h-[75px]"/>
       </RouterLink>
     </div>
 
