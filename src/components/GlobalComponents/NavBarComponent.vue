@@ -57,7 +57,7 @@ const toggleMenu = () => {
         </RouterLink>
       </li>
     </ul>
-    <div class="flex flex-wrap gap-4 fixed z-[10] xsm:block lg:hidden">
+    <div class="sticky flex flex-wrap gap-4 fixed z-[10] xsm:block lg:hidden">
       <button
         @click="toggleMenu"
         value="hamburger"
