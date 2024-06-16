@@ -13,7 +13,7 @@ const imageURL = computed(() => new URL(`/src/assets/icons/${props.iconFileName}
 <template>
     <img :src="imageURL" />
     <div class="info-banner-tile-text">
-        <h2>{{ title }}</h2>
-        <p>{{ infoText }}</p>
+        <h2 class="inline text-[32px]">{{ title }}</h2>
+        <p class="text-[15px]">{{ infoText }}</p>
     </div>
 </template>
