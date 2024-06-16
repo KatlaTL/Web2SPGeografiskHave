@@ -28,8 +28,8 @@ const onClickSearch = () => console.log("Searching...") //Search logic goes here
     <div id="header-search" class="mdsm:w-[100] md:w-[150px] lg:w-[200px]">
       <form>
         <input type="text" :class="{ active: searchClass }" ref="searchInput" @transitionend="searchFocus"/>
-        <label>
-          <span @click="toggleSearch" class="search-icon"></span>
+        <label @click="toggleSearch">
+          <span  class="search-icon"></span>
           <span @click="onClickSearch" class=" mdsm:text-base md:text-lg lg:text-xl">Søg</span>
         </label>
       </form>
