@@ -51,13 +51,13 @@ const toggleMenu = () => {
             disabled: isDisabled,
           }"
           @click="() => adminLinkClick(r.name)"
-          class="mdsm:text-base md:text-lg lg:text-xl"
+          class="mdsm:text-base md:text-lg lg:text-lg xl:text-xl"
         >
           {{ r.meta?.title || r.name }}
         </RouterLink>
       </li>
     </ul>
-    <div class="sticky flex flex-wrap gap-4 fixed z-[10] xsm:block lg:hidden">
+    <div class="sticky flex flex-wrap gap-4 z-[10] xsm:block lg:hidden xsm:pr-2 mdsm:pr-2 md:pr-3">
       <button
         @click="toggleMenu"
         value="hamburger"
@@ -80,7 +80,7 @@ const toggleMenu = () => {
           disabled: isDisabled,
         }"
         @click="() => adminLinkClick(r.name)"
-        class="mdsm:text-base md:text-lg lg:text-xl"
+        class="mdsm:text-base md:text-lg lg:text-lg xl:text-xl"
       >
         {{ r.meta?.title || r.name }}
       </RouterLink>
