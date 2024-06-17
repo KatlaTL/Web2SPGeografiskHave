@@ -17,10 +17,11 @@ const activeRouterName = (routeName) => {
     class="mdsm:absolute m-auto left-0 right-0 
     mdsm:top-[45%] md:top-[46%] lg:top-[64%] xl:top-[66%]
     flex xsm:flex-col sm:items-stretch
-    mdsm:flex-row mdsm:justify-evenly mdsm:items-baseline
+    mdsm:flex-row mdsm:justify-evenly mdsm:items-center
     mdsm:p-2 md:p-6 lg:p-6
      xsm:bg-none mdsm:bg-yellowColor
-     md:w-screen lg:w-screen xl:w-[1200px]"
+     md:w-screen lg:w-screen xl:w-[1200px]
+     rounded-2xl"
   >
     <InfoBannerTile
       iconFileName="clock.svg"

@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-    <section class="info-banner-tile bg-yellowColor flex m-1">
+    <section class="info-banner-tile bg-yellowColor flex xsm:m-2 mdsm:m-none rounded-lg">
         <RouterLink v-if="activeRouterName" :to="{ name: activeRouterName }">
             <InfoBannerTileInfo :iconFileName="iconFileName" :title="title" :infoText="infoText" />
         </RouterLink>

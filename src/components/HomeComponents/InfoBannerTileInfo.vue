@@ -19,6 +19,8 @@ const imageURL = computed(
   lg:w-auto lg:h-auto lg:pr-6" />
   <div class="info-banner-tile-text flex flex-col sm:justify-end mdsm:justify-between ">
     <h2 class="inline xsm:text-[14px] sm:text-[16px] mdsm:text-[16px] md:text-[20px] lg:text-[32px]">{{ title }}</h2>
-    <p class="xsm:text-[8px] sm:text-[10px] mdsm:text-[12px] md:text-[12px] lg:text-[15px]">{{ infoText }}</p>
+    <p class="xsm:text-[8px] sm:text-[10px] mdsm:text-[12px] md:text-[12px] lg:text-[15px]
+    xsm:hidden mdsm:flex
+    ">{{ infoText }}</p>
   </div>
 </template>
