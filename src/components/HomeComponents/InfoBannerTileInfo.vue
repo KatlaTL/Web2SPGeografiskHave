@@ -13,9 +13,9 @@ const imageURL = computed(
 </script>
 
 <template>
-  <img :src="imageURL" class="md:w-10 md:h-10 lg:w-auto lg:h-auto" />
+  <img :src="imageURL" class="mdsm:w-6 mdsm:h-6 md:w-10 md:h-10 lg:w-auto lg:h-auto" />
   <div class="info-banner-tile-text">
-    <h2 class="inline md:text-[20px] lg:text-[32px]">{{ title }}</h2>
-    <p class="md:text-[12px] lg:text-[15px]">{{ infoText }}</p>
+    <h2 class="inline mdsm:text-[16px] md:text-[20px] lg:text-[32px]">{{ title }}</h2>
+    <p class="mdsm:text-[12px] md:text-[12px] lg:text-[15px]">{{ infoText }}</p>
   </div>
 </template>

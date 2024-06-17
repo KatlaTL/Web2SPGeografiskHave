@@ -62,7 +62,7 @@
       <img
         src="@/assets/icons/bambus_footer.png"
         alt=""
-        class="xsm:hidden lg:flex"
+        
       />
     </div>
   </footer>

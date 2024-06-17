@@ -22,7 +22,7 @@ module.exports = {
 
       'sm':'425px',
 
-      'mdsm':'500px',
+      'mdsm':'768px',
 
       'md': '900px',
 
