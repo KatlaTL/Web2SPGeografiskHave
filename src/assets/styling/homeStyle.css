@@ -42,16 +42,6 @@
     float: left;
 }
 
-.info-banner-tile-text {
-    float: left;
-    margin-left: 25px;
-    height: auto;
-    width: 205px;
-    font-family: var(--headersFont);
-    font-weight: 400;
-    color: var(--blackColor);
-}
-
 .home-event-tiles-section {
     width: 1086px;
     margin-left: auto;

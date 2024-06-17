@@ -14,12 +14,12 @@ const activeRouterName = (routeName) => {
 
 <template>
   <section
-    class="sm:flex mdsm:absolute m-auto left-0 right-0 
-    mdsm:top-[40%] md:top-[40%] lg:top-[64%] xl:top-[66%]
-    flex justify-center sm:flex-col mdsm:flex-row
+    class="mdsm:absolute m-auto left-0 right-0 
+    mdsm:top-[30%] md:top-[40%] lg:top-[64%] xl:top-[66%]
+    flex justify-evenly sm:flex-col mdsm:flex-row
     mdsm:p-2 md:p-8 lg:my-4 lg:p-8
      bg-yellowColor
-     md:w-screen lg:w-screen xl:w-max"
+     md:w-screen lg:w-screen xl:w-[1200px]"
   >
     <InfoBannerTile
       iconFileName="clock.svg"

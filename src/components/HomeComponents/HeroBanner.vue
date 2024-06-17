@@ -9,7 +9,7 @@ defineProps({
 <template>
     <section class="flex justify-center items-center">
         <div class=" ">
-            <img :src="imageURL" :alt="imageAltText" class="sm:hidden mdsm:block"/>
+            <img :src="imageURL" :alt="imageAltText" class="xsm:hidden sm:block"/>
         </div>
         <div class="absolute top-1/3 color text-whiteColor">
             <h1>{{ title }}</h1>
