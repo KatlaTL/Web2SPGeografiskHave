@@ -16,9 +16,10 @@ const activeRouterName = (routeName) => {
   <section
     class="mdsm:absolute m-auto left-0 right-0 
     mdsm:top-[45%] md:top-[46%] lg:top-[64%] xl:top-[66%]
-    flex justify-evenly sm:flex-col mdsm:flex-row
+    flex xsm:flex-col sm:items-stretch
+    mdsm:flex-row mdsm:justify-evenly mdsm:items-baseline
     mdsm:p-2 md:p-6 lg:p-6
-     bg-yellowColor
+     xsm:bg-none mdsm:bg-yellowColor
      md:w-screen lg:w-screen xl:w-[1200px]"
   >
     <InfoBannerTile
