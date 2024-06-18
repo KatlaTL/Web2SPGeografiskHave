@@ -15,7 +15,7 @@ const activeRouterName = (routeName) => {
 <template>
   <section
     class="mdsm:absolute m-auto left-0 right-0 
-    mdsm:top-[45%] md:top-[46%] lg:top-[64%] xl:top-[66%]
+    mdsm:top-[45%] md:top-[46%] lg:top-[64%] xl:top-[84%]
     flex xsm:flex-col sm:items-stretch
     mdsm:flex-row mdsm:justify-evenly mdsm:items-center
     mdsm:p-2 md:p-6 lg:p-6
