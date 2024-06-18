@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { ref } from 'vue';
-import HomeView from '../views/HomeView.vue';
 import { onAuthStateChanged } from '@firebase/auth';
 import { auth } from '@/config/firebase';
+import HomeView from '../views/HomeView.vue';
 import { populateRoutes } from '@/services/NavigationService';
+import { useBreadcrumbsStore } from '@/stores/breadcrumbs';
 
 const isAuthenticated = ref(false);
 
@@ -23,12 +24,21 @@ const router = createRouter({
       name: 'Home',
       component: HomeView,
       meta: {
-        title: "Home"
+        title: "Home",
+        breadcrumb: {
+          breadcrumbLevel: 1
+        }
       }
     },
     {
       path: '/Event/:eventID',
       name: 'Event',
+      meta: {
+        breadcrumb: {
+          breadcrumbLevel: 3,
+          parrent: "Calender"
+        }
+      },
       component: () => import('../views/EventView.vue')
     },
     {
@@ -63,7 +73,7 @@ router.beforeEach((to, from) => {
   }
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
   if (to.meta?.requireAuth === true && !isAuthenticated.value) {
     return { name: "Admin login" }
   }
@@ -71,6 +81,34 @@ router.beforeEach((to, from) => {
   if (isAuthenticated.value && to.name === "Admin login") {
     return { name: "Admin panel" }
   }
+})
+
+router.beforeResolve((to, from) => {
+  const breadcrumbStore = useBreadcrumbsStore();
+
+  const breadcrumbs = breadcrumbStore.breadcrumbs;
+
+  breadcrumbs.forEach((breadcrumb, index) => {
+    if (breadcrumb.breadcrumbLevel === to.meta?.breadcrumb?.breadcrumbLevel) {
+      breadcrumbStore.removeBreadcrumbs(index);
+    }
+
+    if (!from.name && to.meta?.breadcrumb?.parrent) {
+      const parrentRoute = router.getRoutes().find(route => route.name === to.meta?.breadcrumb?.parrent);
+
+      breadcrumbStore.addBreadcrumb({
+        breadcrumbLevel: parrentRoute.meta?.breadcrumb?.breadcrumbLevel,
+        routePath: parrentRoute.path,
+        routeName: parrentRoute.meta?.title || parrentRoute.name
+      });
+    }
+  });
+
+  breadcrumbStore.addBreadcrumb({
+    breadcrumbLevel: to.meta?.breadcrumb?.breadcrumbLevel,
+    routePath: to.path,
+    routeName: to.meta?.title || to.name
+  });
 })
 
 router.afterEach((to) => {

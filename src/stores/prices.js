@@ -1,6 +1,6 @@
-import { ref } from 'vue'
-import { defineStore } from 'pinia'
-import { getPrices } from '@/services/PricesServices'
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
+import { getPrices } from '@/services/PricesServices';
 
 export const usePricesStore = defineStore('prices', () => {
     const entrancePrices = ref({});

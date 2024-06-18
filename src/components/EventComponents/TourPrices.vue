@@ -1,6 +1,6 @@
 <script setup>
-import { usePricesStore } from '@/stores/prices';
 import { computed } from 'vue';
+import { usePricesStore } from '@/stores/prices';
 
 const pricesStore = usePricesStore();
 

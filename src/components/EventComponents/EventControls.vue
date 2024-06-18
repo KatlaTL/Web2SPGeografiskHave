@@ -3,7 +3,6 @@ import { ref } from 'vue';
 
 const emit = defineEmits(['ShowTours', 'ShowEvents', 'searchInput']);
 
-
 const searchQuery = ref('');
 
 const tourBtnIsClicked = ref(false);
@@ -28,9 +27,9 @@ const emitInput = () => emit('searchInput', searchQuery.value);
 <template>
     <div class="controls">
         <div class="control_div">
-        <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
-        <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
-        <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event">
+          <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
+          <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
+          <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event">
         </div>
     </div>
 </template>

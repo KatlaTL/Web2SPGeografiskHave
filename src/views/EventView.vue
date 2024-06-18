@@ -8,6 +8,7 @@ import EventForm from '@/components/EventComponents/EventForm.vue';
 import TourPrices from '@/components/EventComponents/TourPrices.vue';
 import { getEventBanner, getEventContentByID } from '@/services/EventService';
 import { useRoute } from 'vue-router';
+import BreadcrumbsComponent from '@/components/GlobalComponents/BreadcrumbsComponent.vue';
 
 const route = useRoute();
 
@@ -39,6 +40,8 @@ onBeforeMount(async () => {
 
 <template>
   <HeaderComponent />
+
+  <BreadcrumbsComponent />
 
   <div v-if="content.contentMissing" class="error-page-content">
     <h1>Content Missing</h1>

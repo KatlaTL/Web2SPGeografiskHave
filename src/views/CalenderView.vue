@@ -1,6 +1,7 @@
 <script setup>
 import HeaderComponent from "@/components/GlobalComponents/HeaderComponent.vue";
 import FooterComponent from "@/components/GlobalComponents/FooterComponent.vue";
+import BreadcrumbsComponent from "@/components/GlobalComponents/BreadcrumbsComponent.vue";
 import CalendarContainer from "@/components/EventComponents/CalendarContainer.vue";
 import CalendarHeaderText from "@/components/EventComponents/CalendarHeaderText.vue";
 import EventBanner from "@/components/EventComponents/EventBanner.vue";
@@ -21,6 +22,8 @@ onBeforeMount(async () => {
 
 <template>
   <HeaderComponent />
+
+  <BreadcrumbsComponent />
 
   <EventBanner :imageURL="eventBanner.imageURL" :imageALT="eventBanner.imageAltText" />
 
