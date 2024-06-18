@@ -7,8 +7,8 @@ const props = defineProps({
 </script>
 
 <template>
-    <section id="event-banner">
-        <div id="event-banner-image">
+    <section id="event-banner" class="flex justify-center items-center">
+        <div >
             <img :src="imageURL" :alt="imageAltText" />
         </div>
     </section>
