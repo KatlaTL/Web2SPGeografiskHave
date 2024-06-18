@@ -67,7 +67,6 @@
 .container_calendar {
   display: flex;
   height: 100%;
-  width: 950px;
   margin: auto;
 }
 
