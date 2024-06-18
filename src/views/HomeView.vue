@@ -39,11 +39,11 @@ onBeforeMount(async () => {
     <InfoBanner />
 
     <section class="home-event-tiles-section 
-    xsm:flex xsm:flex-col xsm:mx-10
-    sm:mx-24 sm:flex-col
-    mdsm:mx-32
-    lg:flex-row lg:items-center lg:mx-auto
-    xl:flex-none xl:flex-row xl:mx-auto xl:justify-between ">
+     xsm:flex-col xsm:w-screen
+    sm:flex-col sm:w-screen
+    mdsm:w-screen 
+    md:flex-col md:justify-center md:items-center md:mx-auto md:w-auto
+    xl:flex-none xl:flex-row xl:mx-auto xl:justify-evenly ">
       <EventTile v-for="tile in tiles" :key="tile.id" 
         :title="tile.title" 
         :tileText="tile.text"

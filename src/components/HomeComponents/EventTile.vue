@@ -78,9 +78,9 @@ const tileLinkTextColor = computed(() => {
 </script>
 
 <template>
-    <article class="home-event-tile flex flex-row mt-32">
+    <article class="home-event-tile flex flex-row mt-32 justify-center">
         <section class="home-event-tile-text 
-        sm:w-30
+        sm:w-26
         ">
             <div class="home-event-tile-text-div">
                 <h3>{{ tileTitle }}</h3>
