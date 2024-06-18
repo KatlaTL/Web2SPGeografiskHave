@@ -96,11 +96,13 @@ router.beforeResolve((to, from) => {
     if (!from.name && to.meta?.breadcrumb?.parrent) {
       const parrentRoute = router.getRoutes().find(route => route.name === to.meta?.breadcrumb?.parrent);
 
-      breadcrumbStore.addBreadcrumb({
-        breadcrumbLevel: parrentRoute.meta?.breadcrumb?.breadcrumbLevel,
-        routePath: parrentRoute.path,
-        routeName: parrentRoute.meta?.title || parrentRoute.name
-      });
+      if (parrentRoute) {
+        breadcrumbStore.addBreadcrumb({
+          breadcrumbLevel: parrentRoute.meta?.breadcrumb?.breadcrumbLevel,
+          routePath: parrentRoute.path,
+          routeName: parrentRoute.meta?.title || parrentRoute.name
+        });
+      }
     }
   });
 
