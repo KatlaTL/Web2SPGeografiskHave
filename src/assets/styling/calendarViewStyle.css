@@ -30,7 +30,7 @@
 
 .controls input {
   flex: 1;
-  padding: 10px;
+  padding: 26px;
   border-radius: 3px;
   border: none;
   background-color: var(--headerColor);
@@ -46,8 +46,6 @@
 }
 
 .showTours_btn, .showEvents_btn {
-  margin-right: 10px;
-  padding: 10px;
   border-radius: 3px;
   border: none;
   background-color: var(--activeGreen);
@@ -81,14 +79,6 @@
   width: 300px;
   height: 300px;
   cursor: pointer;
-}
-
-.image-wrapper {
-display: flex;
-flex-wrap: wrap;
-flex-direction: row;
-justify-content: space-between;
-margin-top: 20px;
 }
 
 .overlay {

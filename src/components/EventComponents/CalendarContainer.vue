@@ -40,8 +40,8 @@ const search = async (searchQuery) => console.log("Searching for", searchQuery)
       @showEvents="calendarDatas = calendarDataEvent"
       @searchInput="(searchQuery) => search(searchQuery)"
     />
-    <div class="container_calendar w-[62.4%]">
-      <div class="image-wrapper flex flex-wrap">
+    <div class="container_calendar mt-4 xsm:w-auto sm:w-[69%]">
+      <div class="image-wrapper flex flex-wrap justify-evenly">
         <div
           class="column_calendar"
           v-for="(calendarDatas, index) in calendarDatas"

@@ -26,11 +26,11 @@ const emitInput = () => emit('searchInput', searchQuery.value);
 </script>
 
 <template>
-    <div class="controls">
-        <div class="control_div">
-        <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn">Rundvisning</button>
-        <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn">Events</button>
-        <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event">
+    <div class="controls flex w-auto xsm:px-[10px] sm:px-[65px] mdsm:px-[235px] md:px-[195px] lg:px-[245px] lgxl:px-[300px] xl:px-[250px] 2xl:px-[275px]">
+        <div class="control_div flex flex-row xsm:justify-between md:justify-end flex-wrap w-[100%] gap-4">
+        <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn shrink">Rundvisning</button>
+        <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn shrink">Events</button>
+        <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event" class="mdsm::max-w-[200px] md:max-w-[200px] shrink">
         </div>
     </div>
 </template>
