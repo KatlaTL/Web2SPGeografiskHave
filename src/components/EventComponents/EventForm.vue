@@ -193,7 +193,7 @@ defineProps({
             name="name"
             v-model="formData.name.value"
             required
-            class="xsm:w-[140px] sm:w-[200px] mdsm:w-[400px]"
+            class="xsm:w-[140px] sm:w-[200px] mdsm:w-[390px]"
           />
           <label
             for="input-name"
@@ -235,7 +235,7 @@ defineProps({
               name="phone"
               v-model="formData.phone.value"
               required
-              class="xsm:w-[140px] sm:w-[200px] mdsm:w-[400px]"
+              class="xsm:w-[140px] sm:w-[200px] mdsm:w-[390px]"
             />
             <label
               for="input-phone"
@@ -267,7 +267,7 @@ defineProps({
             name="email"
             v-model="formData.email.value"
             required
-            class="xsm:w-[140px] sm:w-[200px] mdsm:w-[400px]"
+            class="xsm:w-[140px] sm:w-[200px] mdsm:w-[390px]"
           />
           <label
             for="input-email"

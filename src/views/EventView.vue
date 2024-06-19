@@ -49,28 +49,28 @@ onBeforeMount(async () => {
 
     <div class="event-container">
 
-      <div class="event-headings flex flex-col xsm:w-[435px] md:w-[910px] my-4" v-html="content?.heading"></div>
+      <div class="event-headings flex flex-col xsm:w-[300px] sm:w-[380px] mdsm:w-[700px] md:w-[910px] my-4" v-html="content?.heading"></div>
 
       <div class="event-top-container flex xsm:w-[auto] xsm:flex-col md:w-[910px] md:flex-row justify-between items-center">
-        <div class="event-text-container event-container-left">
+        <div class="event-text-container event-container-left xsm:mx-5 xsm:w-[300px] sm:w-[380px] mdsm:w-[700px] mdsm-[400px] md:w-[910px]">
           <div v-html="content?.firstParagraphHeading"></div>
           <div v-html="content?.firstParagraphBody"></div>
           <div v-html="content?.firstParagraphHeading2"></div>
           <div v-html="content?.firstParagraphBody2"></div>
         </div>
 
-        <div class="event-container-right">
+        <div class="event-container-right flex items-center justify-center xsm:mx-5 xsm:w-[300px] sm:w-[380px] mdsm:w-[700px] mdsm-[400px] md:w-[910px]">
           <EntrancePrices v-if="showEventPrices" />
           <TourPrices v-else />
         </div>
       </div>
 
-      <div class="event-bot-container flex xsm:w-[auto] xsm:flex-col md:w-[910px] md:flex-row justify-between items-center ">
-        <div class="event-image event-container-left">
+      <div class="event-bot-container flex xsm:w-[auto] xsm:flex-col mdsm:w-[500px] md:w-[910px] md:flex-row justify-between items-center ">
+        <div class="event-image event-container-left flex items-center justify-center xsm:w-[300px] sm:w-[380px] mdsm:w-[500px] md:w-[910px] xsm:mx-4">
           <img :src="content.imageURL" :alt="content.imageAltText" class="mb-4" />
         </div>
 
-        <div class="event-text-container event-container-right">
+        <div class="event-text-container event-container-right xsm:mx-5 xsm:w-[300px] sm:w-[380px] mdsm:w-[700px] mdsm-[400px] md:w-[910px]">
           <div v-html="content?.secondParagraphHeading"></div>
           <div v-html="content?.secondParagraphBody"></div>
           <div v-html="content?.secondParagraphHeading2"></div>

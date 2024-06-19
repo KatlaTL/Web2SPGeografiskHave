@@ -17,7 +17,7 @@ const defaultPrices = {
 </script>
 
 <template>
-    <div class="event-prices">
+    <div class="event-prices ">
         <div class="event-prices-inner">
             <h3>Entrépriser</h3>
             <ul>
