@@ -49,9 +49,9 @@ onBeforeMount(async () => {
 
     <div class="event-container">
 
-      <div class="event-headings" v-html="content?.heading"></div>
+      <div class="event-headings flex flex-col xsm:w-[435px] md:w-[910px] my-4" v-html="content?.heading"></div>
 
-      <div class="event-top-container">
+      <div class="event-top-container flex xsm:w-[auto] xsm:flex-col md:w-[910px] md:flex-row justify-between items-center">
         <div class="event-text-container event-container-left">
           <div v-html="content?.firstParagraphHeading"></div>
           <div v-html="content?.firstParagraphBody"></div>
@@ -65,9 +65,9 @@ onBeforeMount(async () => {
         </div>
       </div>
 
-      <div class="event-bot-container">
+      <div class="event-bot-container flex xsm:w-[auto] xsm:flex-col md:w-[910px] md:flex-row justify-between items-center ">
         <div class="event-image event-container-left">
-          <img :src="content.imageURL" :alt="content.imageAltText" />
+          <img :src="content.imageURL" :alt="content.imageAltText" class="mb-4" />
         </div>
 
         <div class="event-text-container event-container-right">
