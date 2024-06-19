@@ -62,13 +62,13 @@ const search = async (searchQuery) => console.log("Searching for", searchQuery)
 
           <div class="info_container">
             <div class="date">
-              <p>{{ calendarDatas.date }}</p>
+              <p class="xsm:text-[12px] mdsm:text-[14px] md:text-[15px]">{{ calendarDatas.date }}</p>
             </div>
             <div class="titel">
-              <h3>{{ calendarDatas.titel }}</h3>
+              <h3 class="xsm:text-[16px] mdsm:text-[18px] md:text-[20px]">{{ calendarDatas.titel }}</h3>
             </div>
             <div class="text">
-              <p>{{ calendarDatas.text }}</p>
+              <p class="xsm:text-[12px] mdsm:text-[14px] md:text-[15px]">{{ calendarDatas.text }}</p>
             </div>
           </div>
         </div>

@@ -28,9 +28,9 @@ const emitInput = () => emit('searchInput', searchQuery.value);
 <template>
     <div class="controls flex w-auto xsm:px-[10px] sm:px-[65px] mdsm:px-[235px] md:px-[195px] lg:px-[245px] lgxl:px-[300px] xl:px-[250px] 2xl:px-[275px]">
         <div class="control_div flex flex-row xsm:justify-between md:justify-end flex-wrap w-[100%] gap-4">
-        <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn shrink">Rundvisning</button>
-        <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn shrink">Events</button>
-        <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event" class="mdsm::max-w-[200px] md:max-w-[200px] shrink">
+        <button @click.prevent="showTours" :class="{ 'clicked': tourBtnIsClicked }" class="showTours_btn shrink xsm:text-sm mdsm:text-sm xl:text-base">Rundvisning</button>
+        <button @click.prevent="showEvents" :class="{ 'clicked': eventBtnIsClicked }" class="showEvents_btn shrink xsm:text-sm mdsm:text-sm xl:text-base">Events</button>
+        <input type="text" @input="emitInput" v-model="searchQuery" placeholder="Søg event" class="mdsm::max-w-[200px] md:max-w-[200px] shrink xsm:text-sm mdsm:text-sm xl:text-base">
         </div>
     </div>
 </template>
