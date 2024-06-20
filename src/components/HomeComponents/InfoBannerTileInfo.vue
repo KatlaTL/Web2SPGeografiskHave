@@ -19,10 +19,10 @@ const imageURL = computed(
   mdsm:w-12 mdsm:h-12 mdsm:pr-2 mdsm:mr-3 
   md:w-14 md:h-14 md:pr-1 md:mr-5
   lg:w-auto lg:h-auto lg:mr-5" />
-  <div class="info-banner-tile-text flex flex-col sm:justify-center mdsm:justify-between ">
-    <h2 class="inline xsm:text-[14px] sm:text-[16px] mdsm:text-[16px] md:text-[20px] lg:text-[32px]">{{ title }}</h2>
+  <div class="info-banner-tile-text flex flex-col sm:justify-center mdsm:justify-normal ">
+    <h2 class="inline xsm:text-[14px] sm:text-[16px] mdsm:text-[16px] md:text-[20px] lg:text-[32px] md:mb-0 lg:mb-1">{{ title }}</h2>
     <p class="xsm:text-[8px] sm:text-[10px] mdsm:text-[12px] md:text-[12px] lg:text-[15px]
-    xsm:hidden mdsm:flex font-bold
+    xsm:hidden mdsm:flex font-normal font-headersFont
     ">{{ infoText }}</p>
   </div>
 </template>
