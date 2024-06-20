@@ -83,7 +83,7 @@ const tileLinkTextColor = computed(() => {
         sm:w-26
         ">
             <div class="home-event-tile-text-div">
-                <h3 class="mb-6 font-bold">{{ tileTitle }}</h3>
+                <h3 class="mb-5 mt-4 font-bold">{{ tileTitle }}</h3>
                 <p>{{ tileBodyText }}</p>
             </div>
             <div class="home-event-tile-text-link">
