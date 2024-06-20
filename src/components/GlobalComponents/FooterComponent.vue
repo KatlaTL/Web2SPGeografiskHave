@@ -2,17 +2,17 @@
   <footer class="bg-footerBackgroundColor dark:bg-footerBackgroundColor">
     <div class="mx-auto w-full max-w-screen-xl p-4 py-4">
       <div
-        class="flex lg:justify-between lg:flex-row lg:items-start xsm:flex-col text-whiteColor"
+        class="flex md:justify-between md:flex-row md:items-start xsm:flex-col text-whiteColor"
       >
         <div class="mb-2 md:mb-0">
           <img
             src="@/assets/icons/gh_logo_vertikal_hvid.svg"
             alt="Geografisk have logo footer"
-            class="h-80 w-80 xsm:hidden lg:flex"
+            class="md:h-40 md:w-40 lg:h-80 lg:w-80 xsm:hidden md:flex"
           />
         </div>
         <div
-          class="flex flex-col lg:justify-start lg:items-start py-4 text-[20px] font-medium leading-[30px] font-headersFont"
+          class="flex flex-col md:justify-start md:items-start py-4 text-[20px] font-medium leading-[30px] font-headersFont"
         >
           <h3 class="pb-4">Om os</h3>
           <a href="#">Bestyrelsen</a>
