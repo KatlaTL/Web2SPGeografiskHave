@@ -41,8 +41,9 @@ onBeforeMount(async () => {
     <section class="home-event-tiles-section mt-28
      xsm:flex-col xsm:w-screen
     sm:flex-col sm:w-screen
-    mdsm:flex-col mdsm:justify-center mdsm:items-center mdsm:mx-auto md:w-auto
-    lg:flex-none lg:flex-row lg:mx-auto lg:justify-evenly ">
+    mdsm:flex-col mdsm:justify-center mdsm:items-center md:w-auto lgxl:justify-between mdsm:mx-0 md:mx-3
+    lg:flex-none lg:flex-row  lg:justify-between lg:mx-3 
+     xl:w-[1200px] xl:mx-auto">
       <EventTile v-for="tile in tiles" :key="tile.id" 
         :title="tile.title" 
         :tileText="tile.text"
