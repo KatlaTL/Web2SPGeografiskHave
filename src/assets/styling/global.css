@@ -64,12 +64,4 @@ html, body {
     font-family: 'stag';
     line-height: 30px;
   }
-  a {
-    @apply text-xl;
-    font-size: 20px;
-    font-weight: 500;
-    font-family: 'stag';
-    line-height: 30px;
-  }
-
 }

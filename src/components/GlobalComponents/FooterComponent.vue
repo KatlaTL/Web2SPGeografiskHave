@@ -12,7 +12,7 @@
           />
         </div>
         <div
-          class="flex flex-col  lg:justify-start lg:items-start py-4 "
+          class="flex flex-col lg:justify-start lg:items-start py-4 text-[20px] font-medium leading-[30px] font-headersFont"
         >
           <h3 class="pb-4">Om os</h3>
           <a href="#">Bestyrelsen</a>
@@ -24,7 +24,7 @@
           <a href="#">Presseperspektiv</a>
         </div>
         <div
-          class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start py-4"
+          class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start py-4 text-[20px] font-medium leading-[30px] font-headersFont"
         >
           <h3 class="pb-4">Diverse</h3>
           <a href="#">Persondatapolitik</a>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div
-          class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start py-4"
+          class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start py-4 text-[20px] font-medium leading-[30px] font-headersFont"
         >
           <h3 class="pb-4">Kontakt</h3>
           <a
