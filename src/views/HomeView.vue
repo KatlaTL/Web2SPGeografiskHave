@@ -38,7 +38,7 @@ onBeforeMount(async () => {
     />
     <InfoBanner />
 
-    <section class="home-event-tiles-section mt-28
+    <section class="home-event-tiles-section xsm:mt-8 mdsm:mt-28
      xsm:flex-col xsm:w-screen
     sm:flex-col sm:w-screen
     mdsm:flex-col mdsm:justify-center mdsm:items-center md:w-auto lgxl:justify-between mdsm:mx-0 md:mx-3
