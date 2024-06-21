@@ -40,7 +40,7 @@ const search = async (searchQuery) => console.log("Searching for", searchQuery)
       @showEvents="calendarDatas = calendarDataEvent"
       @searchInput="(searchQuery) => search(searchQuery)"
     />
-    <div class="container_calendar mt-4 xsm:w-auto sm:w-[69%]">
+    <div class="container_calendar mt-4 xsm:w-auto sm:w-[69%] 2xl:w-[76%]">
       <div class="image-wrapper flex flex-wrap justify-evenly">
         <div
           class="column_calendar"
