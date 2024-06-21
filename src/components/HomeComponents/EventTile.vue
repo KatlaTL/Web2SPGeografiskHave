@@ -78,12 +78,12 @@ const tileLinkTextColor = computed(() => {
 </script>
 
 <template>
-    <article class="home-event-tile flex flex-row justify-center">
+    <article class="home-event-tile flex xsm:flex-col-reverse xsm:items-center mdsm:flex-row justify-center xsm:mt-[100px] sm:mt-[80px] xsm:mb-[150px] mdsm:mt-auto">
         <section class="home-event-tile-text 
         sm:w-26
-        mdsm:w-[300px] md:w-[400px] lg:w-[230px] lgxl:w-[230px] xl:w-[227px]
+        xsm:w-auto xsm:mx-2 xsm:rounded-none mdsm:rounded-l-3xl mdsm:rounded-tr-3xl mdsm:mx-0 mdsm:w-[300px] md:w-[400px] lg:w-[230px] lgxl:w-[230px] xl:w-[227px]
         ">
-            <div class="home-event-tile-text-div">
+            <div class="home-event-tile-text-div xsm:h-[210px] sm:h-[190px]">
                 <h3 class="mb-5 mt-4 font-bold">{{ tileTitle }}</h3>
                 <p>{{ tileBodyText }}</p>
             </div>
@@ -93,9 +93,11 @@ const tileLinkTextColor = computed(() => {
                 <RouterLink v-else :to="routerLinkPath">Læs mere</RouterLink>
             </div>
         </section>
-        <section class="home-event-tile-img">
+        <section class="home-event-tile-img w-auto xsm:mx-2 mdsm:mx-0">
             <div>
-                <img :src="imageURL" :alt="imageAltText" class="xsm:hidden mdsm:block mdsm:w-[420px] md:w-[600px] md:object-cover lg:object-fill lg:w-[320px] lgxl:w-[390px] xl:w-[261px]"/>
+                <img :src="imageURL" :alt="imageAltText" class="xsm:w-[100vw] xsm:rounded-tl-3xl xsm:rounded-tr-3xl xsm:rounded-br-none 
+                mdsm:rounded-bl-none mdsm:rounded-br-3xl mdsm:rounded-l-3xl mdsm:rounded-tr-3xl  mdsm:w-[420px] md:w-[600px] 
+                xsm:object-cover md:object-cover lg:object-fill lg:w-[320px] lgxl:w-[390px] xl:w-[261px]"/>
             </div>
         </section>
     </article>

@@ -60,7 +60,6 @@
 
 .home-event-tile-text {
     position: relative;
-    width: 227px;
     height: 264px;
     border-radius: 22px 22px 0 22px;
     font-weight: 400;
@@ -102,10 +101,8 @@
 .home-event-tile-img div {
     height: 264px;
     float: left;
-    border-radius: 22px 22px 22px 0;
 }
 
 .home-event-tile-img img {
     height: 264px;
-    border-radius: 22px 22px 22px 0;
 }

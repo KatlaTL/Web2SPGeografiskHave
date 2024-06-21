@@ -30,7 +30,7 @@ onBeforeMount(async () => {
 <template>
   <HeaderComponent />
 
-  <main>
+  <main class="xsm:h-[1200px] sm:h-[1400px] mdsm:h-auto">
     <HeroBanner 
       :title="heroBanner.title" 
       :imageURL="heroBanner.imageURL" 
