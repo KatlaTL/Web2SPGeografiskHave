@@ -74,6 +74,32 @@
     text-align: center;
 }
 
+.admin-show-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 400px;
+    margin: 0 auto 100px auto;
+}
+
+.admin-show-section button {
+    width: 180px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    color: var(--backgroundColor);
+    background-color: var(--headerColor);
+    font-family: var(--headersFont);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.admin-show-section button:hover, .admin-show-section button.active {
+    background-color: var(--hoverGreedColor);
+    color: var(--backgroundColor);
+    cursor: pointer;
+}
+
 .logout-button {
     position: relative;
     left: 0;
@@ -89,7 +115,7 @@
     margin-top: 20px;
 }
 
-.admin-navbar-form input {
+.admin-navbar-form input, .admin-event-form-uploader form input[type=text], .admin-event-form input[type=text] {
     width: 403px;
     height: 47px;
     border-radius: 4px;
@@ -104,7 +130,11 @@
 }
 
 .admin-navbar-form input::placeholder,
-.admin-navbar-form input::-webkit-input-placeholder {
+.admin-navbar-form input::-webkit-input-placeholder,
+.admin-event-form-uploader form input[type=text]::placeholder,
+.admin-event-form-uploader form input[type=text]::-webkit-input-placeholder,
+.admin-event-form input[type=text]::placeholder,
+.admin-event-form input[type=text]::-webkit-input-placeholder {
     color: black;
     font-style: italic;
     opacity: .5;
@@ -129,7 +159,7 @@
     margin-top: 0;
 }
 
-.admin-navbar-form-cta {
+.admin-navbar-form-cta, .admin-event-form-cta {
     width: 233px;
     height: 51px;
     border-radius: 4px;
@@ -142,7 +172,7 @@
     margin-top: 10px;
 }
 
-.admin-navbar-form-cta:hover, .admin-navbar-order-cta:hover {
+.admin-navbar-form-cta:hover, .admin-navbar-order-cta:hover, .admin-event-form-cta:hover {
     background-color: var(--activeGreen);
     cursor: pointer;
 }
@@ -163,4 +193,69 @@
     background-color: var(--headerColor);
     color: var(--whiteColor);
     border: none;
+}
+
+.admin-event-form {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.admin-event-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-event-form form label {
+    margin-bottom: 5px;
+}
+
+.admin-event-form form select {
+    width: 100px;
+    height: 25px;
+    font-size: 16px;
+}
+
+.admin-event-form-uploader {
+    width: 300px;
+    margin: 20px 0 20px 0;
+}
+
+.admin-event-form-uploader form {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-event-form-uploader form input {
+    margin-top: 10px;
+}
+
+.uploader {
+    font-size: 16px;
+}
+
+.uploader::file-selector-button {
+    width: 80px;
+    height: 35px;
+    border-radius: 4px;
+    border: none;
+    background-color: var(--headerColor);
+    color: var(--whiteColor);
+    font-size: 16px;
+}
+
+.uploader::file-selector-button:hover {
+    background-color: var(--activeGreen);
+    cursor: pointer;
+}
+
+.admin-event-form h3 {
+    margin-bottom: 5px;
+}
+
+.date-picker {
+    width: 190px;
+}
+
+.admin-event-form input[type=file] {
+    margin-bottom: 10px;
 }

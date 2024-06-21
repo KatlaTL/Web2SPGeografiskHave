@@ -311,7 +311,7 @@
     height: 71px;
     border-radius: 4px;
     border: none;
-    background-color: #FFF9EB;
+    background-color: var(--backgroundColor);
     color: var(--headerColor);
     font-family: var(--headersFont);
     font-size: 32px;
@@ -320,7 +320,7 @@
 
 .event-registration-form button:hover {
     background-color: var(--hoverGreedColor);
-    color: #FFF9EB;
+    color: var(--backgroundColor);
     cursor: pointer;
 }
 
@@ -340,7 +340,7 @@
     animation: fadeOutAnimation 0.3s ease-out forwards;
 }
 
-.event-registration-completed.initailState {
+.event-registration-completed.initialState {
     visibility: hidden;
 }
 
@@ -349,7 +349,7 @@
 }
 
 .event-registration-completed h3 {
-    color: #FFF9EB;
+    color: var(--backgroundColor);;
     font-family: var(--headersFont);
     font-size: 35px;
     font-weight: 400;

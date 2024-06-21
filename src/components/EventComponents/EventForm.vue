@@ -51,7 +51,7 @@ const isModalOpened = ref(false);
 const isGDPRRead = ref(false);
 const isRegistrationCompleted = ref(false)
 const registrationCompleted = ref(null);
-const isInitailState = ref(true);
+const isInitialState = ref(true);
 const generalErrorMessage = ref("");
 
 const openModal = () => isModalOpened.value = true;
@@ -111,7 +111,7 @@ const submitForm = async () => {
             }
             value.errorMessage = "";
         }
-        isInitailState.value = false;
+        isInitialState.value = false;
         isRegistrationCompleted.value = true;
     } else {
         generalErrorMessage.value = signup.error.userFriendlyMessage;
@@ -246,7 +246,7 @@ defineProps({
             </form>
         </div>
         <div class="event-registration-completed"
-            :class="{ show: isRegistrationCompleted, initailState: isInitailState }" ref="registrationCompleted">
+            :class="{ show: isRegistrationCompleted, initialState: isInitialState }" ref="registrationCompleted">
             <h3>Tak for din tilmelding!</h3>
         </div>
     </div>

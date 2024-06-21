@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import NavBarComponent from '@/components/GlobalComponents/NavBarComponent.vue';
 import DeleteModal from '@/components/AdminComponents/DeleteModal.vue';
-import { addNavBarItem, changeOrderOfItem, deleteNavBarItem, doesRouteExists, getRouteDataByName, updateNavBarItem } from '@/services/AdminService';
+import { addNavBarItem, changeOrderOfItem, deleteNavBarItem, doesRouteExists, getRouteDataByName, updateNavBarItem } from '@/services/adminServices/AdminNavigationService';
 import { populateRoutes } from '@/services/NavigationService';
 import { reverse_debounce } from '@/helpers/debounce';
 

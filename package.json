@@ -11,6 +11,9 @@
   "dependencies": {
     "@firebase/auth": "^1.7.2",
     "@firebase/firestore": "^4.6.0",
+    "@firebase/storage": "^0.12.5",
+    "@tinymce/tinymce-vue": "^5.1.1",
+    "@vuepic/vue-datepicker": "^8.8.0",
     "@vueuse/core": "^10.9.0",
     "firebase": "^10.11.0",
     "pinia": "^2.1.7",
