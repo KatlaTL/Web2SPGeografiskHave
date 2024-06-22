@@ -13,7 +13,7 @@ const imageURL = computed(
 </script>
 
 <template>
-  <img :src="imageURL" class="
+  <img :src="imageURL" alt="Image" class="
   xsm:w-8 xsm:h-8 xsm:p-1 xsm:mr-2
   sm:w-10 sm:h-10 sm:pr-2 sm:mr-3
   mdsm:w-12 mdsm:h-12 mdsm:pr-2 mdsm:mr-3 

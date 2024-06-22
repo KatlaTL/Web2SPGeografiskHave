@@ -59,6 +59,7 @@ const toggleMenu = () => {
     </ul>
     <div class="sticky flex flex-wrap gap-4 z-[10] xsm:block lg:hidden xsm:pr-2 mdsm:pr-2 md:pr-3">
       <button
+        role="button"
         @click="toggleMenu"
         value="hamburger"
         class="flex flex-col justify-around h-8 w-8 p-1 rounded hover:bg-gray-400"
