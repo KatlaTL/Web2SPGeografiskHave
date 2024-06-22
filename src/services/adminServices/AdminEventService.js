@@ -1,6 +1,6 @@
 import { db, storage } from "@/config/firebase";
 import { formatDateRange } from "@/helpers/dateFormater";
-import { Timestamp, addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { Timestamp, addDoc, collection, deleteDoc, doc, getDoc, getDocs, query } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const _collectionName = "events";
@@ -14,10 +14,11 @@ export const createEvent = async (eventData) => {
         const docRef = await addDoc(collection(db, _collectionName), {
             category: eventData?.category,
             date: formatDateRange(eventData?.date),
+            dateRange: eventData?.date,
             thumbnailSrc: eventData?.previewThumbnailImageURL,
             thumbnailAltText: eventData?.thumbnailAltText,
             text: eventData?.tileText,
-            title: eventData?.tileTitle,
+            titel: eventData?.tileTitle,
             createdAt: Timestamp.fromDate(new Date()),
             updatedAt: Timestamp.fromDate(new Date()),
         })
@@ -34,7 +35,7 @@ export const createEvent = async (eventData) => {
             secondParagraph: eventData?.secondParagraph,
             formText: eventData?.formText,
             imageURL: eventData?.previewContentImageURL,
-            imageAltText: eventData?.contentImageAltText            
+            imageAltText: eventData?.contentImageAltText
         });
 
         const subCollectionDocSnap = await getDoc(subCollectionDocRef);
@@ -48,6 +49,69 @@ export const createEvent = async (eventData) => {
         }
 
     } catch (err) {
+        console.log(err)
+        return {
+            error: {
+                message: err,
+                userFriendlyMessage: "Something went wrong, please try again"
+            }
+        }
+    }
+}
+
+export const getAllEvents = async () => {
+    try {
+        const eventRef = collection(db, _collectionName);
+
+        const querySnapshot = await getDocs(eventRef);
+
+        const result = [];
+
+        for (const doc of querySnapshot.docs) {
+            const subCollectionRef = collection(db, doc.ref.path + "/content");
+            const subQuerySnapshot = await getDocs(subCollectionRef);
+
+            result.push({
+                id: doc.id,
+                ...doc.data(),
+                content: subQuerySnapshot.docs.map(doc => doc.data())[0]
+            });
+        };
+
+        return {
+            result,
+            error: null
+        };
+    } catch (err) {
+        return {
+            result: null,
+            error: err
+        };
+    }
+}
+
+export const deleteEvent = async (eventID) => {
+    try {
+        if (!eventID) {
+            throw "Missing eventID";
+        }
+        
+        const docRef = doc(db, _collectionName, eventID);
+        
+        const docSnap = await getDoc(docRef);
+        
+        if (!docSnap.exists()) {
+            throw "No such event";
+        }
+        
+        await deleteDoc(docRef);
+
+        return {
+            error: null
+        }
+
+    } catch (err) {
+        console.log(err)
         return {
             error: {
                 message: err,

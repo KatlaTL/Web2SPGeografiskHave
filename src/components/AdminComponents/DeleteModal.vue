@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import { onClickOutside } from '@vueuse/core';
+import { ref, watch } from "vue";
+import { isObject, onClickOutside } from '@vueuse/core';
 
 const props = defineProps({
     isOpen: Boolean,
@@ -20,7 +20,7 @@ onClickOutside(target, () => emit('modal-close'));
         <div class="modal-wrapper">
             <div class="modal-container" ref="target">
                 <div class="modal-body">
-                    <p>Er du sikker på at du vil slette dette menu item? ID: {{ itemID }}</p>
+                    <p>Er du sikker på at du vil slette dette item? ID: {{ itemID }}</p>
                 </div>
                 <div class="modal-footer">
                     <button class="modal-btn" @click.prevent="emit('accept-delete')">Accept</button>

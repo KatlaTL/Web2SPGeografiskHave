@@ -65,7 +65,7 @@ const search = async (searchQuery) => console.log("Searching for", searchQuery)
               <p>{{ calendarDatas.date }}</p>
             </div>
             <div class="titel">
-              <h3>{{ calendarDatas?.titel || calendarDatas?.title }}</h3>
+              <h3>{{ calendarDatas.titel }}</h3>
             </div>
             <div class="text">
               <p>{{ calendarDatas.text }}</p>

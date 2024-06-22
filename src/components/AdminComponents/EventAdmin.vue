@@ -1,30 +1,84 @@
 <script setup>
-import { uploadImageToStorage, createEvent } from "@/services/adminServices/AdminEventService";
+import { uploadImageToStorage, createEvent, getAllEvents, deleteEvent } from "@/services/adminServices/AdminEventService";
+import DeleteModal from '@/components/AdminComponents/DeleteModal.vue';
 import Editor from "@tinymce/tinymce-vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 
+const initialState = () => {
+    return {
+        contentHeading: "",
+        firstParagraph: "",
+        secondParagraph: "",
+        formText: "",
+        category: "event",
+        date: "",
+        tileTitle: "",
+        tileText: "",
+        thumbnailAltText: "",
+        previewThumbnailImageURL: "",
+        contentImageAltText: "",
+        previewContentImageURL: ""
+    }
+}
+
+const contentObj = ref(initialState());
 const content = ref("");
 const formText = ref("");
-const contentObj = ref({
-    contentHeading: "",
-    firstParagraph: "",
-    secondParagraph: "",
-    formText: "",
-    category: "event",
-    date: "",
-    tileTitle: "",
-    tileText: "",
-    thumbnailAltText: "",
-    previewThumbnailImageURL: "",
-    contentImageAltText: "",
-    previewContentImageURL: ""
-});
+const eventList = ref(null);
+const selectedEvent = ref("");
+const selectedEventID = ref(null);
+const isModalOpened = ref(false);
 
 const errorMessage = ref("");
 const succesMessage = ref("");
 
 const tileSubPath = ref("Events/");
+
+watch(() => contentObj.value.category, () => {
+    if (contentObj.value.category === "event") tileSubPath.value = "Events/";
+    if (contentObj.value.category === "tour") tileSubPath.value = "Tours/";
+})
+
+watch(selectedEvent, () => {
+    const event = eventList.value[selectedEvent.value];
+
+    if (!event) {
+        return;
+    }
+
+    contentObj.value.category = event?.category;
+    contentObj.value.date = event?.dateRange.map(date => date.toDate());
+    contentObj.value.tileTitle = event?.titel;
+    contentObj.value.tileText = event?.text;
+    contentObj.value.thumbnailAltText = event?.thumbnailAltText;
+    contentObj.value.previewThumbnailImageURL = event?.thumbnailSrc;
+
+    contentObj.value.contentHeading = event?.content?.contentHeading;
+    contentObj.value.firstParagraph = event?.content?.firstParagraph;
+    contentObj.value.secondParagraph = event?.content?.secondParagraph;
+    contentObj.value.formText = event?.content?.formText;
+    contentObj.value.previewContentImageURL = event?.content?.imageURL;
+    contentObj.value.contentImageAltText = event?.content?.imageAltText;
+
+    content.value = `<div class="contentHeading" style="color: red;">${event?.content?.contentHeading}</div>
+        <div class="contentFirstParagraphHeading" style="color: green;">${event?.content?.firstParagraph}</div>
+        <div class="contentSecondParagraphHeading" style="color: blue;">${event?.content?.secondParagraph}</div>`;
+
+    formText.value = event?.content?.formText;
+
+    selectedEventID.value = eventList.value[selectedEvent.value].id;
+})
+
+onMounted(() => loadEvents());
+
+const loadEvents = async () => {
+    const result = await getAllEvents();
+    console.log(result.result)
+    if (result.result) {
+        eventList.value = result.result;
+    }
+}
 
 const uploadImage = async (e, filePath, previewToUse) => {
     if (previewToUse === "content") {
@@ -36,10 +90,22 @@ const uploadImage = async (e, filePath, previewToUse) => {
     }
 }
 
-watch(() => contentObj.value.category, () => {
-    if (contentObj.value.category === "event") tileSubPath.value = "Events/";
-    if (contentObj.value.category === "tour") tileSubPath.value = "Tours/";
-})
+const handleDeleteEvent = async (eventID) => {
+    const result = await deleteEvent(eventID);
+
+    if (result.error) {
+        errorMessage.value = result.error?.userFriendlyMessage;
+        succesMessage.value = "";
+    } else {
+        errorMessage.value = "";
+        succesMessage.value = "Eventet er blevet slettet";
+        contentObj.value = initialState();
+        closeModal();
+        loadEvents();
+        content.value = "";
+        formText.value = "";
+    }
+}
 
 const handleAddEvent = async () => {
     const parser = new DOMParser();
@@ -61,20 +127,9 @@ const handleAddEvent = async () => {
     } else {
         errorMessage.value = "";
         succesMessage.value = "Eventet er blevet oprettet";
-        contentObj.value = {
-            contentHeading: "",
-            firstParagraph: "",
-            secondParagraph: "",
-            formText: "",
-            category: "event",
-            date: "",
-            tileTitle: "",
-            tileText: "",
-            thumbnailAltText: "",
-            previewThumbnailImageURL: "",
-            contentImageAltText: "",
-            previewContentImageURL: ""
-        }
+        contentObj.value = initialState();
+        content.value = "";
+        formText.value = "";
     }
 };
 
@@ -125,6 +180,13 @@ const dateFormat = (date) => {
 
     return dateString;
 }
+
+
+const openModal = () => isModalOpened.value = true;
+
+const closeModal = () => isModalOpened.value = false;
+
+const acceptModal = async () => await handleDeleteEvent(selectedEventID.value);
 </script>
 
 
@@ -133,11 +195,20 @@ const dateFormat = (date) => {
     <div class="admin-event">
         <h2>Tilføj, slet eller redigere events og rundvisninger</h2>
 
+        <form @submit.prevent="">
+            <h3>Vælg event fra listen for at redigere eller slette det</h3>
+            <select name="events" v-model="selectedEvent">
+                <option disabled value="">Vælg event</option>
+                <option v-for="event, index in eventList" :value="index">{{ event.titel }}</option>
+            </select>
+        </form>
+        <hr />
+
         <div class="admin-event-form">
             <form @submit.prevent="">
                 <h3>Vælg kategori</h3>
                 <select name="category" v-model="contentObj.category">
-                    <option value="event" :selected="contentObj.category === 'event'" selected>Event</option>
+                    <option value="event" :selected="contentObj.category === 'event'">Event</option>
                     <option value="tour" :selected="contentObj.category === 'tour'">Rundvisning</option>
                 </select>
             </form>
@@ -240,7 +311,14 @@ const dateFormat = (date) => {
             }" />
         </div>
 
-        <button class="admin-event-form-cta" @click="handleAddEvent">Tilføj event</button>
+        <div class="admin-event-cta-group">
+            <button class="admin-event-form-cta" @click="handleAddEvent">Tilføj event</button>
+            <button v-show="selectedEventID" class="admin-navbar-form-cta" @click="openModal">Slet
+                event</button>
+
+            <DeleteModal :isOpen="isModalOpened" @modal-close="closeModal" @accept-delete="acceptModal"
+                @cancel-delete="closeModal" :itemID="selectedEventID"  />
+        </div>
 
         <p v-show="errorMessage" class="login-error-message login-panel-error-message">
             {{ errorMessage }}

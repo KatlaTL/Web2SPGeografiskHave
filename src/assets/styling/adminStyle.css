@@ -118,7 +118,7 @@
     width: 100px;
 }
 
-.admin-navbar-form form {
+.admin-navbar-form form, .admin-event-cta-group {
     display: flex;
     flex-direction: column;
     align-items: center;
