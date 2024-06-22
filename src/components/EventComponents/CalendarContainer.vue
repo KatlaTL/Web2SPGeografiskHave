@@ -54,7 +54,7 @@ const search = async (searchQuery) => console.log("Searching for", searchQuery)
           "
         >
           <div class="image-container">
-            <img :src="calendarDatas.src" :alt="'Image ' + (index * 2 + 1)" />
+            <img :src="calendarDatas?.src || calendarDatas?.thumbnailSrc" :alt="calendarDatas?.thumbnailAltText || 'Image ' + (index * 2 + 1)" />
             <div class="overlay">
               <p class="overlay_text">Læs mere</p>
             </div>
@@ -65,7 +65,7 @@ const search = async (searchQuery) => console.log("Searching for", searchQuery)
               <p>{{ calendarDatas.date }}</p>
             </div>
             <div class="titel">
-              <h3>{{ calendarDatas.titel }}</h3>
+              <h3>{{ calendarDatas?.titel || calendarDatas?.title }}</h3>
             </div>
             <div class="text">
               <p>{{ calendarDatas.text }}</p>

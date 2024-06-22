@@ -52,10 +52,11 @@ onBeforeMount(async () => {
 
     <div class="event-container">
 
-      <div class="event-headings" v-html="content?.heading"></div>
+      <div class="event-headings" v-html="content?.heading || content?.contentHeading"></div>
 
       <div class="event-top-container">
         <div class="event-text-container event-container-left">
+          <div v-html="content?.firstParagraph"></div>
           <div v-html="content?.firstParagraphHeading"></div>
           <div v-html="content?.firstParagraphBody"></div>
           <div v-html="content?.firstParagraphHeading2"></div>
@@ -74,6 +75,7 @@ onBeforeMount(async () => {
         </div>
 
         <div class="event-text-container event-container-right">
+          <div v-html="content?.secondParagraph"></div>
           <div v-html="content?.secondParagraphHeading"></div>
           <div v-html="content?.secondParagraphBody"></div>
           <div v-html="content?.secondParagraphHeading2"></div>

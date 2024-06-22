@@ -1,5 +1,5 @@
 <script setup>
-import { uploadImageToStorage } from "@/services/adminServices/AdminEventService";
+import { uploadImageToStorage, createEvent } from "@/services/adminServices/AdminEventService";
 import Editor from "@tinymce/tinymce-vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import { ref, watch } from "vue";
@@ -15,11 +15,14 @@ const contentObj = ref({
     date: "",
     tileTitle: "",
     tileText: "",
-    tileImageAltText: "",
-    previewTileImageURL: "",
+    thumbnailAltText: "",
+    previewThumbnailImageURL: "",
     contentImageAltText: "",
     previewContentImageURL: ""
 });
+
+const errorMessage = ref("");
+const succesMessage = ref("");
 
 const tileSubPath = ref("Events/");
 
@@ -29,7 +32,7 @@ const uploadImage = async (e, filePath, previewToUse) => {
     }
 
     if (previewToUse === "tile") {
-        contentObj.value.previewTileImageURL = await uploadImageToStorage(e.target.files[0], filePath);
+        contentObj.value.previewThumbnailImageURL = await uploadImageToStorage(e.target.files[0], filePath);
     }
 }
 
@@ -38,7 +41,7 @@ watch(() => contentObj.value.category, () => {
     if (contentObj.value.category === "tour") tileSubPath.value = "Tours/";
 })
 
-const handleAddEvent = () => {
+const handleAddEvent = async () => {
     const parser = new DOMParser();
 
     const contentHTML = parser.parseFromString(content.value, "text/html");
@@ -50,8 +53,29 @@ const handleAddEvent = () => {
 
     contentObj.value.formText = formTextHTML.querySelector("body")?.innerHTML.trim();
 
-    //TO-DO save content in firebase
-    console.log(contentObj.value);
+    const result = await createEvent(contentObj.value);
+
+    if (result?.error) {
+        errorMessage.value = result.error?.userFriendlyMessage;
+        succesMessage.value = "";
+    } else {
+        errorMessage.value = "";
+        succesMessage.value = "Eventet er blevet oprettet";
+        contentObj.value = {
+            contentHeading: "",
+            firstParagraph: "",
+            secondParagraph: "",
+            formText: "",
+            category: "event",
+            date: "",
+            tileTitle: "",
+            tileText: "",
+            thumbnailAltText: "",
+            previewThumbnailImageURL: "",
+            contentImageAltText: "",
+            previewContentImageURL: ""
+        }
+    }
 };
 
 const wrapContent = (className, DOM) => {
@@ -81,13 +105,25 @@ const wrapContent = (className, DOM) => {
 }
 
 const dateFormat = (date) => {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    let dateString = "";
 
-    return `${day}/${month}-${year} ${hours}:${minutes}`;
+    date.forEach((d, index) => {
+        if (index === date.length - 1 && date.length > 1) {
+            dateString += " - "
+        }
+        const day = d.getDate();
+        const month = d.getMonth() + 1;
+        const year = d.getFullYear();
+        const hours = d.getHours();
+        let minutes = d.getMinutes();
+
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        dateString += `${day}/${month}-${year} ${hours}:${minutes}`;
+    })
+
+    return dateString;
 }
 </script>
 
@@ -108,7 +144,7 @@ const dateFormat = (date) => {
 
             <div class="date-picker">
                 <h3>Vælg en dato</h3>
-                <VueDatePicker v-model="contentObj.date" :format="dateFormat" />
+                <VueDatePicker v-model="contentObj.date" :format="dateFormat" :range="{ maxRange: 5 }" />
             </div>
 
             <form @submit.prevent="">
@@ -117,14 +153,15 @@ const dateFormat = (date) => {
 
                 <h3>Tile tekst</h3>
                 <input type="text" placeholder="Tile Tekst" v-model="contentObj.tileText" />
-                
+
                 <h3>Upload tile billede</h3>
-                <input class="uploader" type="file" accept="image/*" @change="(e) => uploadImage(e, `Calendar/${tileSubPath}`, 'tile')" />
-                <input type="text" placeholder="Billede alt tekst" v-model="contentObj.tileImageAltText" />
+                <input class="uploader" type="file" accept="image/*"
+                    @change="(e) => uploadImage(e, `Calendar/${tileSubPath}`, 'tile')" />
+                <input type="text" placeholder="Billede alt tekst" v-model="contentObj.thumbnailAltText" />
             </form>
 
-            <div v-show="contentObj.previewTileImageURL">
-                <img class="preview" height="78" width="64" :src="contentObj.previewTileImageURL">
+            <div v-show="contentObj.previewThumbnailImageURL">
+                <img class="preview" height="78" width="64" :src="contentObj.previewThumbnailImageURL">
             </div>
         </div>
 
@@ -167,7 +204,8 @@ const dateFormat = (date) => {
             <div class="admin-event-form-uploader">
                 <h3>Upload billede til indholdet</h3>
                 <form @submit.prevent="">
-                    <input class="uploader" type="file" accept="image/*" @change="(e) => uploadImage(e, 'eventsContent/', 'content')" />
+                    <input class="uploader" type="file" accept="image/*"
+                        @change="(e) => uploadImage(e, 'eventsContent/', 'content')" />
                     <input type="text" placeholder="Billede alt tekst" v-model="contentObj.contentImageAltText" />
                 </form>
 
@@ -203,6 +241,14 @@ const dateFormat = (date) => {
         </div>
 
         <button class="admin-event-form-cta" @click="handleAddEvent">Tilføj event</button>
+
+        <p v-show="errorMessage" class="login-error-message login-panel-error-message">
+            {{ errorMessage }}
+        </p>
+
+        <p v-show="succesMessage" class="succes-message login-panel-error-message">
+            {{ succesMessage }}
+        </p>
     </div>
 
 </template>

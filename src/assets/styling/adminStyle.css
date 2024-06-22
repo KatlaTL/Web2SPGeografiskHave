@@ -53,6 +53,16 @@
     cursor: pointer;
 }
 
+.succes-message {
+    color: var(--headerColor);
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 22px;
+    text-align: center;
+}
+
 .login-error-message {
     color: var(--errorColor);
     font-size: 15px;
@@ -253,7 +263,7 @@
 }
 
 .date-picker {
-    width: 190px;
+    width: 320px;
 }
 
 .admin-event-form input[type=file] {

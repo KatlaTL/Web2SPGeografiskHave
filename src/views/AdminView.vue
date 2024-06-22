@@ -5,7 +5,7 @@ import { adminLogout } from '@/services/LoginService';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const activeAdminContent = ref(null);
+const activeAdminContent = ref("mainNav");
 
 const router = useRouter();
 
@@ -27,8 +27,10 @@ const handleSignOut = async () => {
             <h1>Admin panel</h1>
 
             <div class="admin-show-section">
-                <button @click="() => setActiveAdminContent('mainNav')" :class="{active: activeAdminContent === 'mainNav'}">Main navigation</button>
-                <button @click="() => setActiveAdminContent('events')" :class="{active: activeAdminContent === 'events'}">Events</button>
+                <button @click="() => setActiveAdminContent('mainNav')"
+                    :class="{ active: activeAdminContent === 'mainNav' }">Main navigation</button>
+                <button @click="() => setActiveAdminContent('events')"
+                    :class="{ active: activeAdminContent === 'events' }">Events</button>
             </div>
 
             <NavBarAdmin v-show="activeAdminContent === 'mainNav'" />
