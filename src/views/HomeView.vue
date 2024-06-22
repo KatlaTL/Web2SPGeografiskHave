@@ -25,6 +25,8 @@ onBeforeMount(async () => {
     tiles.value = homepageTiles.result;
   }
 })
+
+  console.log(tiles);
 </script>
 
 <template>

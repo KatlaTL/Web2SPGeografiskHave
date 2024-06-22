@@ -8,6 +8,9 @@ import EventForm from '@/components/EventComponents/EventForm.vue';
 import TourPrices from '@/components/EventComponents/TourPrices.vue';
 import { getEventBanner, getEventContentByID } from '@/services/EventService';
 import { useRoute } from 'vue-router';
+import { setDescription } from "@m-media/vue3-meta-tags";
+
+
 
 const route = useRoute();
 
@@ -20,7 +23,9 @@ onBeforeMount(async () => {
 
   if (eventContent.result) {
     content.value = eventContent.result;
-    
+
+    setDescription(content.value.secondParagraphBody);
+
     showEventPrices.value = content.value?.category === "event";
 
     const banner = await getEventBanner(content.value?.category);
