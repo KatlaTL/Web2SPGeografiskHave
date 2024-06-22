@@ -1,5 +1,5 @@
 <script setup>
-import { uploadImageToStorage, createEvent, getAllEvents, deleteEvent } from "@/services/adminServices/AdminEventService";
+import { uploadImageToStorage, createEvent, getAllEvents, deleteEvent, updateEvent, doesEventExists } from "@/services/adminServices/AdminEventService";
 import DeleteModal from '@/components/AdminComponents/DeleteModal.vue';
 import Editor from "@tinymce/tinymce-vue";
 import VueDatePicker from '@vuepic/vue-datepicker';
@@ -48,7 +48,7 @@ watch(selectedEvent, () => {
     }
 
     contentObj.value.category = event?.category;
-    contentObj.value.date = event?.dateRange.map(date => date.toDate());
+    contentObj.value.date = event?.dateRange?.map(date => date?.toDate());
     contentObj.value.tileTitle = event?.titel;
     contentObj.value.tileText = event?.text;
     contentObj.value.thumbnailAltText = event?.thumbnailAltText;
@@ -74,7 +74,7 @@ onMounted(() => loadEvents());
 
 const loadEvents = async () => {
     const result = await getAllEvents();
-    console.log(result.result)
+
     if (result.result) {
         eventList.value = result.result;
     }
@@ -97,17 +97,48 @@ const handleDeleteEvent = async (eventID) => {
         errorMessage.value = result.error?.userFriendlyMessage;
         succesMessage.value = "";
     } else {
-        errorMessage.value = "";
         succesMessage.value = "Eventet er blevet slettet";
-        contentObj.value = initialState();
         closeModal();
         loadEvents();
-        content.value = "";
-        formText.value = "";
+        setToInitialState();
+    }
+}
+
+const handleEditEvent = async (eventID) => {
+    extractData();
+
+    const result = await updateEvent(eventID, contentObj.value);
+
+    if (result?.error) {
+        errorMessage.value = result.error?.userFriendlyMessage;
+        succesMessage.value = "";
+    } else {
+        succesMessage.value = "Eventet er blevet redigeret";
+        setToInitialState();
     }
 }
 
 const handleAddEvent = async () => {
+    if (await doesEventExists(selectedEventID.value)) {
+        errorMessage.value = "Event already exists!";
+        return;
+    }
+
+    extractData();
+
+    const result = await createEvent(contentObj.value);
+
+    if (result?.error) {
+        errorMessage.value = result.error?.userFriendlyMessage;
+        succesMessage.value = "";
+    } else {
+        succesMessage.value = "Eventet er blevet oprettet";
+        setToInitialState();
+        loadEvents();
+    }
+};
+
+const extractData = () => {
     const parser = new DOMParser();
 
     const contentHTML = parser.parseFromString(content.value, "text/html");
@@ -118,20 +149,7 @@ const handleAddEvent = async () => {
     contentObj.value.secondParagraph = wrapContent(".contentSecondParagraphHeading", contentHTML);
 
     contentObj.value.formText = formTextHTML.querySelector("body")?.innerHTML.trim();
-
-    const result = await createEvent(contentObj.value);
-
-    if (result?.error) {
-        errorMessage.value = result.error?.userFriendlyMessage;
-        succesMessage.value = "";
-    } else {
-        errorMessage.value = "";
-        succesMessage.value = "Eventet er blevet oprettet";
-        contentObj.value = initialState();
-        content.value = "";
-        formText.value = "";
-    }
-};
+}
 
 const wrapContent = (className, DOM) => {
     let paragraph = "";
@@ -157,6 +175,13 @@ const wrapContent = (className, DOM) => {
     });
 
     return paragraph;
+}
+
+const setToInitialState = () => {
+    errorMessage.value = "";
+    contentObj.value = initialState();
+    content.value = "";
+    formText.value = "";
 }
 
 const dateFormat = (date) => {
@@ -195,7 +220,7 @@ const acceptModal = async () => await handleDeleteEvent(selectedEventID.value);
     <div class="admin-event">
         <h2>Tilføj, slet eller redigere events og rundvisninger</h2>
 
-        <form @submit.prevent="">
+        <form @submit.prevent="" class="admin-event-select-form">
             <h3>Vælg event fra listen for at redigere eller slette det</h3>
             <select name="events" v-model="selectedEvent">
                 <option disabled value="">Vælg event</option>
@@ -313,18 +338,21 @@ const acceptModal = async () => await handleDeleteEvent(selectedEventID.value);
 
         <div class="admin-event-cta-group">
             <button class="admin-event-form-cta" @click="handleAddEvent">Tilføj event</button>
-            <button v-show="selectedEventID" class="admin-navbar-form-cta" @click="openModal">Slet
-                event</button>
+
+            <button v-show="selectedEventID" class="admin-navbar-form-cta"
+                @click="() => handleEditEvent(selectedEventID)">Redigere event</button>
+
+            <button v-show="selectedEventID" class="admin-navbar-form-cta" @click="openModal">Slet event</button>
 
             <DeleteModal :isOpen="isModalOpened" @modal-close="closeModal" @accept-delete="acceptModal"
-                @cancel-delete="closeModal" :itemID="selectedEventID"  />
+                @cancel-delete="closeModal" :itemID="selectedEventID" />
         </div>
 
-        <p v-show="errorMessage" class="login-error-message login-panel-error-message">
+        <p v-show="errorMessage" class="align-center login-error-message login-panel-error-message">
             {{ errorMessage }}
         </p>
 
-        <p v-show="succesMessage" class="succes-message login-panel-error-message">
+        <p v-show="succesMessage" class="align-center succes-message login-panel-error-message">
             {{ succesMessage }}
         </p>
     </div>

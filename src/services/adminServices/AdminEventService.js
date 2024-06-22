@@ -1,6 +1,6 @@
 import { db, storage } from "@/config/firebase";
 import { formatDateRange } from "@/helpers/dateFormater";
-import { Timestamp, addDoc, collection, deleteDoc, doc, getDoc, getDocs, query } from "firebase/firestore";
+import { Timestamp, addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, runTransaction, updateDoc, writeBatch } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const _collectionName = "events";
@@ -49,7 +49,6 @@ export const createEvent = async (eventData) => {
         }
 
     } catch (err) {
-        console.log(err)
         return {
             error: {
                 message: err,
@@ -90,20 +89,74 @@ export const getAllEvents = async () => {
     }
 }
 
+export const updateEvent = async (eventID, eventData) => {
+    try {
+        if (!eventID) {
+            throw "Missing eventID";
+        }
+
+        const batch = writeBatch(db);
+
+        const docRef = doc(db, _collectionName, eventID);
+
+        const querySnapshot = await getDocs(collection(db, _collectionName, eventID, "content"));
+
+        let subCollectionDocRef = null;
+
+        for (const doc of querySnapshot.docs) {
+            subCollectionDocRef = doc.ref;
+        }
+
+        batch.update(docRef, {
+            category: eventData?.category,
+            date: formatDateRange(eventData?.date),
+            dateRange: eventData?.date,
+            thumbnailSrc: eventData?.previewThumbnailImageURL,
+            thumbnailAltText: eventData?.thumbnailAltText,
+            text: eventData?.tileText,
+            titel: eventData?.tileTitle,
+            updatedAt: Timestamp.fromDate(new Date()),
+        });
+
+        batch.update(subCollectionDocRef, {
+            contentHeading: eventData?.contentHeading,
+            firstParagraph: eventData?.firstParagraph,
+            secondParagraph: eventData?.secondParagraph,
+            formText: eventData?.formText,
+            imageURL: eventData?.previewContentImageURL,
+            imageAltText: eventData?.contentImageAltText
+        });
+
+        await batch.commit();
+
+        return {
+            error: null
+        }
+
+    } catch (err) {
+        return {
+            error: {
+                message: err,
+                userFriendlyMessage: "Something went wrong, please try again"
+            }
+        }
+    }
+}
+
 export const deleteEvent = async (eventID) => {
     try {
         if (!eventID) {
             throw "Missing eventID";
         }
-        
+
         const docRef = doc(db, _collectionName, eventID);
-        
+
         const docSnap = await getDoc(docRef);
-        
+
         if (!docSnap.exists()) {
             throw "No such event";
         }
-        
+
         await deleteDoc(docRef);
 
         return {
@@ -118,6 +171,31 @@ export const deleteEvent = async (eventID) => {
                 userFriendlyMessage: "Something went wrong, please try again"
             }
         }
+    }
+}
+
+export const doesEventExists = async (eventID) => {
+    try {
+        if (eventID === null) {
+            return false;
+        }
+
+        if (eventID === "") {
+            throw "Event ID missing";
+        }
+
+        const docRef = doc(db, _collectionName, eventID);
+
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            return true;
+        }
+
+        return false;
+
+    } catch (err) {
+        return true;
     }
 }
 

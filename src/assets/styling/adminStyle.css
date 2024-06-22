@@ -205,6 +205,13 @@
     border: none;
 }
 
+.admin-event-select-form select {
+    min-width: 270px;
+    width: auto;
+    height: 25px;
+    font-size: 16px;
+}
+
 .admin-event-form {
     margin-top: 50px;
     text-align: left;
@@ -220,7 +227,7 @@
 }
 
 .admin-event-form form select {
-    width: 100px;
+    width: 120px;
     height: 25px;
     font-size: 16px;
 }
@@ -269,3 +276,7 @@
 .admin-event-form input[type=file] {
     margin-bottom: 10px;
 }
+
+.align-center {
+    text-align: center;
+} 

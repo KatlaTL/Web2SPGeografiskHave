@@ -13,6 +13,8 @@ const target = ref(null);
 
 onClickOutside(target, () => emit('modal-close'));
 
+watch(target, () => target.value?.scrollIntoView(false));
+
 </script>
 
 <template>
