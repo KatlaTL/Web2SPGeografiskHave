@@ -24,7 +24,7 @@ onBeforeMount(async () => {
   if (eventContent.result) {
     content.value = eventContent.result;
 
-    setDescription(content.value.secondParagraphBody);
+    setDescription(content.value.firstParagraphBody);
 
     showEventPrices.value = content.value?.category === "event";
 
