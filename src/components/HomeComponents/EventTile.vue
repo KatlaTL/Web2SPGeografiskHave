@@ -78,7 +78,7 @@ const tileLinkTextColor = computed(() => {
 </script>
 
 <template>
-    <article class="home-event-tile flex xsm:flex-col-reverse xsm:items-center mdsm:flex-row justify-center xsm:mt-[100px] sm:mt-[80px] xsm:mb-[150px] mdsm:mt-auto">
+    <article class="home-event-tile flex xsm:flex-col-reverse xsm:items-center mdsm:flex-row justify-center xsm:mt-[100px] sm:mt-[80px] xsm:mb-[150px] mdsm:mb-[50px] mdsm:mt-auto">
         <section class="home-event-tile-text 
         sm:w-26
         xsm:w-auto xsm:mx-2 xsm:rounded-none mdsm:rounded-l-3xl mdsm:rounded-tr-3xl mdsm:mx-0 mdsm:w-[300px] md:w-[400px] lg:w-[230px] lgxl:w-[230px] xl:w-[227px]
