@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-footerBackgroundColor dark:bg-footerBackgroundColor">
-    <div class="mx-auto w-full max-w-screen-xl p-4 py-4">
+    <div class="w-full max-w-screen-xl py-1 px-14 pt-8">
       <div
         class="flex mdsm:justify-between mdsm:flex-row mdsm:items-start xsm:flex-col text-whiteColor"
       >
@@ -13,7 +13,7 @@
         </div>
         <div
         class="flex flex-col md:justify-start md:items-start xsm:py-2 mdsm:py-4
-        xsm:text-[14px] mdsm:text-[16px] md:text-[20px] font-medium leading-[30px] font-headersFont"
+        xsm:text-[14px] mdsm:text-[16px] md:text-[20px] font-medium leading-[35px] font-headersFont"
         >
           <h3 class="xsm:pb-2 mdsm:pb-4 xsm:text-[24px] mdsm:text-[30px]">Om os</h3>
           <a href="#">Bestyrelsen</a>
@@ -26,7 +26,7 @@
         </div>
         <div
         class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start xsm:py-2 mdsm:py-4
-        xsm:text-[14px] mdsm:text-[16px] md:text-[20px] font-medium leading-[30px] font-headersFont"
+        xsm:text-[14px] mdsm:text-[16px] md:text-[20px] font-medium leading-[35px] font-headersFont"
         >
           <h3 class="xsm:pb-2 mdsm:pb-4 xsm:text-[24px] mdsm:text-[30px]">Diverse</h3>
           <a href="#">Persondatapolitik</a>
@@ -42,7 +42,7 @@
         </div>
         <div
         class="flex flex-col xsm:justify-center xsm:items-start lg:justify-start lg:items-start xsm:py-2 mdsm:py-4 
-        xsm:text-[14px] mdsm:text-[16px] md:text-[20px] font-medium leading-[30px] font-headersFont"
+        xsm:text-[14px] mdsm:text-[16px] md:text-[20px] font-medium leading-[35px] font-headersFont"
         >
           <h3 class="xsm:pb-2 mdsm:pb-4 xsm:text-[24px] mdsm:text-[30px]">Kontakt</h3>
           <a
@@ -54,7 +54,7 @@
             <p>Christian 4 vej 23</p>
             <p>6000 Kolding</p>
           </a>
-          <div class="info_div">
+          <div class="info_div pt-4">
             <p>79797000</p>
             <p>info@geografiskhave.dk</p>
           </div>
