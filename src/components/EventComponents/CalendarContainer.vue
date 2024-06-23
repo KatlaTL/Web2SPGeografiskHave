@@ -26,6 +26,7 @@ onBeforeMount(async () => {
   }
 });
 
+/* Calenderdatas værdi er den samme som calendarDataEvent som default */
 watch(calendarDataEvent, () => (calendarDatas.value = calendarDataEvent.value));
 
 const router = useRouter();
