@@ -27,7 +27,6 @@ const router = createRouter({
         description:
           "Geografisk Have i Kolding er en 14 hektar stor botanisk have, hvor træer, buske og urter er plantet sammen efter geografisk oprindelse, fx Asien, Sydamerika og Nordamerika.",
         locale: "da_DK",
-        site_name:"hej",
       }
     },
     {
